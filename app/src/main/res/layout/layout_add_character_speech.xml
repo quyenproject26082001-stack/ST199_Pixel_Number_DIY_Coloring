@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lnlSpeech"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_category"
+        android:id="@+id/rcvCategory"
+        />
+
+    <!--            rcvFont-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="0dp"
+        android:visibility="gone"
+        android:clipChildren="false"
+        android:clipToPadding="true"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/edtText"
+        tools:listitem="@layout/item_font" />
+
+    <!--            rcvTextColor-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvTextColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/rcvFont"
+        tools:listitem="@layout/item_text_color" />
+
+
+
+    <!-- Title: Speech Bubbles -->
+    <TextView
+        android:id="@+id/tvTitleSpeech"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/game_paused_demo_regular"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/speech_bubbles"
+        android:textColor="#C13F74"
+        android:textSize="20sp" />
+
+    <!--            rcvSticker-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvSpeech"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12.5dp"
+        android:paddingHorizontal="12.5dp"
+        android:clipToPadding="false"
+        android:paddingBottom="42dp"
+        tools:itemCount="20"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="5"
+        tools:listitem="@layout/item_speech" />
+</LinearLayout>

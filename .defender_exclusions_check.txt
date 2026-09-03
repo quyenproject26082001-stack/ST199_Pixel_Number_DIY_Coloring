@@ -1,0 +1,10 @@
+C:\Users\BauTroiSao\.gradle
+C:\Users\BauTroiSao\AppData\Local\Android\Sdk
+C:\Users\BauTroiSao\AppData\Local\Google\AndroidStudio2023.1
+C:\Users\BauTroiSao\AppData\Local\Google\AndroidStudio2024.2
+D:\000\MusicApplication
+D:\Android\Sdk
+D:\androidProject\ST069_FakeCallPhonePrank
+D:\app\269
+D:\VIETCONS_SETUP\files
+D:\VIETCONS_SETUP\OInstall.exe

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.permission.PermissionActivity">
+
+
+    <!-- imgPermission -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_app"
+        android:scaleType="centerCrop"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/layout_actionbar" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imgPermission"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="90dp"
+        android:layout_marginTop="5dp"
+        android:maxHeight="329dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_permission"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar" />
+
+    <!-- txtPermission -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/txtPermission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="0dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/imgPermission">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtPer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/app"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            tools:text="Allow Permissionsằbfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaa" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- btnStorage -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnStorage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="23dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_frame_per"
+        app:layout_constraintDimensionRatio="328:56"
+        app:layout_constraintTop_toBottomOf="@id/btnNotification"
+        app:layout_goneMarginTop="0dp">
+
+        <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:gravity="start"
+            android:text="@string/storage"
+            android:textColor="@color/app"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/swPermission"
+            android:layout_width="60dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginEnd="24dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_sw_off"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- btnNotification -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnNotification"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bg_frame_per"
+        app:layout_constraintTop_toBottomOf="@id/txtPermission">
+
+        <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:gravity="start"
+            android:text="@string/notification"
+            android:textColor="@color/app"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/swNotification"
+            android:layout_width="60dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginEnd="24dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_sw_on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- tvContinue -->
+    <TextView
+        android:id="@+id/tvContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="130dp"
+        android:fontFamily="@font/game_paused_demo_regular"
+        android:gravity="center"
+        android:text="@string/continue_per"
+        android:textColor="@color/app"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/native_ads"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+    <FrameLayout
+        android:id="@+id/native_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include layout="@layout/ads_native_big_btn_bottom_shimmer" />
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

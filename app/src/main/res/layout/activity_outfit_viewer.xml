@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
+    android:clipChildren="false"
+    tools:context=".ui.outfit.OutfitViewerActivity">
+
+    <!--    webView-->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:clipChildren="false"
+        tools:background="@color/blue_app"
+        android:background="@color/transparent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--    btnBack-->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="44dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/ctnActionbar"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ctnActionbar" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ctnActionbar"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="@color/transparent"
+            app:cardBackgroundColor="#E8E8E8"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="68:36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+
+                >
+
+                <!--            btnThemeDark-->
+                <ImageView
+                    android:id="@+id/btnThemeDark"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_dark"
+                    android:translationX="-0dp"
+                    android:translationY="-1dp" />
+
+                <!--            btnThemeLight-->
+                <ImageView
+                    android:id="@+id/btnThemeLight"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_light_selected"
+                    android:translationX="0dp"
+                    android:translationY="-1dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--    btnDownload-->
+        <FrameLayout
+            android:id="@+id/btnDownload"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_download1"
+            app:layout_constraintBottom_toBottomOf="@id/ctnActionbar"
+            app:layout_constraintDimensionRatio="62:36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ctnActionbar">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/game_paused_demo_regular"
+                android:gravity="center"
+                android:text="@string/done"
+                android:textColor="@color/app"
+                android:textSize="16sp" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    lnlClothes-->
+    <LinearLayout
+        android:id="@+id/lnlClothes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--        btnShirt-->
+        <ImageView
+            android:id="@+id/btnShirt"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/ic_shirt_uslt"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <!--        btnPant-->
+        <ImageView
+            android:id="@+id/btnPant"
+            android:layout_width="42dp"
+
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_pant_uslt"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
+        <!--        btnAccessory-->
+        <ImageView
+            android:id="@+id/btnAccessory"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_assessory_uslt"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!--    lnlFeature-->
+    <LinearLayout
+        android:id="@+id/lnlFeature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-3dp"
+        android:background="@drawable/bg_26_solid_gray_e6"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/lnlClothes"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+
+        <!--        btnClose-->
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_close1" />
+        <!--        btnText-->
+        <ImageView
+            android:id="@+id/btnText"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_text1" />
+        <!--        btnEmoji-->
+        <ImageView
+            android:id="@+id/btnEmoji"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_emoji1" />
+
+        <!--        btnSticker-->
+        <ImageView
+            android:id="@+id/btnSticker"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_sticker1" />
+
+        <!--        btnBrush-->
+        <ImageView
+            android:id="@+id/btnBrush"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_paint1" />
+
+
+        <!--        btnImage-->
+        <ImageView
+            android:id="@+id/btnImage"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginVertical="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/ic_add_image1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!--        btnType1-->
+        <ImageView
+            android:id="@+id/btnType1"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_shape_slt"
+            android:src="@drawable/ic_type_1" />
+
+        <!--        btnType2-->
+        <ImageView
+            android:id="@+id/btnType2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_shape_uslt"
+            android:src="@drawable/ic_type_2" />
+
+        <!--        btnType3-->
+        <ImageView
+            android:id="@+id/btnType3"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_shape_uslt"
+            android:src="@drawable/ic_type_3" />
+
+        <!--        btnType4-->
+        <ImageView
+            android:id="@+id/btnType4"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_shape_uslt"
+            android:src="@drawable/ic_type_4" />
+    </LinearLayout>
+
+    <!--    flNativeCollab-->
+    <FrameLayout
+        android:id="@+id/flNativeCollab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

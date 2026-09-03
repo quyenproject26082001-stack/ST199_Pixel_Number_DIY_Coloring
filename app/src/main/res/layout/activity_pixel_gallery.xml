@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pixel_background"
+    tools:context=".ui.pixel_coloring.PixelGalleryActivity">
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="2dp"
+        app:layout_constraintTop_toTopOf="parent">
+        <include android:id="@+id/actionBar" layout="@layout/layout_actionbar" />
+    </FrameLayout>
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_pixel_primary_button"
+        android:minWidth="0dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/pixel_upload"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar" />
+    <HorizontalScrollView
+        android:id="@+id/categoryScroll"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnUpload">
+        <LinearLayout
+            android:id="@+id/categoryContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+            <Button android:id="@+id/btnAll" style="@style/PixelCategoryButton" android:text="@string/pixel_all" />
+            <Button android:id="@+id/btnAnimal" style="@style/PixelCategoryButton" android:text="@string/pixel_animals" />
+            <Button android:id="@+id/btnFood" style="@style/PixelCategoryButton" android:text="@string/pixel_food" />
+            <Button android:id="@+id/btnHuman" style="@style/PixelCategoryButton" android:text="@string/pixel_people" />
+            <Button android:id="@+id/btnMonster" style="@style/PixelCategoryButton" android:text="@string/pixel_monsters" />
+            <Button android:id="@+id/btnPlant" style="@style/PixelCategoryButton" android:text="@string/pixel_plants" />
+            <Button android:id="@+id/btnVehicle" style="@style/PixelCategoryButton" android:text="@string/pixel_vehicles" />
+            <Button android:id="@+id/btnChristmas" style="@style/PixelCategoryButton" android:text="@string/pixel_christmas" />
+            <Button android:id="@+id/btnHalloween" style="@style/PixelCategoryButton" android:text="@string/pixel_halloween" />
+            <Button android:id="@+id/btnRandom" style="@style/PixelCategoryButton" android:text="@string/pixel_random" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/pixel_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryScroll" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/levelList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="12dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoryScroll"
+        app:spanCount="3"
+        tools:listitem="@layout/item_pixel_level"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

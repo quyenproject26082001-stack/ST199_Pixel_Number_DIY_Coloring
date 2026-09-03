@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scvText"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8E8E8"
+    android:clipChildren="true"
+    android:isScrollContainer="true"
+    android:paddingTop="0dp"
+    android:paddingBottom="20dp"
+    android:scrollbars="none"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:orientation="vertical">
+
+        <!-- Title: Text with Done Button -->
+        <FrameLayout
+            android:id="@+id/ctnText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/btnDoneText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnDoneText">
+
+            <!-- Title: Text -->
+            <TextView
+                android:id="@+id/tvTitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/game_paused_demo_regular"
+                android:gravity="center"
+                android:text="@string/text"
+                android:textColor="#C13F74"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="@font/game_paused_demo_regular"
+                android:gravity="start"
+                android:text="@string/text"
+                android:textColor="@color/app"
+                android:textSize="16sp"
+                android:visibility="visible" />
+            <!--                    btnDoneText-->
+
+        </FrameLayout>
+
+
+        <ImageView
+            android:id="@+id/btnDoneText"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_done_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/app" />
+
+        <!--            edtText-->
+        <EditText
+            android:id="@+id/edtText"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/bg_edit_text"
+            android:ellipsize="end"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:hint="@string/hello_world_hint"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="30"
+            android:paddingHorizontal="16dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="#80868686"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDoneText" />
+
+
+        <TextView
+            android:id="@+id/tvFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:gravity="start"
+            android:text="@string/font"
+            android:includeFontPadding="false"
+            android:textColor="@color/app"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtText" />
+
+        <!--            rcvFont-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="0dp"
+            android:clipChildren="false"
+            android:clipToPadding="true"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tvFont"
+            tools:listitem="@layout/item_font" />
+
+        <TextView
+            android:id="@+id/tvColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:gravity="start"
+            android:text="@string/color_text"
+            android:includeFontPadding="false"
+            android:textColor="@color/app"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rcvFont" />
+
+        <!--            rcvTextColor-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvTextColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    app:layout_constraintTop_toBottomOf="@id/tvColor"
+            tools:listitem="@layout/item_text_color" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

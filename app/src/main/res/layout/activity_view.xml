@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
+    tools:context=".ui.view.ViewActivity">
+
+
+    <!-- layoutActionBar -->
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/layout_actionbar" />
+    </FrameLayout>
+
+    <!--    cvImage-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="visible"
+        android:layout_marginTop="6dp"
+        app:strokeColor="@color/transparent"
+        app:cardCornerRadius="0dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintVertical_bias=".0"
+        app:layout_constraintBottom_toTopOf="@id/lnlBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
+        >
+
+        <!--        imvImage-->
+        <ImageView
+            android:id="@+id/imvImage"
+            android:padding="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <FrameLayout
+        android:id="@+id/btnViewShare"
+        android:layout_width="144dp"
+        android:layout_height="44dp"
+        android:background="@drawable/ic_btn_ss"
+        android:paddingHorizontal="5dp"
+        app:layout_constraintEnd_toStartOf="@id/btnDownload"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnDownload">
+
+        <TextView
+            android:id="@+id/tvShare"
+            style="@style/single_marquee"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/share"
+            android:textColor="@color/app"
+            android:textSize="16sp" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/btnDownload"
+        android:layout_width="144dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_btn_ss"
+        android:paddingHorizontal="5dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnViewShare"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tvDownload"
+            style="@style/single_marquee"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:fontFamily="@font/game_paused_demo_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/download"
+            android:textColor="@color/app"
+            android:textSize="16sp" />
+
+    </FrameLayout>
+
+    <!--    lnlBottom-->
+    <FrameLayout
+        android:id="@+id/lnlBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="0dp"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="62dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <include
+            android:id="@+id/includeLayoutBottom"
+            layout="@layout/layout_bottom_view" />
+
+    </FrameLayout>
+
+
+<!--    &lt;!&ndash;    flNativeCollab&ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/flNativeCollab"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        <include layout="@layout/ads_shimmer_collap_native" />-->
+<!--    </FrameLayout>-->
+
+
+<!--    &lt;!&ndash;    native_ads&ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/native_ads"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        <include layout="@layout/ads_native_big_btn_top_shimmer" />-->
+<!--    </FrameLayout>-->
+
+    <!--    flNativeCollab-->
+    <FrameLayout
+        android:id="@+id/flNativeCollab"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <include layout="@layout/ads_shimmer_collap_native" />
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

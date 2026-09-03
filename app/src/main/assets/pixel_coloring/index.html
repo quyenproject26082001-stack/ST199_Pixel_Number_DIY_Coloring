@@ -1,0 +1,1813 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pixel Art Color by Number</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --secondary: #64748b;
+            --text: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-color);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+            touch-action: none;
+        }
+
+        #app {
+            width: 100%;
+            height: 100%;
+        }
+
+        .view {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        .view.active {
+            display: flex;
+        }
+
+        /* Header & Tabs */
+        .glass-header {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ai-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .ai-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #60a5fa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(96, 165, 250, 0.3);
+        }
+
+        .ai-btn span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .final-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Gallery Grid */
+        #game-canvas {
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+            touch-action: none;
+        }
+
+        .gallery-grid {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-auto-rows: min-content;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .level-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 8px;
+            width: 100%;
+        }
+
+        @media (min-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 16px;
+            }
+        }
+
+        .level-card.completed::after {
+            content: '✓';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(18, 41, 243, 0.9);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .level-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .thumbnail-canvas {
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+            object-fit: contain;
+        }
+
+        /* Game View */
+        .glass-nav {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: var(--glass-border);
+        }
+
+        .icon-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        #progress-container {
+            flex: 1;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(to right, #3b82f6, #10b981);
+            transition: width 0.3s ease;
+        }
+
+        #progress-text {
+            position: absolute;
+            right: 5px;
+            top: -20px;
+            font-size: 0.7rem;
+            color: var(--secondary);
+        }
+
+        #game-canvas-container {
+            flex: 1;
+            overflow: hidden;
+            background: #1e293b;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: none;
+        }
+
+        canvas {
+            image-rendering: pixelated;
+            cursor: crosshair;
+        }
+
+        /* Palette Footer */
+        .glass-footer {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid var(--glass-border);
+            padding: 15px;
+        }
+
+        .palette-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 5px;
+            scroll-behavior: smooth;
+        }
+
+        .color-btn {
+            min-width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s;
+            position: relative;
+        }
+
+        .color-btn.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .color-btn.done::after {
+            content: "✓";
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #10b981;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-color);
+        }
+
+        /* Tool Shelf */
+        .tool-shelf {
+            position: absolute;
+            right: 15px;
+            bottom: 110px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .tool-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .tool-btn:active {
+            transform: scale(0.9);
+        }
+
+        .tool-btn.active {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            border-color: #93c5fd;
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .tool-btn.active span {
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes hint-blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .hint-highlight {
+            animation: hint-blink 0.5s infinite;
+        }
+
+        /* Gallery */
+        .gallery-card.completed::after {
+            content: "âœ“";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #10b981;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modals */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .glass-modal {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, -0.5);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        #result-preview {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            background: #1e293b;
+            border-radius: 12px;
+            border: 4px solid var(--glass-border);
+        }
+
+        .primary-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* Mini Map */
+        #mini-map-container {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        #mini-map-container.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #mini-map-canvas {
+            max-width: 100%;
+            max-height: 100%;
+            image-rendering: pixelated;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--glass-border);
+            padding: 10px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="app">
+        <!-- Main Menu / Gallery -->
+        <section id="gallery-view" class="view active">
+            <header class="glass-header">
+                <div class="header-top">
+                    <h1>Pixel Art Pro</h1>
+                    <button id="upload-btn" class="ai-btn" title="Tải ảnh từ máy">
+                        <span>Upload</span>
+                    </button>
+                    <input type="file" id="image-upload" accept="image/*" hidden>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" data-category="all">Tất cả</button>
+                    <button class="tab-btn" data-category="animal">Động vật</button>
+                    <button class="tab-btn" data-category="food">Thực phẩm</button>
+                    <button class="tab-btn" data-category="human">Con người</button>
+                    <button class="tab-btn" data-category="monster">Quái vật</button>
+                    <button class="tab-btn" data-category="plant">Thực vật</button>
+                    <button class="tab-btn" data-category="vehicle">Xe cộ</button>
+                    <button class="tab-btn" data-category="christmas">Giáng sinh</button>
+                    <button class="tab-btn" data-category="halloween">Halloween</button>
+                    <button class="tab-btn" data-category="random">Ngẫu nhiên</button>
+                </div>
+            </header>
+            <div id="gallery-grid" class="gallery-grid">
+                <!-- Data injected by JS -->
+                <div class="loading-spinner">Đang tải dữ liệu...</div>
+            </div>
+        </section>
+
+        <!-- Game Interface -->
+        <section id="game-view" class="view">
+            <nav class="game-nav glass-nav">
+                <button id="back-btn" class="icon-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <div id="progress-container">
+                    <div id="progress-bar"></div>
+                    <span id="progress-text">0%</span>
+                </div>
+                <button id="zoom-reset-btn" class="icon-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.3-4.3" />
+                        <path d="M8 11h6" />
+                    </svg>
+                </button>
+            </nav>
+
+            <div id="game-canvas-container">
+                <canvas id="game-canvas"></canvas>
+                <div id="mini-map-container">
+                    <canvas id="mini-map-canvas"></canvas>
+                </div>
+            </div>
+
+            <div id="tool-shelf" class="tool-shelf">
+                <button id="tool-wand" class="tool-btn" title="Magic Wand">
+                    <span>vẽ</span>
+                </button>
+                <button id="tool-bomb" class="tool-btn" title="Explosive Bomb">
+                    <span>boom</span>
+                </button>
+                <button id="tool-hint" class="tool-btn" title="Hint">
+                    <span>kính</span>
+                </button>
+            </div>
+
+            <footer class="color-palette-footer glass-footer">
+                <div id="palette-scroll" class="palette-scroll">
+                    <!-- Palette injected by JS -->
+                </div>
+            </footer>
+        </section>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-overlay" class="overlay">
+        <div class="modal glass-modal">
+            <h2>Hoàn thành!</h2>
+            <div id="result-preview"></div>
+            <button id="next-btn" class="primary-btn">Tiếp theo</button>
+            <button id="close-modal-btn" class="secondary-btn">Quay lại</button>
+        </div>
+    </div>
+
+  <script>
+window.PRELOADED_LEVELS = [{"id":"animal_0","category":"animal","preview":"data/animal_0.json"},{"id":"animal_1","category":"animal","preview":"data/animal_1.json"},{"id":"animal_2","category":"animal","preview":"data/animal_2.json"},{"id":"animal_3","category":"animal","preview":"data/animal_3.json"},{"id":"animal_4","category":"animal","preview":"data/animal_4.json"},{"id":"animal_5","category":"animal","preview":"data/animal_5.json"},{"id":"animal_6","category":"animal","preview":"data/animal_6.json"},{"id":"animal_7","category":"animal","preview":"data/animal_7.json"},{"id":"animal_8","category":"animal","preview":"data/animal_8.json"},{"id":"animal_9","category":"animal","preview":"data/animal_9.json"},{"id":"animal_10","category":"animal","preview":"data/animal_10.json"},{"id":"animal_11","category":"animal","preview":"data/animal_11.json"},{"id":"animal_12","category":"animal","preview":"data/animal_12.json"},{"id":"animal_13","category":"animal","preview":"data/animal_13.json"},{"id":"animal_14","category":"animal","preview":"data/animal_14.json"},{"id":"animal_15","category":"animal","preview":"data/animal_15.json"},{"id":"animal_16","category":"animal","preview":"data/animal_16.json"},{"id":"animal_17","category":"animal","preview":"data/animal_17.json"},{"id":"animal_18","category":"animal","preview":"data/animal_18.json"},{"id":"animal_19","category":"animal","preview":"data/animal_19.json"},{"id":"animal_20","category":"animal","preview":"data/animal_20.json"},{"id":"animal_21","category":"animal","preview":"data/animal_21.json"},{"id":"animal_22","category":"animal","preview":"data/animal_22.json"},{"id":"animal_23","category":"animal","preview":"data/animal_23.json"},{"id":"animal_24","category":"animal","preview":"data/animal_24.json"},{"id":"animal_25","category":"animal","preview":"data/animal_25.json"},{"id":"animal_26","category":"animal","preview":"data/animal_26.json"},{"id":"animal_27","category":"animal","preview":"data/animal_27.json"},{"id":"animal_28","category":"animal","preview":"data/animal_28.json"},{"id":"animal_29","category":"animal","preview":"data/animal_29.json"},{"id":"animal_30","category":"animal","preview":"data/animal_30.json"},{"id":"animal_31","category":"animal","preview":"data/animal_31.json"},{"id":"animal_32","category":"animal","preview":"data/animal_32.json"},{"id":"animal_33","category":"animal","preview":"data/animal_33.json"},{"id":"animal_34","category":"animal","preview":"data/animal_34.json"},{"id":"animal_35","category":"animal","preview":"data/animal_35.json"},{"id":"animal_36","category":"animal","preview":"data/animal_36.json"},{"id":"animal_37","category":"animal","preview":"data/animal_37.json"},{"id":"animal_38","category":"animal","preview":"data/animal_38.json"},{"id":"animal_39","category":"animal","preview":"data/animal_39.json"},{"id":"animal_40","category":"animal","preview":"data/animal_40.json"},{"id":"animal_41","category":"animal","preview":"data/animal_41.json"},{"id":"animal_42","category":"animal","preview":"data/animal_42.json"},{"id":"animal_43","category":"animal","preview":"data/animal_43.json"},{"id":"animal_44","category":"animal","preview":"data/animal_44.json"},{"id":"animal_45","category":"animal","preview":"data/animal_45.json"},{"id":"animal_46","category":"animal","preview":"data/animal_46.json"},{"id":"animal_47","category":"animal","preview":"data/animal_47.json"},{"id":"animal_48","category":"animal","preview":"data/animal_48.json"},{"id":"animal_49","category":"animal","preview":"data/animal_49.json"},{"id":"animal_50","category":"animal","preview":"data/animal_50.json"},{"id":"animal_51","category":"animal","preview":"data/animal_51.json"},{"id":"animal_52","category":"animal","preview":"data/animal_52.json"},{"id":"animal_53","category":"animal","preview":"data/animal_53.json"},{"id":"animal_54","category":"animal","preview":"data/animal_54.json"},{"id":"animal_55","category":"animal","preview":"data/animal_55.json"},{"id":"animal_56","category":"animal","preview":"data/animal_56.json"},{"id":"animal_57","category":"animal","preview":"data/animal_57.json"},{"id":"animal_58","category":"animal","preview":"data/animal_58.json"},{"id":"animal_59","category":"animal","preview":"data/animal_59.json"},{"id":"animal_60","category":"animal","preview":"data/animal_60.json"},{"id":"animal_61","category":"animal","preview":"data/animal_61.json"},{"id":"animal_62","category":"animal","preview":"data/animal_62.json"},{"id":"animal_63","category":"animal","preview":"data/animal_63.json"},{"id":"animal_64","category":"animal","preview":"data/animal_64.json"},{"id":"animal_65","category":"animal","preview":"data/animal_65.json"},{"id":"animal_66","category":"animal","preview":"data/animal_66.json"},{"id":"animal_67","category":"animal","preview":"data/animal_67.json"},{"id":"animal_68","category":"animal","preview":"data/animal_68.json"},{"id":"animal_69","category":"animal","preview":"data/animal_69.json"},{"id":"animal_70","category":"animal","preview":"data/animal_70.json"},{"id":"animal_71","category":"animal","preview":"data/animal_71.json"},{"id":"animal_72","category":"animal","preview":"data/animal_72.json"},{"id":"animal_73","category":"animal","preview":"data/animal_73.json"},{"id":"animal_74","category":"animal","preview":"data/animal_74.json"},{"id":"animal_75","category":"animal","preview":"data/animal_75.json"},{"id":"animal_76","category":"animal","preview":"data/animal_76.json"},{"id":"animal_77","category":"animal","preview":"data/animal_77.json"},{"id":"animal_78","category":"animal","preview":"data/animal_78.json"},{"id":"animal_79","category":"animal","preview":"data/animal_79.json"},{"id":"animal_80","category":"animal","preview":"data/animal_80.json"},{"id":"animal_81","category":"animal","preview":"data/animal_81.json"},{"id":"animal_82","category":"animal","preview":"data/animal_82.json"},{"id":"animal_83","category":"animal","preview":"data/animal_83.json"},{"id":"animal_84","category":"animal","preview":"data/animal_84.json"},{"id":"animal_85","category":"animal","preview":"data/animal_85.json"},{"id":"animal_86","category":"animal","preview":"data/animal_86.json"},{"id":"animal_87","category":"animal","preview":"data/animal_87.json"},{"id":"animal_88","category":"animal","preview":"data/animal_88.json"},{"id":"animal_89","category":"animal","preview":"data/animal_89.json"},{"id":"animal_90","category":"animal","preview":"data/animal_90.json"},{"id":"animal_91","category":"animal","preview":"data/animal_91.json"},{"id":"animal_92","category":"animal","preview":"data/animal_92.json"},{"id":"animal_93","category":"animal","preview":"data/animal_93.json"},{"id":"animal_94","category":"animal","preview":"data/animal_94.json"},{"id":"animal_95","category":"animal","preview":"data/animal_95.json"},{"id":"animal_96","category":"animal","preview":"data/animal_96.json"},{"id":"animal_97","category":"animal","preview":"data/animal_97.json"},{"id":"animal_98","category":"animal","preview":"data/animal_98.json"},{"id":"animal_99","category":"animal","preview":"data/animal_99.json"},{"id":"animal_100","category":"animal","preview":"data/animal_100.json"},{"id":"animal_101","category":"animal","preview":"data/animal_101.json"},{"id":"animal_102","category":"animal","preview":"data/animal_102.json"},{"id":"animal_103","category":"animal","preview":"data/animal_103.json"},{"id":"animal_104","category":"animal","preview":"data/animal_104.json"},{"id":"animal_105","category":"animal","preview":"data/animal_105.json"},{"id":"animal_106","category":"animal","preview":"data/animal_106.json"},{"id":"animal_107","category":"animal","preview":"data/animal_107.json"},{"id":"animal_108","category":"animal","preview":"data/animal_108.json"},{"id":"animal_109","category":"animal","preview":"data/animal_109.json"},{"id":"animal_110","category":"animal","preview":"data/animal_110.json"},{"id":"animal_111","category":"animal","preview":"data/animal_111.json"},{"id":"animal_112","category":"animal","preview":"data/animal_112.json"},{"id":"animal_113","category":"animal","preview":"data/animal_113.json"},{"id":"animal_114","category":"animal","preview":"data/animal_114.json"},{"id":"animal_115","category":"animal","preview":"data/animal_115.json"},{"id":"animal_116","category":"animal","preview":"data/animal_116.json"},{"id":"animal_117","category":"animal","preview":"data/animal_117.json"},{"id":"animal_118","category":"animal","preview":"data/animal_118.json"},{"id":"animal_119","category":"animal","preview":"data/animal_119.json"},{"id":"animal_120","category":"animal","preview":"data/animal_120.json"},{"id":"animal_121","category":"animal","preview":"data/animal_121.json"},{"id":"animal_122","category":"animal","preview":"data/animal_122.json"},{"id":"animal_123","category":"animal","preview":"data/animal_123.json"},{"id":"animal_124","category":"animal","preview":"data/animal_124.json"},{"id":"animal_125","category":"animal","preview":"data/animal_125.json"},{"id":"animal_126","category":"animal","preview":"data/animal_126.json"},{"id":"animal_127","category":"animal","preview":"data/animal_127.json"},{"id":"animal_128","category":"animal","preview":"data/animal_128.json"},{"id":"animal_129","category":"animal","preview":"data/animal_129.json"},{"id":"animal_130","category":"animal","preview":"data/animal_130.json"},{"id":"animal_131","category":"animal","preview":"data/animal_131.json"},{"id":"animal_132","category":"animal","preview":"data/animal_132.json"},{"id":"animal_133","category":"animal","preview":"data/animal_133.json"},{"id":"animal_134","category":"animal","preview":"data/animal_134.json"},{"id":"animal_135","category":"animal","preview":"data/animal_135.json"},{"id":"animal_136","category":"animal","preview":"data/animal_136.json"},{"id":"animal_137","category":"animal","preview":"data/animal_137.json"},{"id":"animal_138","category":"animal","preview":"data/animal_138.json"},{"id":"animal_139","category":"animal","preview":"data/animal_139.json"},{"id":"animal_140","category":"animal","preview":"data/animal_140.json"},{"id":"animal_141","category":"animal","preview":"data/animal_141.json"},{"id":"animal_142","category":"animal","preview":"data/animal_142.json"},{"id":"animal_143","category":"animal","preview":"data/animal_143.json"},{"id":"animal_144","category":"animal","preview":"data/animal_144.json"},{"id":"animal_145","category":"animal","preview":"data/animal_145.json"},{"id":"animal_146","category":"animal","preview":"data/animal_146.json"},{"id":"animal_147","category":"animal","preview":"data/animal_147.json"},{"id":"animal_148","category":"animal","preview":"data/animal_148.json"},{"id":"animal_149","category":"animal","preview":"data/animal_149.json"},{"id":"animal_150","category":"animal","preview":"data/animal_150.json"},{"id":"animal_151","category":"animal","preview":"data/animal_151.json"},{"id":"plant_0","category":"plant","preview":"data/plant_0.json"},{"id":"plant_1","category":"plant","preview":"data/plant_1.json"},{"id":"plant_2","category":"plant","preview":"data/plant_2.json"},{"id":"plant_3","category":"plant","preview":"data/plant_3.json"},{"id":"plant_4","category":"plant","preview":"data/plant_4.json"},{"id":"plant_5","category":"plant","preview":"data/plant_5.json"},{"id":"plant_6","category":"plant","preview":"data/plant_6.json"},{"id":"plant_7","category":"plant","preview":"data/plant_7.json"},{"id":"plant_8","category":"plant","preview":"data/plant_8.json"},{"id":"plant_9","category":"plant","preview":"data/plant_9.json"},{"id":"plant_10","category":"plant","preview":"data/plant_10.json"},{"id":"plant_11","category":"plant","preview":"data/plant_11.json"},{"id":"plant_12","category":"plant","preview":"data/plant_12.json"},{"id":"plant_13","category":"plant","preview":"data/plant_13.json"},{"id":"plant_14","category":"plant","preview":"data/plant_14.json"},{"id":"plant_15","category":"plant","preview":"data/plant_15.json"},{"id":"plant_16","category":"plant","preview":"data/plant_16.json"},{"id":"plant_17","category":"plant","preview":"data/plant_17.json"},{"id":"plant_18","category":"plant","preview":"data/plant_18.json"},{"id":"plant_19","category":"plant","preview":"data/plant_19.json"},{"id":"plant_20","category":"plant","preview":"data/plant_20.json"},{"id":"plant_21","category":"plant","preview":"data/plant_21.json"},{"id":"plant_22","category":"plant","preview":"data/plant_22.json"},{"id":"plant_23","category":"plant","preview":"data/plant_23.json"},{"id":"plant_24","category":"plant","preview":"data/plant_24.json"},{"id":"plant_25","category":"plant","preview":"data/plant_25.json"},{"id":"plant_26","category":"plant","preview":"data/plant_26.json"},{"id":"plant_27","category":"plant","preview":"data/plant_27.json"},{"id":"plant_28","category":"plant","preview":"data/plant_28.json"},{"id":"plant_29","category":"plant","preview":"data/plant_29.json"},{"id":"plant_30","category":"plant","preview":"data/plant_30.json"},{"id":"plant_31","category":"plant","preview":"data/plant_31.json"},{"id":"plant_32","category":"plant","preview":"data/plant_32.json"},{"id":"plant_33","category":"plant","preview":"data/plant_33.json"},{"id":"plant_34","category":"plant","preview":"data/plant_34.json"},{"id":"plant_35","category":"plant","preview":"data/plant_35.json"},{"id":"plant_36","category":"plant","preview":"data/plant_36.json"},{"id":"plant_37","category":"plant","preview":"data/plant_37.json"},{"id":"plant_38","category":"plant","preview":"data/plant_38.json"},{"id":"plant_39","category":"plant","preview":"data/plant_39.json"},{"id":"plant_40","category":"plant","preview":"data/plant_40.json"},{"id":"plant_41","category":"plant","preview":"data/plant_41.json"},{"id":"plant_42","category":"plant","preview":"data/plant_42.json"},{"id":"plant_43","category":"plant","preview":"data/plant_43.json"},{"id":"plant_44","category":"plant","preview":"data/plant_44.json"},{"id":"plant_45","category":"plant","preview":"data/plant_45.json"},{"id":"plant_46","category":"plant","preview":"data/plant_46.json"},{"id":"plant_47","category":"plant","preview":"data/plant_47.json"},{"id":"plant_48","category":"plant","preview":"data/plant_48.json"},{"id":"plant_49","category":"plant","preview":"data/plant_49.json"},{"id":"plant_50","category":"plant","preview":"data/plant_50.json"},{"id":"plant_51","category":"plant","preview":"data/plant_51.json"},{"id":"plant_52","category":"plant","preview":"data/plant_52.json"},{"id":"plant_53","category":"plant","preview":"data/plant_53.json"},{"id":"plant_54","category":"plant","preview":"data/plant_54.json"},{"id":"plant_55","category":"plant","preview":"data/plant_55.json"},{"id":"plant_56","category":"plant","preview":"data/plant_56.json"},{"id":"plant_57","category":"plant","preview":"data/plant_57.json"},{"id":"plant_58","category":"plant","preview":"data/plant_58.json"},{"id":"plant_59","category":"plant","preview":"data/plant_59.json"},{"id":"plant_60","category":"plant","preview":"data/plant_60.json"},{"id":"plant_61","category":"plant","preview":"data/plant_61.json"},{"id":"plant_62","category":"plant","preview":"data/plant_62.json"},{"id":"plant_63","category":"plant","preview":"data/plant_63.json"},{"id":"plant_64","category":"plant","preview":"data/plant_64.json"},{"id":"plant_65","category":"plant","preview":"data/plant_65.json"},{"id":"plant_66","category":"plant","preview":"data/plant_66.json"},{"id":"plant_67","category":"plant","preview":"data/plant_67.json"},{"id":"plant_68","category":"plant","preview":"data/plant_68.json"},{"id":"plant_69","category":"plant","preview":"data/plant_69.json"},{"id":"plant_70","category":"plant","preview":"data/plant_70.json"},{"id":"plant_71","category":"plant","preview":"data/plant_71.json"},{"id":"plant_72","category":"plant","preview":"data/plant_72.json"},{"id":"plant_73","category":"plant","preview":"data/plant_73.json"},{"id":"plant_74","category":"plant","preview":"data/plant_74.json"},{"id":"plant_75","category":"plant","preview":"data/plant_75.json"},{"id":"plant_76","category":"plant","preview":"data/plant_76.json"},{"id":"plant_77","category":"plant","preview":"data/plant_77.json"},{"id":"plant_78","category":"plant","preview":"data/plant_78.json"},{"id":"plant_79","category":"plant","preview":"data/plant_79.json"},{"id":"plant_80","category":"plant","preview":"data/plant_80.json"},{"id":"plant_81","category":"plant","preview":"data/plant_81.json"},{"id":"plant_82","category":"plant","preview":"data/plant_82.json"},{"id":"plant_83","category":"plant","preview":"data/plant_83.json"},{"id":"plant_84","category":"plant","preview":"data/plant_84.json"},{"id":"plant_85","category":"plant","preview":"data/plant_85.json"},{"id":"plant_86","category":"plant","preview":"data/plant_86.json"},{"id":"plant_87","category":"plant","preview":"data/plant_87.json"},{"id":"plant_88","category":"plant","preview":"data/plant_88.json"},{"id":"plant_89","category":"plant","preview":"data/plant_89.json"},{"id":"plant_90","category":"plant","preview":"data/plant_90.json"},{"id":"plant_91","category":"plant","preview":"data/plant_91.json"},{"id":"plant_92","category":"plant","preview":"data/plant_92.json"},{"id":"plant_93","category":"plant","preview":"data/plant_93.json"},{"id":"plant_94","category":"plant","preview":"data/plant_94.json"},{"id":"plant_95","category":"plant","preview":"data/plant_95.json"},{"id":"plant_96","category":"plant","preview":"data/plant_96.json"},{"id":"plant_97","category":"plant","preview":"data/plant_97.json"},{"id":"plant_98","category":"plant","preview":"data/plant_98.json"},{"id":"plant_99","category":"plant","preview":"data/plant_99.json"},{"id":"plant_100","category":"plant","preview":"data/plant_100.json"},{"id":"plant_101","category":"plant","preview":"data/plant_101.json"},{"id":"plant_102","category":"plant","preview":"data/plant_102.json"},{"id":"plant_103","category":"plant","preview":"data/plant_103.json"},{"id":"plant_104","category":"plant","preview":"data/plant_104.json"},{"id":"plant_105","category":"plant","preview":"data/plant_105.json"},{"id":"plant_106","category":"plant","preview":"data/plant_106.json"},{"id":"plant_107","category":"plant","preview":"data/plant_107.json"},{"id":"plant_108","category":"plant","preview":"data/plant_108.json"},{"id":"plant_109","category":"plant","preview":"data/plant_109.json"},{"id":"plant_110","category":"plant","preview":"data/plant_110.json"},{"id":"plant_111","category":"plant","preview":"data/plant_111.json"},{"id":"food_0","category":"food","preview":"data/food_0.json"},{"id":"food_1","category":"food","preview":"data/food_1.json"},{"id":"food_2","category":"food","preview":"data/food_2.json"},{"id":"food_3","category":"food","preview":"data/food_3.json"},{"id":"food_4","category":"food","preview":"data/food_4.json"},{"id":"food_5","category":"food","preview":"data/food_5.json"},{"id":"food_6","category":"food","preview":"data/food_6.json"},{"id":"food_7","category":"food","preview":"data/food_7.json"},{"id":"food_8","category":"food","preview":"data/food_8.json"},{"id":"food_9","category":"food","preview":"data/food_9.json"},{"id":"food_10","category":"food","preview":"data/food_10.json"},{"id":"food_11","category":"food","preview":"data/food_11.json"},{"id":"food_12","category":"food","preview":"data/food_12.json"},{"id":"food_13","category":"food","preview":"data/food_13.json"},{"id":"food_14","category":"food","preview":"data/food_14.json"},{"id":"food_15","category":"food","preview":"data/food_15.json"},{"id":"food_16","category":"food","preview":"data/food_16.json"},{"id":"food_17","category":"food","preview":"data/food_17.json"},{"id":"food_18","category":"food","preview":"data/food_18.json"},{"id":"food_19","category":"food","preview":"data/food_19.json"},{"id":"food_20","category":"food","preview":"data/food_20.json"},{"id":"food_21","category":"food","preview":"data/food_21.json"},{"id":"food_22","category":"food","preview":"data/food_22.json"},{"id":"food_23","category":"food","preview":"data/food_23.json"},{"id":"food_24","category":"food","preview":"data/food_24.json"},{"id":"food_25","category":"food","preview":"data/food_25.json"},{"id":"food_26","category":"food","preview":"data/food_26.json"},{"id":"food_27","category":"food","preview":"data/food_27.json"},{"id":"food_28","category":"food","preview":"data/food_28.json"},{"id":"food_29","category":"food","preview":"data/food_29.json"},{"id":"food_30","category":"food","preview":"data/food_30.json"},{"id":"food_31","category":"food","preview":"data/food_31.json"},{"id":"food_32","category":"food","preview":"data/food_32.json"},{"id":"food_33","category":"food","preview":"data/food_33.json"},{"id":"food_34","category":"food","preview":"data/food_34.json"},{"id":"food_35","category":"food","preview":"data/food_35.json"},{"id":"food_36","category":"food","preview":"data/food_36.json"},{"id":"food_37","category":"food","preview":"data/food_37.json"},{"id":"food_38","category":"food","preview":"data/food_38.json"},{"id":"food_39","category":"food","preview":"data/food_39.json"},{"id":"food_40","category":"food","preview":"data/food_40.json"},{"id":"food_41","category":"food","preview":"data/food_41.json"},{"id":"food_42","category":"food","preview":"data/food_42.json"},{"id":"food_43","category":"food","preview":"data/food_43.json"},{"id":"food_44","category":"food","preview":"data/food_44.json"},{"id":"food_45","category":"food","preview":"data/food_45.json"},{"id":"food_46","category":"food","preview":"data/food_46.json"},{"id":"food_47","category":"food","preview":"data/food_47.json"},{"id":"food_48","category":"food","preview":"data/food_48.json"},{"id":"food_49","category":"food","preview":"data/food_49.json"},{"id":"food_50","category":"food","preview":"data/food_50.json"},{"id":"food_51","category":"food","preview":"data/food_51.json"},{"id":"food_52","category":"food","preview":"data/food_52.json"},{"id":"food_53","category":"food","preview":"data/food_53.json"},{"id":"food_54","category":"food","preview":"data/food_54.json"},{"id":"food_55","category":"food","preview":"data/food_55.json"},{"id":"food_56","category":"food","preview":"data/food_56.json"},{"id":"food_57","category":"food","preview":"data/food_57.json"},{"id":"food_58","category":"food","preview":"data/food_58.json"},{"id":"food_59","category":"food","preview":"data/food_59.json"},{"id":"food_60","category":"food","preview":"data/food_60.json"},{"id":"food_61","category":"food","preview":"data/food_61.json"},{"id":"food_62","category":"food","preview":"data/food_62.json"},{"id":"food_63","category":"food","preview":"data/food_63.json"},{"id":"food_64","category":"food","preview":"data/food_64.json"},{"id":"food_65","category":"food","preview":"data/food_65.json"},{"id":"food_66","category":"food","preview":"data/food_66.json"},{"id":"food_67","category":"food","preview":"data/food_67.json"},{"id":"food_68","category":"food","preview":"data/food_68.json"},{"id":"food_69","category":"food","preview":"data/food_69.json"},{"id":"food_70","category":"food","preview":"data/food_70.json"},{"id":"food_71","category":"food","preview":"data/food_71.json"},{"id":"food_72","category":"food","preview":"data/food_72.json"},{"id":"food_73","category":"food","preview":"data/food_73.json"},{"id":"food_74","category":"food","preview":"data/food_74.json"},{"id":"food_75","category":"food","preview":"data/food_75.json"},{"id":"food_76","category":"food","preview":"data/food_76.json"},{"id":"food_77","category":"food","preview":"data/food_77.json"},{"id":"food_78","category":"food","preview":"data/food_78.json"},{"id":"food_79","category":"food","preview":"data/food_79.json"},{"id":"food_80","category":"food","preview":"data/food_80.json"},{"id":"food_81","category":"food","preview":"data/food_81.json"},{"id":"food_82","category":"food","preview":"data/food_82.json"},{"id":"food_83","category":"food","preview":"data/food_83.json"},{"id":"food_84","category":"food","preview":"data/food_84.json"},{"id":"food_85","category":"food","preview":"data/food_85.json"},{"id":"food_86","category":"food","preview":"data/food_86.json"},{"id":"food_87","category":"food","preview":"data/food_87.json"},{"id":"food_88","category":"food","preview":"data/food_88.json"},{"id":"food_89","category":"food","preview":"data/food_89.json"},{"id":"food_90","category":"food","preview":"data/food_90.json"},{"id":"food_91","category":"food","preview":"data/food_91.json"},{"id":"food_92","category":"food","preview":"data/food_92.json"},{"id":"food_93","category":"food","preview":"data/food_93.json"},{"id":"food_94","category":"food","preview":"data/food_94.json"},{"id":"food_95","category":"food","preview":"data/food_95.json"},{"id":"food_96","category":"food","preview":"data/food_96.json"},{"id":"food_97","category":"food","preview":"data/food_97.json"},{"id":"food_98","category":"food","preview":"data/food_98.json"},{"id":"food_99","category":"food","preview":"data/food_99.json"},{"id":"food_100","category":"food","preview":"data/food_100.json"},{"id":"food_101","category":"food","preview":"data/food_101.json"},{"id":"food_102","category":"food","preview":"data/food_102.json"},{"id":"food_103","category":"food","preview":"data/food_103.json"},{"id":"food_104","category":"food","preview":"data/food_104.json"},{"id":"food_105","category":"food","preview":"data/food_105.json"},{"id":"food_106","category":"food","preview":"data/food_106.json"},{"id":"food_107","category":"food","preview":"data/food_107.json"},{"id":"food_108","category":"food","preview":"data/food_108.json"},{"id":"food_109","category":"food","preview":"data/food_109.json"},{"id":"food_110","category":"food","preview":"data/food_110.json"},{"id":"food_111","category":"food","preview":"data/food_111.json"},{"id":"food_112","category":"food","preview":"data/food_112.json"},{"id":"food_113","category":"food","preview":"data/food_113.json"},{"id":"food_114","category":"food","preview":"data/food_114.json"},{"id":"food_115","category":"food","preview":"data/food_115.json"},{"id":"food_116","category":"food","preview":"data/food_116.json"},{"id":"food_117","category":"food","preview":"data/food_117.json"},{"id":"food_118","category":"food","preview":"data/food_118.json"},{"id":"food_119","category":"food","preview":"data/food_119.json"},{"id":"food_120","category":"food","preview":"data/food_120.json"},{"id":"food_121","category":"food","preview":"data/food_121.json"},{"id":"food_122","category":"food","preview":"data/food_122.json"},{"id":"food_123","category":"food","preview":"data/food_123.json"},{"id":"food_124","category":"food","preview":"data/food_124.json"},{"id":"food_125","category":"food","preview":"data/food_125.json"},{"id":"food_126","category":"food","preview":"data/food_126.json"},{"id":"food_127","category":"food","preview":"data/food_127.json"},{"id":"food_128","category":"food","preview":"data/food_128.json"},{"id":"food_129","category":"food","preview":"data/food_129.json"},{"id":"food_130","category":"food","preview":"data/food_130.json"},{"id":"food_131","category":"food","preview":"data/food_131.json"},{"id":"human_0","category":"human","preview":"data/human_0.json"},{"id":"human_1","category":"human","preview":"data/human_1.json"},{"id":"human_2","category":"human","preview":"data/human_2.json"},{"id":"human_3","category":"human","preview":"data/human_3.json"},{"id":"human_4","category":"human","preview":"data/human_4.json"},{"id":"human_5","category":"human","preview":"data/human_5.json"},{"id":"human_6","category":"human","preview":"data/human_6.json"},{"id":"human_7","category":"human","preview":"data/human_7.json"},{"id":"human_8","category":"human","preview":"data/human_8.json"},{"id":"human_9","category":"human","preview":"data/human_9.json"},{"id":"human_10","category":"human","preview":"data/human_10.json"},{"id":"human_11","category":"human","preview":"data/human_11.json"},{"id":"human_12","category":"human","preview":"data/human_12.json"},{"id":"human_13","category":"human","preview":"data/human_13.json"},{"id":"human_14","category":"human","preview":"data/human_14.json"},{"id":"human_15","category":"human","preview":"data/human_15.json"},{"id":"human_16","category":"human","preview":"data/human_16.json"},{"id":"human_17","category":"human","preview":"data/human_17.json"},{"id":"human_18","category":"human","preview":"data/human_18.json"},{"id":"human_19","category":"human","preview":"data/human_19.json"},{"id":"human_20","category":"human","preview":"data/human_20.json"},{"id":"human_21","category":"human","preview":"data/human_21.json"},{"id":"human_22","category":"human","preview":"data/human_22.json"},{"id":"human_23","category":"human","preview":"data/human_23.json"},{"id":"human_24","category":"human","preview":"data/human_24.json"},{"id":"human_25","category":"human","preview":"data/human_25.json"},{"id":"human_26","category":"human","preview":"data/human_26.json"},{"id":"human_27","category":"human","preview":"data/human_27.json"},{"id":"human_28","category":"human","preview":"data/human_28.json"},{"id":"human_29","category":"human","preview":"data/human_29.json"},{"id":"human_30","category":"human","preview":"data/human_30.json"},{"id":"human_31","category":"human","preview":"data/human_31.json"},{"id":"human_32","category":"human","preview":"data/human_32.json"},{"id":"human_33","category":"human","preview":"data/human_33.json"},{"id":"human_34","category":"human","preview":"data/human_34.json"},{"id":"human_35","category":"human","preview":"data/human_35.json"},{"id":"human_36","category":"human","preview":"data/human_36.json"},{"id":"human_37","category":"human","preview":"data/human_37.json"},{"id":"human_38","category":"human","preview":"data/human_38.json"},{"id":"human_39","category":"human","preview":"data/human_39.json"},{"id":"human_40","category":"human","preview":"data/human_40.json"},{"id":"human_41","category":"human","preview":"data/human_41.json"},{"id":"human_42","category":"human","preview":"data/human_42.json"},{"id":"human_43","category":"human","preview":"data/human_43.json"},{"id":"human_44","category":"human","preview":"data/human_44.json"},{"id":"human_45","category":"human","preview":"data/human_45.json"},{"id":"human_46","category":"human","preview":"data/human_46.json"},{"id":"human_47","category":"human","preview":"data/human_47.json"},{"id":"human_48","category":"human","preview":"data/human_48.json"},{"id":"human_49","category":"human","preview":"data/human_49.json"},{"id":"human_50","category":"human","preview":"data/human_50.json"},{"id":"human_51","category":"human","preview":"data/human_51.json"},{"id":"human_52","category":"human","preview":"data/human_52.json"},{"id":"human_53","category":"human","preview":"data/human_53.json"},{"id":"human_54","category":"human","preview":"data/human_54.json"},{"id":"human_55","category":"human","preview":"data/human_55.json"},{"id":"human_56","category":"human","preview":"data/human_56.json"},{"id":"human_57","category":"human","preview":"data/human_57.json"},{"id":"human_58","category":"human","preview":"data/human_58.json"},{"id":"human_59","category":"human","preview":"data/human_59.json"},{"id":"human_60","category":"human","preview":"data/human_60.json"},{"id":"human_61","category":"human","preview":"data/human_61.json"},{"id":"human_62","category":"human","preview":"data/human_62.json"},{"id":"human_63","category":"human","preview":"data/human_63.json"},{"id":"human_64","category":"human","preview":"data/human_64.json"},{"id":"human_65","category":"human","preview":"data/human_65.json"},{"id":"human_66","category":"human","preview":"data/human_66.json"},{"id":"human_67","category":"human","preview":"data/human_67.json"},{"id":"human_68","category":"human","preview":"data/human_68.json"},{"id":"human_69","category":"human","preview":"data/human_69.json"},{"id":"human_70","category":"human","preview":"data/human_70.json"},{"id":"human_71","category":"human","preview":"data/human_71.json"},{"id":"human_72","category":"human","preview":"data/human_72.json"},{"id":"human_73","category":"human","preview":"data/human_73.json"},{"id":"human_74","category":"human","preview":"data/human_74.json"},{"id":"human_75","category":"human","preview":"data/human_75.json"},{"id":"human_76","category":"human","preview":"data/human_76.json"},{"id":"human_77","category":"human","preview":"data/human_77.json"},{"id":"human_78","category":"human","preview":"data/human_78.json"},{"id":"human_79","category":"human","preview":"data/human_79.json"},{"id":"human_80","category":"human","preview":"data/human_80.json"},{"id":"human_81","category":"human","preview":"data/human_81.json"},{"id":"human_82","category":"human","preview":"data/human_82.json"},{"id":"human_83","category":"human","preview":"data/human_83.json"},{"id":"human_84","category":"human","preview":"data/human_84.json"},{"id":"human_85","category":"human","preview":"data/human_85.json"},{"id":"human_86","category":"human","preview":"data/human_86.json"},{"id":"human_87","category":"human","preview":"data/human_87.json"},{"id":"human_88","category":"human","preview":"data/human_88.json"},{"id":"human_89","category":"human","preview":"data/human_89.json"},{"id":"human_90","category":"human","preview":"data/human_90.json"},{"id":"human_91","category":"human","preview":"data/human_91.json"},{"id":"human_92","category":"human","preview":"data/human_92.json"},{"id":"human_93","category":"human","preview":"data/human_93.json"},{"id":"human_94","category":"human","preview":"data/human_94.json"},{"id":"human_95","category":"human","preview":"data/human_95.json"},{"id":"human_96","category":"human","preview":"data/human_96.json"},{"id":"human_97","category":"human","preview":"data/human_97.json"},{"id":"human_98","category":"human","preview":"data/human_98.json"},{"id":"human_99","category":"human","preview":"data/human_99.json"},{"id":"human_100","category":"human","preview":"data/human_100.json"},{"id":"human_101","category":"human","preview":"data/human_101.json"},{"id":"human_102","category":"human","preview":"data/human_102.json"},{"id":"human_103","category":"human","preview":"data/human_103.json"},{"id":"human_104","category":"human","preview":"data/human_104.json"},{"id":"human_105","category":"human","preview":"data/human_105.json"},{"id":"human_106","category":"human","preview":"data/human_106.json"},{"id":"human_107","category":"human","preview":"data/human_107.json"},{"id":"human_108","category":"human","preview":"data/human_108.json"},{"id":"human_109","category":"human","preview":"data/human_109.json"},{"id":"human_110","category":"human","preview":"data/human_110.json"},{"id":"human_111","category":"human","preview":"data/human_111.json"},{"id":"human_112","category":"human","preview":"data/human_112.json"},{"id":"human_113","category":"human","preview":"data/human_113.json"},{"id":"human_114","category":"human","preview":"data/human_114.json"},{"id":"human_115","category":"human","preview":"data/human_115.json"},{"id":"human_116","category":"human","preview":"data/human_116.json"},{"id":"human_117","category":"human","preview":"data/human_117.json"},{"id":"monster_0","category":"monster","preview":"data/monster_0.json"},{"id":"monster_1","category":"monster","preview":"data/monster_1.json"},{"id":"monster_2","category":"monster","preview":"data/monster_2.json"},{"id":"monster_3","category":"monster","preview":"data/monster_3.json"},{"id":"monster_4","category":"monster","preview":"data/monster_4.json"},{"id":"monster_5","category":"monster","preview":"data/monster_5.json"},{"id":"monster_6","category":"monster","preview":"data/monster_6.json"},{"id":"monster_7","category":"monster","preview":"data/monster_7.json"},{"id":"monster_8","category":"monster","preview":"data/monster_8.json"},{"id":"monster_9","category":"monster","preview":"data/monster_9.json"},{"id":"monster_10","category":"monster","preview":"data/monster_10.json"},{"id":"monster_11","category":"monster","preview":"data/monster_11.json"},{"id":"monster_12","category":"monster","preview":"data/monster_12.json"},{"id":"monster_13","category":"monster","preview":"data/monster_13.json"},{"id":"monster_14","category":"monster","preview":"data/monster_14.json"},{"id":"monster_15","category":"monster","preview":"data/monster_15.json"},{"id":"monster_16","category":"monster","preview":"data/monster_16.json"},{"id":"monster_17","category":"monster","preview":"data/monster_17.json"},{"id":"monster_18","category":"monster","preview":"data/monster_18.json"},{"id":"monster_19","category":"monster","preview":"data/monster_19.json"},{"id":"monster_20","category":"monster","preview":"data/monster_20.json"},{"id":"monster_21","category":"monster","preview":"data/monster_21.json"},{"id":"monster_22","category":"monster","preview":"data/monster_22.json"},{"id":"monster_23","category":"monster","preview":"data/monster_23.json"},{"id":"monster_24","category":"monster","preview":"data/monster_24.json"},{"id":"monster_25","category":"monster","preview":"data/monster_25.json"},{"id":"monster_26","category":"monster","preview":"data/monster_26.json"},{"id":"monster_27","category":"monster","preview":"data/monster_27.json"},{"id":"monster_28","category":"monster","preview":"data/monster_28.json"},{"id":"monster_29","category":"monster","preview":"data/monster_29.json"},{"id":"monster_30","category":"monster","preview":"data/monster_30.json"},{"id":"monster_31","category":"monster","preview":"data/monster_31.json"},{"id":"monster_32","category":"monster","preview":"data/monster_32.json"},{"id":"monster_33","category":"monster","preview":"data/monster_33.json"},{"id":"monster_34","category":"monster","preview":"data/monster_34.json"},{"id":"monster_35","category":"monster","preview":"data/monster_35.json"},{"id":"monster_36","category":"monster","preview":"data/monster_36.json"},{"id":"monster_37","category":"monster","preview":"data/monster_37.json"},{"id":"monster_38","category":"monster","preview":"data/monster_38.json"},{"id":"monster_39","category":"monster","preview":"data/monster_39.json"},{"id":"monster_40","category":"monster","preview":"data/monster_40.json"},{"id":"monster_41","category":"monster","preview":"data/monster_41.json"},{"id":"monster_42","category":"monster","preview":"data/monster_42.json"},{"id":"monster_43","category":"monster","preview":"data/monster_43.json"},{"id":"monster_44","category":"monster","preview":"data/monster_44.json"},{"id":"monster_45","category":"monster","preview":"data/monster_45.json"},{"id":"monster_46","category":"monster","preview":"data/monster_46.json"},{"id":"monster_47","category":"monster","preview":"data/monster_47.json"},{"id":"monster_48","category":"monster","preview":"data/monster_48.json"},{"id":"monster_49","category":"monster","preview":"data/monster_49.json"},{"id":"monster_50","category":"monster","preview":"data/monster_50.json"},{"id":"monster_51","category":"monster","preview":"data/monster_51.json"},{"id":"monster_52","category":"monster","preview":"data/monster_52.json"},{"id":"monster_53","category":"monster","preview":"data/monster_53.json"},{"id":"monster_54","category":"monster","preview":"data/monster_54.json"},{"id":"monster_55","category":"monster","preview":"data/monster_55.json"},{"id":"monster_56","category":"monster","preview":"data/monster_56.json"},{"id":"monster_57","category":"monster","preview":"data/monster_57.json"},{"id":"monster_58","category":"monster","preview":"data/monster_58.json"},{"id":"monster_59","category":"monster","preview":"data/monster_59.json"},{"id":"monster_60","category":"monster","preview":"data/monster_60.json"},{"id":"monster_61","category":"monster","preview":"data/monster_61.json"},{"id":"monster_62","category":"monster","preview":"data/monster_62.json"},{"id":"monster_63","category":"monster","preview":"data/monster_63.json"},{"id":"monster_64","category":"monster","preview":"data/monster_64.json"},{"id":"monster_65","category":"monster","preview":"data/monster_65.json"},{"id":"monster_66","category":"monster","preview":"data/monster_66.json"},{"id":"monster_67","category":"monster","preview":"data/monster_67.json"},{"id":"monster_68","category":"monster","preview":"data/monster_68.json"},{"id":"monster_69","category":"monster","preview":"data/monster_69.json"},{"id":"monster_70","category":"monster","preview":"data/monster_70.json"},{"id":"monster_71","category":"monster","preview":"data/monster_71.json"},{"id":"monster_72","category":"monster","preview":"data/monster_72.json"},{"id":"monster_73","category":"monster","preview":"data/monster_73.json"},{"id":"monster_74","category":"monster","preview":"data/monster_74.json"},{"id":"monster_75","category":"monster","preview":"data/monster_75.json"},{"id":"monster_76","category":"monster","preview":"data/monster_76.json"},{"id":"monster_77","category":"monster","preview":"data/monster_77.json"},{"id":"monster_78","category":"monster","preview":"data/monster_78.json"},{"id":"monster_79","category":"monster","preview":"data/monster_79.json"},{"id":"monster_80","category":"monster","preview":"data/monster_80.json"},{"id":"monster_81","category":"monster","preview":"data/monster_81.json"},{"id":"monster_82","category":"monster","preview":"data/monster_82.json"},{"id":"monster_83","category":"monster","preview":"data/monster_83.json"},{"id":"monster_84","category":"monster","preview":"data/monster_84.json"},{"id":"monster_85","category":"monster","preview":"data/monster_85.json"},{"id":"vehicle_0","category":"vehicle","preview":"data/vehicle_0.json"},{"id":"vehicle_1","category":"vehicle","preview":"data/vehicle_1.json"},{"id":"vehicle_2","category":"vehicle","preview":"data/vehicle_2.json"},{"id":"vehicle_3","category":"vehicle","preview":"data/vehicle_3.json"},{"id":"vehicle_4","category":"vehicle","preview":"data/vehicle_4.json"},{"id":"vehicle_5","category":"vehicle","preview":"data/vehicle_5.json"},{"id":"vehicle_6","category":"vehicle","preview":"data/vehicle_6.json"},{"id":"vehicle_7","category":"vehicle","preview":"data/vehicle_7.json"},{"id":"vehicle_8","category":"vehicle","preview":"data/vehicle_8.json"},{"id":"vehicle_9","category":"vehicle","preview":"data/vehicle_9.json"},{"id":"vehicle_10","category":"vehicle","preview":"data/vehicle_10.json"},{"id":"vehicle_11","category":"vehicle","preview":"data/vehicle_11.json"},{"id":"vehicle_12","category":"vehicle","preview":"data/vehicle_12.json"},{"id":"vehicle_13","category":"vehicle","preview":"data/vehicle_13.json"},{"id":"vehicle_14","category":"vehicle","preview":"data/vehicle_14.json"},{"id":"vehicle_15","category":"vehicle","preview":"data/vehicle_15.json"},{"id":"vehicle_16","category":"vehicle","preview":"data/vehicle_16.json"},{"id":"vehicle_17","category":"vehicle","preview":"data/vehicle_17.json"},{"id":"vehicle_18","category":"vehicle","preview":"data/vehicle_18.json"},{"id":"vehicle_19","category":"vehicle","preview":"data/vehicle_19.json"},{"id":"vehicle_20","category":"vehicle","preview":"data/vehicle_20.json"},{"id":"vehicle_21","category":"vehicle","preview":"data/vehicle_21.json"},{"id":"vehicle_22","category":"vehicle","preview":"data/vehicle_22.json"},{"id":"vehicle_23","category":"vehicle","preview":"data/vehicle_23.json"},{"id":"vehicle_24","category":"vehicle","preview":"data/vehicle_24.json"},{"id":"vehicle_25","category":"vehicle","preview":"data/vehicle_25.json"},{"id":"vehicle_26","category":"vehicle","preview":"data/vehicle_26.json"},{"id":"vehicle_27","category":"vehicle","preview":"data/vehicle_27.json"},{"id":"vehicle_28","category":"vehicle","preview":"data/vehicle_28.json"},{"id":"vehicle_29","category":"vehicle","preview":"data/vehicle_29.json"},{"id":"vehicle_30","category":"vehicle","preview":"data/vehicle_30.json"},{"id":"vehicle_31","category":"vehicle","preview":"data/vehicle_31.json"},{"id":"vehicle_32","category":"vehicle","preview":"data/vehicle_32.json"},{"id":"vehicle_33","category":"vehicle","preview":"data/vehicle_33.json"},{"id":"vehicle_34","category":"vehicle","preview":"data/vehicle_34.json"},{"id":"vehicle_35","category":"vehicle","preview":"data/vehicle_35.json"},{"id":"vehicle_36","category":"vehicle","preview":"data/vehicle_36.json"},{"id":"vehicle_37","category":"vehicle","preview":"data/vehicle_37.json"},{"id":"vehicle_38","category":"vehicle","preview":"data/vehicle_38.json"},{"id":"vehicle_39","category":"vehicle","preview":"data/vehicle_39.json"},{"id":"vehicle_40","category":"vehicle","preview":"data/vehicle_40.json"},{"id":"vehicle_41","category":"vehicle","preview":"data/vehicle_41.json"},{"id":"vehicle_42","category":"vehicle","preview":"data/vehicle_42.json"},{"id":"vehicle_43","category":"vehicle","preview":"data/vehicle_43.json"},{"id":"vehicle_44","category":"vehicle","preview":"data/vehicle_44.json"},{"id":"vehicle_45","category":"vehicle","preview":"data/vehicle_45.json"},{"id":"vehicle_46","category":"vehicle","preview":"data/vehicle_46.json"},{"id":"vehicle_47","category":"vehicle","preview":"data/vehicle_47.json"},{"id":"vehicle_48","category":"vehicle","preview":"data/vehicle_48.json"},{"id":"vehicle_49","category":"vehicle","preview":"data/vehicle_49.json"},{"id":"vehicle_50","category":"vehicle","preview":"data/vehicle_50.json"},{"id":"vehicle_51","category":"vehicle","preview":"data/vehicle_51.json"},{"id":"vehicle_52","category":"vehicle","preview":"data/vehicle_52.json"},{"id":"vehicle_53","category":"vehicle","preview":"data/vehicle_53.json"},{"id":"vehicle_54","category":"vehicle","preview":"data/vehicle_54.json"},{"id":"vehicle_55","category":"vehicle","preview":"data/vehicle_55.json"},{"id":"vehicle_56","category":"vehicle","preview":"data/vehicle_56.json"},{"id":"vehicle_57","category":"vehicle","preview":"data/vehicle_57.json"},{"id":"vehicle_58","category":"vehicle","preview":"data/vehicle_58.json"},{"id":"vehicle_59","category":"vehicle","preview":"data/vehicle_59.json"},{"id":"vehicle_60","category":"vehicle","preview":"data/vehicle_60.json"},{"id":"vehicle_61","category":"vehicle","preview":"data/vehicle_61.json"},{"id":"vehicle_62","category":"vehicle","preview":"data/vehicle_62.json"},{"id":"vehicle_63","category":"vehicle","preview":"data/vehicle_63.json"},{"id":"vehicle_64","category":"vehicle","preview":"data/vehicle_64.json"},{"id":"vehicle_65","category":"vehicle","preview":"data/vehicle_65.json"},{"id":"vehicle_66","category":"vehicle","preview":"data/vehicle_66.json"},{"id":"vehicle_67","category":"vehicle","preview":"data/vehicle_67.json"},{"id":"vehicle_68","category":"vehicle","preview":"data/vehicle_68.json"},{"id":"vehicle_69","category":"vehicle","preview":"data/vehicle_69.json"},{"id":"vehicle_70","category":"vehicle","preview":"data/vehicle_70.json"},{"id":"vehicle_71","category":"vehicle","preview":"data/vehicle_71.json"},{"id":"vehicle_72","category":"vehicle","preview":"data/vehicle_72.json"},{"id":"vehicle_73","category":"vehicle","preview":"data/vehicle_73.json"},{"id":"vehicle_74","category":"vehicle","preview":"data/vehicle_74.json"},{"id":"vehicle_75","category":"vehicle","preview":"data/vehicle_75.json"},{"id":"vehicle_76","category":"vehicle","preview":"data/vehicle_76.json"},{"id":"random_0","category":"random","preview":"data/random_0.json"},{"id":"random_1","category":"random","preview":"data/random_1.json"},{"id":"random_2","category":"random","preview":"data/random_2.json"},{"id":"random_3","category":"random","preview":"data/random_3.json"},{"id":"random_4","category":"random","preview":"data/random_4.json"},{"id":"random_5","category":"random","preview":"data/random_5.json"},{"id":"random_6","category":"random","preview":"data/random_6.json"},{"id":"random_7","category":"random","preview":"data/random_7.json"},{"id":"random_8","category":"random","preview":"data/random_8.json"},{"id":"random_9","category":"random","preview":"data/random_9.json"},{"id":"random_10","category":"random","preview":"data/random_10.json"},{"id":"random_11","category":"random","preview":"data/random_11.json"},{"id":"random_12","category":"random","preview":"data/random_12.json"},{"id":"random_13","category":"random","preview":"data/random_13.json"},{"id":"random_14","category":"random","preview":"data/random_14.json"},{"id":"random_15","category":"random","preview":"data/random_15.json"},{"id":"random_16","category":"random","preview":"data/random_16.json"},{"id":"random_17","category":"random","preview":"data/random_17.json"},{"id":"random_18","category":"random","preview":"data/random_18.json"},{"id":"random_19","category":"random","preview":"data/random_19.json"},{"id":"random_20","category":"random","preview":"data/random_20.json"},{"id":"random_21","category":"random","preview":"data/random_21.json"},{"id":"random_22","category":"random","preview":"data/random_22.json"},{"id":"random_23","category":"random","preview":"data/random_23.json"},{"id":"random_24","category":"random","preview":"data/random_24.json"},{"id":"random_25","category":"random","preview":"data/random_25.json"},{"id":"random_26","category":"random","preview":"data/random_26.json"},{"id":"random_27","category":"random","preview":"data/random_27.json"},{"id":"random_28","category":"random","preview":"data/random_28.json"},{"id":"random_29","category":"random","preview":"data/random_29.json"},{"id":"random_30","category":"random","preview":"data/random_30.json"},{"id":"random_31","category":"random","preview":"data/random_31.json"},{"id":"random_32","category":"random","preview":"data/random_32.json"},{"id":"random_33","category":"random","preview":"data/random_33.json"},{"id":"random_34","category":"random","preview":"data/random_34.json"},{"id":"random_35","category":"random","preview":"data/random_35.json"},{"id":"random_36","category":"random","preview":"data/random_36.json"},{"id":"random_37","category":"random","preview":"data/random_37.json"},{"id":"random_38","category":"random","preview":"data/random_38.json"},{"id":"random_39","category":"random","preview":"data/random_39.json"},{"id":"random_40","category":"random","preview":"data/random_40.json"},{"id":"random_41","category":"random","preview":"data/random_41.json"},{"id":"random_42","category":"random","preview":"data/random_42.json"},{"id":"random_43","category":"random","preview":"data/random_43.json"},{"id":"random_44","category":"random","preview":"data/random_44.json"},{"id":"random_45","category":"random","preview":"data/random_45.json"},{"id":"random_46","category":"random","preview":"data/random_46.json"},{"id":"random_47","category":"random","preview":"data/random_47.json"},{"id":"random_48","category":"random","preview":"data/random_48.json"},{"id":"random_49","category":"random","preview":"data/random_49.json"},{"id":"random_50","category":"random","preview":"data/random_50.json"},{"id":"random_51","category":"random","preview":"data/random_51.json"},{"id":"random_52","category":"random","preview":"data/random_52.json"},{"id":"random_53","category":"random","preview":"data/random_53.json"},{"id":"random_54","category":"random","preview":"data/random_54.json"},{"id":"random_55","category":"random","preview":"data/random_55.json"},{"id":"random_56","category":"random","preview":"data/random_56.json"},{"id":"random_57","category":"random","preview":"data/random_57.json"},{"id":"random_58","category":"random","preview":"data/random_58.json"},{"id":"random_59","category":"random","preview":"data/random_59.json"},{"id":"random_60","category":"random","preview":"data/random_60.json"},{"id":"random_61","category":"random","preview":"data/random_61.json"},{"id":"random_62","category":"random","preview":"data/random_62.json"},{"id":"random_63","category":"random","preview":"data/random_63.json"},{"id":"random_64","category":"random","preview":"data/random_64.json"},{"id":"random_65","category":"random","preview":"data/random_65.json"},{"id":"random_66","category":"random","preview":"data/random_66.json"},{"id":"random_67","category":"random","preview":"data/random_67.json"},{"id":"random_68","category":"random","preview":"data/random_68.json"},{"id":"random_69","category":"random","preview":"data/random_69.json"},{"id":"random_70","category":"random","preview":"data/random_70.json"},{"id":"random_71","category":"random","preview":"data/random_71.json"},{"id":"random_72","category":"random","preview":"data/random_72.json"},{"id":"random_73","category":"random","preview":"data/random_73.json"},{"id":"random_74","category":"random","preview":"data/random_74.json"},{"id":"random_75","category":"random","preview":"data/random_75.json"},{"id":"random_76","category":"random","preview":"data/random_76.json"},{"id":"random_77","category":"random","preview":"data/random_77.json"},{"id":"random_78","category":"random","preview":"data/random_78.json"},{"id":"random_79","category":"random","preview":"data/random_79.json"},{"id":"random_80","category":"random","preview":"data/random_80.json"},{"id":"random_81","category":"random","preview":"data/random_81.json"},{"id":"random_82","category":"random","preview":"data/random_82.json"},{"id":"random_83","category":"random","preview":"data/random_83.json"},{"id":"random_84","category":"random","preview":"data/random_84.json"},{"id":"random_85","category":"random","preview":"data/random_85.json"},{"id":"random_86","category":"random","preview":"data/random_86.json"},{"id":"random_87","category":"random","preview":"data/random_87.json"},{"id":"random_88","category":"random","preview":"data/random_88.json"},{"id":"random_89","category":"random","preview":"data/random_89.json"},{"id":"random_90","category":"random","preview":"data/random_90.json"},{"id":"random_91","category":"random","preview":"data/random_91.json"},{"id":"random_92","category":"random","preview":"data/random_92.json"},{"id":"random_93","category":"random","preview":"data/random_93.json"},{"id":"random_94","category":"random","preview":"data/random_94.json"},{"id":"random_95","category":"random","preview":"data/random_95.json"},{"id":"random_96","category":"random","preview":"data/random_96.json"},{"id":"random_97","category":"random","preview":"data/random_97.json"},{"id":"random_98","category":"random","preview":"data/random_98.json"},{"id":"random_99","category":"random","preview":"data/random_99.json"},{"id":"random_100","category":"random","preview":"data/random_100.json"},{"id":"random_101","category":"random","preview":"data/random_101.json"},{"id":"random_102","category":"random","preview":"data/random_102.json"},{"id":"random_103","category":"random","preview":"data/random_103.json"},{"id":"random_104","category":"random","preview":"data/random_104.json"},{"id":"random_105","category":"random","preview":"data/random_105.json"},{"id":"random_106","category":"random","preview":"data/random_106.json"},{"id":"random_107","category":"random","preview":"data/random_107.json"},{"id":"random_108","category":"random","preview":"data/random_108.json"},{"id":"random_109","category":"random","preview":"data/random_109.json"},{"id":"random_110","category":"random","preview":"data/random_110.json"},{"id":"random_111","category":"random","preview":"data/random_111.json"},{"id":"random_112","category":"random","preview":"data/random_112.json"},{"id":"random_113","category":"random","preview":"data/random_113.json"},{"id":"random_114","category":"random","preview":"data/random_114.json"},{"id":"random_115","category":"random","preview":"data/random_115.json"},{"id":"random_116","category":"random","preview":"data/random_116.json"},{"id":"random_117","category":"random","preview":"data/random_117.json"},{"id":"random_118","category":"random","preview":"data/random_118.json"},{"id":"random_119","category":"random","preview":"data/random_119.json"},{"id":"random_120","category":"random","preview":"data/random_120.json"},{"id":"random_121","category":"random","preview":"data/random_121.json"},{"id":"random_122","category":"random","preview":"data/random_122.json"},{"id":"random_123","category":"random","preview":"data/random_123.json"},{"id":"random_124","category":"random","preview":"data/random_124.json"},{"id":"random_125","category":"random","preview":"data/random_125.json"},{"id":"random_126","category":"random","preview":"data/random_126.json"},{"id":"random_127","category":"random","preview":"data/random_127.json"},{"id":"random_128","category":"random","preview":"data/random_128.json"},{"id":"random_129","category":"random","preview":"data/random_129.json"},{"id":"random_130","category":"random","preview":"data/random_130.json"},{"id":"random_131","category":"random","preview":"data/random_131.json"},{"id":"random_132","category":"random","preview":"data/random_132.json"},{"id":"random_133","category":"random","preview":"data/random_133.json"},{"id":"random_134","category":"random","preview":"data/random_134.json"},{"id":"random_135","category":"random","preview":"data/random_135.json"},{"id":"random_136","category":"random","preview":"data/random_136.json"},{"id":"random_137","category":"random","preview":"data/random_137.json"},{"id":"random_138","category":"random","preview":"data/random_138.json"},{"id":"random_139","category":"random","preview":"data/random_139.json"},{"id":"random_140","category":"random","preview":"data/random_140.json"},{"id":"random_141","category":"random","preview":"data/random_141.json"},{"id":"random_142","category":"random","preview":"data/random_142.json"},{"id":"random_143","category":"random","preview":"data/random_143.json"},{"id":"random_144","category":"random","preview":"data/random_144.json"},{"id":"christmas_0","category":"christmas","preview":"data/christmas_0.json"},{"id":"christmas_1","category":"christmas","preview":"data/christmas_1.json"},{"id":"christmas_2","category":"christmas","preview":"data/christmas_2.json"},{"id":"christmas_3","category":"christmas","preview":"data/christmas_3.json"},{"id":"christmas_4","category":"christmas","preview":"data/christmas_4.json"},{"id":"christmas_5","category":"christmas","preview":"data/christmas_5.json"},{"id":"christmas_6","category":"christmas","preview":"data/christmas_6.json"},{"id":"christmas_7","category":"christmas","preview":"data/christmas_7.json"},{"id":"christmas_8","category":"christmas","preview":"data/christmas_8.json"},{"id":"christmas_9","category":"christmas","preview":"data/christmas_9.json"},{"id":"christmas_10","category":"christmas","preview":"data/christmas_10.json"},{"id":"christmas_11","category":"christmas","preview":"data/christmas_11.json"},{"id":"christmas_12","category":"christmas","preview":"data/christmas_12.json"},{"id":"christmas_13","category":"christmas","preview":"data/christmas_13.json"},{"id":"christmas_14","category":"christmas","preview":"data/christmas_14.json"},{"id":"christmas_15","category":"christmas","preview":"data/christmas_15.json"},{"id":"christmas_16","category":"christmas","preview":"data/christmas_16.json"},{"id":"christmas_17","category":"christmas","preview":"data/christmas_17.json"},{"id":"christmas_18","category":"christmas","preview":"data/christmas_18.json"},{"id":"christmas_19","category":"christmas","preview":"data/christmas_19.json"},{"id":"christmas_20","category":"christmas","preview":"data/christmas_20.json"},{"id":"christmas_21","category":"christmas","preview":"data/christmas_21.json"},{"id":"christmas_22","category":"christmas","preview":"data/christmas_22.json"},{"id":"christmas_23","category":"christmas","preview":"data/christmas_23.json"},{"id":"christmas_24","category":"christmas","preview":"data/christmas_24.json"},{"id":"christmas_25","category":"christmas","preview":"data/christmas_25.json"},{"id":"christmas_26","category":"christmas","preview":"data/christmas_26.json"},{"id":"christmas_27","category":"christmas","preview":"data/christmas_27.json"},{"id":"christmas_28","category":"christmas","preview":"data/christmas_28.json"},{"id":"christmas_29","category":"christmas","preview":"data/christmas_29.json"},{"id":"christmas_30","category":"christmas","preview":"data/christmas_30.json"},{"id":"christmas_31","category":"christmas","preview":"data/christmas_31.json"},{"id":"christmas_32","category":"christmas","preview":"data/christmas_32.json"},{"id":"christmas_33","category":"christmas","preview":"data/christmas_33.json"},{"id":"christmas_34","category":"christmas","preview":"data/christmas_34.json"},{"id":"christmas_35","category":"christmas","preview":"data/christmas_35.json"},{"id":"christmas_36","category":"christmas","preview":"data/christmas_36.json"},{"id":"christmas_37","category":"christmas","preview":"data/christmas_37.json"},{"id":"christmas_38","category":"christmas","preview":"data/christmas_38.json"},{"id":"christmas_39","category":"christmas","preview":"data/christmas_39.json"},{"id":"christmas_40","category":"christmas","preview":"data/christmas_40.json"},{"id":"christmas_41","category":"christmas","preview":"data/christmas_41.json"},{"id":"christmas_42","category":"christmas","preview":"data/christmas_42.json"},{"id":"christmas_43","category":"christmas","preview":"data/christmas_43.json"},{"id":"christmas_44","category":"christmas","preview":"data/christmas_44.json"},{"id":"christmas_45","category":"christmas","preview":"data/christmas_45.json"},{"id":"christmas_46","category":"christmas","preview":"data/christmas_46.json"},{"id":"christmas_47","category":"christmas","preview":"data/christmas_47.json"},{"id":"christmas_48","category":"christmas","preview":"data/christmas_48.json"},{"id":"christmas_49","category":"christmas","preview":"data/christmas_49.json"},{"id":"christmas_50","category":"christmas","preview":"data/christmas_50.json"},{"id":"christmas_51","category":"christmas","preview":"data/christmas_51.json"},{"id":"christmas_52","category":"christmas","preview":"data/christmas_52.json"},{"id":"christmas_53","category":"christmas","preview":"data/christmas_53.json"},{"id":"christmas_54","category":"christmas","preview":"data/christmas_54.json"},{"id":"christmas_55","category":"christmas","preview":"data/christmas_55.json"},{"id":"christmas_56","category":"christmas","preview":"data/christmas_56.json"},{"id":"christmas_57","category":"christmas","preview":"data/christmas_57.json"},{"id":"christmas_58","category":"christmas","preview":"data/christmas_58.json"},{"id":"christmas_59","category":"christmas","preview":"data/christmas_59.json"},{"id":"christmas_60","category":"christmas","preview":"data/christmas_60.json"},{"id":"christmas_61","category":"christmas","preview":"data/christmas_61.json"},{"id":"christmas_62","category":"christmas","preview":"data/christmas_62.json"},{"id":"christmas_63","category":"christmas","preview":"data/christmas_63.json"},{"id":"christmas_64","category":"christmas","preview":"data/christmas_64.json"},{"id":"christmas_65","category":"christmas","preview":"data/christmas_65.json"},{"id":"christmas_66","category":"christmas","preview":"data/christmas_66.json"},{"id":"christmas_67","category":"christmas","preview":"data/christmas_67.json"},{"id":"christmas_68","category":"christmas","preview":"data/christmas_68.json"},{"id":"christmas_69","category":"christmas","preview":"data/christmas_69.json"},{"id":"halloween_0","category":"halloween","preview":"data/halloween_0.json"},{"id":"halloween_1","category":"halloween","preview":"data/halloween_1.json"},{"id":"halloween_2","category":"halloween","preview":"data/halloween_2.json"},{"id":"halloween_3","category":"halloween","preview":"data/halloween_3.json"},{"id":"halloween_4","category":"halloween","preview":"data/halloween_4.json"},{"id":"halloween_5","category":"halloween","preview":"data/halloween_5.json"},{"id":"halloween_6","category":"halloween","preview":"data/halloween_6.json"},{"id":"halloween_7","category":"halloween","preview":"data/halloween_7.json"},{"id":"halloween_8","category":"halloween","preview":"data/halloween_8.json"},{"id":"halloween_9","category":"halloween","preview":"data/halloween_9.json"},{"id":"halloween_10","category":"halloween","preview":"data/halloween_10.json"},{"id":"halloween_11","category":"halloween","preview":"data/halloween_11.json"},{"id":"halloween_12","category":"halloween","preview":"data/halloween_12.json"},{"id":"halloween_13","category":"halloween","preview":"data/halloween_13.json"},{"id":"halloween_14","category":"halloween","preview":"data/halloween_14.json"},{"id":"halloween_15","category":"halloween","preview":"data/halloween_15.json"},{"id":"halloween_16","category":"halloween","preview":"data/halloween_16.json"},{"id":"halloween_17","category":"halloween","preview":"data/halloween_17.json"},{"id":"halloween_18","category":"halloween","preview":"data/halloween_18.json"},{"id":"halloween_19","category":"halloween","preview":"data/halloween_19.json"},{"id":"halloween_20","category":"halloween","preview":"data/halloween_20.json"},{"id":"halloween_21","category":"halloween","preview":"data/halloween_21.json"},{"id":"halloween_22","category":"halloween","preview":"data/halloween_22.json"},{"id":"halloween_23","category":"halloween","preview":"data/halloween_23.json"},{"id":"halloween_24","category":"halloween","preview":"data/halloween_24.json"},{"id":"halloween_25","category":"halloween","preview":"data/halloween_25.json"},{"id":"halloween_26","category":"halloween","preview":"data/halloween_26.json"},{"id":"halloween_27","category":"halloween","preview":"data/halloween_27.json"},{"id":"halloween_28","category":"halloween","preview":"data/halloween_28.json"},{"id":"halloween_29","category":"halloween","preview":"data/halloween_29.json"},{"id":"halloween_30","category":"halloween","preview":"data/halloween_30.json"},{"id":"halloween_31","category":"halloween","preview":"data/halloween_31.json"},{"id":"halloween_32","category":"halloween","preview":"data/halloween_32.json"},{"id":"halloween_33","category":"halloween","preview":"data/halloween_33.json"},{"id":"halloween_34","category":"halloween","preview":"data/halloween_34.json"},{"id":"halloween_35","category":"halloween","preview":"data/halloween_35.json"},{"id":"halloween_36","category":"halloween","preview":"data/halloween_36.json"},{"id":"halloween_37","category":"halloween","preview":"data/halloween_37.json"},{"id":"halloween_38","category":"halloween","preview":"data/halloween_38.json"},{"id":"halloween_39","category":"halloween","preview":"data/halloween_39.json"},{"id":"halloween_40","category":"halloween","preview":"data/halloween_40.json"},{"id":"halloween_41","category":"halloween","preview":"data/halloween_41.json"},{"id":"halloween_42","category":"halloween","preview":"data/halloween_42.json"},{"id":"halloween_43","category":"halloween","preview":"data/halloween_43.json"},{"id":"halloween_44","category":"halloween","preview":"data/halloween_44.json"},{"id":"halloween_45","category":"halloween","preview":"data/halloween_45.json"},{"id":"halloween_46","category":"halloween","preview":"data/halloween_46.json"},{"id":"halloween_47","category":"halloween","preview":"data/halloween_47.json"},{"id":"halloween_48","category":"halloween","preview":"data/halloween_48.json"},{"id":"halloween_49","category":"halloween","preview":"data/halloween_49.json"},{"id":"halloween_50","category":"halloween","preview":"data/halloween_50.json"},{"id":"halloween_51","category":"halloween","preview":"data/halloween_51.json"},{"id":"halloween_52","category":"halloween","preview":"data/halloween_52.json"},{"id":"halloween_53","category":"halloween","preview":"data/halloween_53.json"},{"id":"halloween_54","category":"halloween","preview":"data/halloween_54.json"},{"id":"halloween_55","category":"halloween","preview":"data/halloween_55.json"},{"id":"halloween_56","category":"halloween","preview":"data/halloween_56.json"},{"id":"halloween_57","category":"halloween","preview":"data/halloween_57.json"},{"id":"halloween_58","category":"halloween","preview":"data/halloween_58.json"}]
+;
+const appState = {
+  view: "gallery",
+  levels: [],
+  currentLevel: null,
+  scale: 1,
+  offsetX: 0,
+  offsetY: 0,
+  selectedColorId: 1,
+  paintedPixels: new Set(),
+  canvas: null,
+  ctx: null,
+  miniMapCtx: null,
+  progressCanvas: null,
+  progressCtx: null,
+  paintedArray: null, // Uint8Array(width * height) for fast lookup
+  container: null,
+
+  // Audio Context
+  audioCtx: null,
+  saveTimeout: null,
+
+  // Interaction state
+  activePointers: new Map(),
+  lastPinchDistance: null,
+  isPainting: false,
+  isPanning: false,
+  selectedTool: null, // 'wand', 'bomb', 'hint'
+  lastScreenX: 0,
+  lastScreenY: 0,
+  hintPixel: null, // {x, y}
+  colorTotals: {},
+  colorPainted: {},
+};
+
+// Initialize App
+async function init() {
+  appState.canvas = document.getElementById("game-canvas");
+  appState.ctx = appState.canvas.getContext("2d", { alpha: false });
+  appState.miniMapCanvas = document.getElementById("mini-map-canvas");
+  appState.miniMapCtx = appState.miniMapCanvas.getContext("2d", {
+    alpha: true,
+  });
+  appState.container = document.getElementById("game-canvas-container");
+
+  await loadManifest();
+  renderGallery();
+  setupEventListeners();
+  setupImageUpload();
+  setupResizeObserver();
+
+  // Add page visibility listener for forced save
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      saveProgressImmediate();
+    }
+  });
+
+  animate();
+}
+
+// --- Audio Manager ---
+const SoundManager = {
+  init() {
+    if (!appState.audioCtx) {
+      appState.audioCtx = new (
+        window.AudioContext || window.webkitAudioContext
+      )();
+    }
+  },
+  playPop() {
+    if (!appState.audioCtx) this.init();
+    if (appState.audioCtx.state === "suspended") appState.audioCtx.resume();
+
+    const osc = appState.audioCtx.createOscillator();
+    const gain = appState.audioCtx.createGain();
+
+    osc.connect(gain);
+    gain.connect(appState.audioCtx.destination);
+
+    osc.type = "sine";
+    // Random pitch for variety
+    const freq = 600 + Math.random() * 200;
+    osc.frequency.setValueAtTime(freq, appState.audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(
+      100,
+      appState.audioCtx.currentTime + 0.1,
+    );
+
+    gain.gain.setValueAtTime(0.1, appState.audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+      0.01,
+      appState.audioCtx.currentTime + 0.1,
+    );
+
+    osc.start();
+    osc.stop(appState.audioCtx.currentTime + 0.1);
+  },
+  playSuccess() {
+    if (!appState.audioCtx) this.init();
+    if (appState.audioCtx.state === "suspended") appState.audioCtx.resume();
+
+    const notes = [523.25, 659.25, 783.99, 1046.5]; // C Major Arpeggio
+    notes.forEach((freq, i) => {
+      const osc = appState.audioCtx.createOscillator();
+      const gain = appState.audioCtx.createGain();
+
+      osc.connect(gain);
+      gain.connect(appState.audioCtx.destination);
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(
+        freq,
+        appState.audioCtx.currentTime + i * 0.1,
+      );
+
+      const start = appState.audioCtx.currentTime + i * 0.1;
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(0.2, start + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, start + 0.5);
+
+      osc.start(start);
+      osc.stop(start + 0.6);
+    });
+  },
+};
+
+function setupResizeObserver() {
+  const observer = new ResizeObserver((entries) => {
+    for (let entry of entries) {
+      if (entry.target === appState.container) {
+        appState.canvas.width = entry.contentRect.width;
+        appState.canvas.height = entry.contentRect.height;
+      }
+    }
+  });
+  observer.observe(appState.container);
+}
+
+function setupImageUpload() {
+  const input = document.getElementById("image-upload");
+  const btn = document.getElementById("upload-btn");
+  if (!input || !btn) return;
+
+  btn.onclick = () => input.click();
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => processImage(img);
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+}
+
+async function processImage(img) {
+  const targetSize = 100; // Increased resolution for much better detail
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+  // Calculate dimensions
+  let w = targetSize,
+    h = targetSize;
+  if (img.width > img.height) {
+    h = Math.round(targetSize * (img.height / img.width));
+  } else {
+    w = Math.round(targetSize * (img.width / img.height));
+  }
+
+  canvas.width = w;
+  canvas.height = h;
+
+  // Draw original image (Removed aggressive filters for fidelity)
+  ctx.drawImage(img, 0, 0, w, h);
+
+  const imageData = ctx.getImageData(0, 0, w, h).data;
+  const palette = [];
+  const grid = [];
+
+  // Finer color quantization (step 4) and clamping [0, 255]
+  for (let y = 0; y < h; y++) {
+    const row = [];
+    for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+      // Rounding to 4 and clamping to prevent 256+ values
+      const r = Math.min(255, Math.round(imageData[i] / 4) * 4);
+      const g = Math.min(255, Math.round(imageData[i + 1] / 4) * 4);
+      const b = Math.min(255, Math.round(imageData[i + 2] / 4) * 4);
+      const a = imageData[i + 3];
+
+      if (a < 128) {
+        row.push(0);
+        continue;
+      }
+
+      const hex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+      let colorIdx = palette.indexOf(hex);
+      if (colorIdx === -1) {
+        if (palette.length < 60) {
+          palette.push(hex);
+          colorIdx = palette.length - 1;
+        } else {
+          colorIdx = findClosestColor(hex, palette);
+        }
+      }
+      row.push(colorIdx + 1);
+    }
+    grid.push(row);
+  }
+
+  const customLevel = {
+    id: "user_custom_" + Date.now(),
+    category: "custom",
+    width: w,
+    height: h,
+    grid: grid,
+    palette: palette,
+  };
+
+  loadLevel(customLevel.id, customLevel);
+}
+
+function findClosestColor(hex, palette) {
+  const r1 = parseInt(hex.slice(1, 3), 16);
+  const g1 = parseInt(hex.slice(3, 5), 16);
+  const b1 = parseInt(hex.slice(5, 7), 16);
+
+  let minChild = 0;
+  let minDist = Infinity;
+
+  palette.forEach((p, i) => {
+    const r2 = parseInt(p.slice(1, 3), 16);
+    const g2 = parseInt(p.slice(3, 5), 16);
+    const b2 = parseInt(p.slice(5, 7), 16);
+    const dist = Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2);
+    if (dist < minDist) {
+      minDist = dist;
+      minChild = i;
+    }
+  });
+  return minChild;
+}
+
+// Load Levels Manifest
+async function loadManifest() {
+  try {
+    // Use preloaded data in mobile mode
+    if (window.PRELOADED_LEVELS) {
+      appState.levels = window.PRELOADED_LEVELS;
+      return;
+    }
+    // Fallback to fetch
+    const response = await fetch("data/levels.json");
+    appState.levels = await response.json();
+  } catch (e) {
+    console.error("Failed to load manifest", e);
+  }
+}
+
+// Global observer for lazy loading previews
+let galleryObserver = null;
+
+// view các bức tranh
+function renderGallery(filter = "all") {
+  const grid = document.getElementById("gallery-grid");
+  grid.innerHTML = "";
+
+  // Initialize observer if not exists
+  if (!galleryObserver) {
+    galleryObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const canvas = entry.target.querySelector(".thumbnail-canvas");
+            const levelId = entry.target.dataset.id;
+            if (canvas && levelId) {
+              renderPreview(levelId, canvas);
+            }
+            galleryObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: grid,
+        rootMargin: "100px", // Pre-load images slightly before they enter view
+        threshold: 0.1,
+      },
+    );
+  } else {
+    galleryObserver.disconnect(); // Clear previous observations
+  }
+
+  const filtered =
+    filter === "all"
+      ? appState.levels
+      : appState.levels.filter((l) => l.category === filter);
+
+  filtered.forEach((level) => {
+    const div = document.createElement("div");
+    div.className = "level-card";
+    div.dataset.id = level.id;
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "thumbnail-canvas";
+    div.appendChild(canvas);
+
+    div.onclick = () => loadLevel(level.id);
+
+    // Check completion
+    if (localStorage.getItem(`won_${level.id}`)) {
+      div.classList.add("completed");
+    }
+
+    grid.appendChild(div);
+
+    // Observe for lazy loading
+    galleryObserver.observe(div);
+  });
+}
+//vẽ các bức tranh ra màn hình chính dưới dạng đã được tô màu hoàn chỉnh.
+async function renderPreview(id, canvas) {
+  try {
+    const response = await fetch(`data/${id}.json`);
+    const data = await response.json();
+
+    const ctx = canvas.getContext("2d", { alpha: false });
+
+    canvas.width = data.width;
+    canvas.height = data.height;
+
+    const paintedPixels = JSON.parse(
+      localStorage.getItem(`save_${id}`) || "[]",
+    );
+
+    // convert sang map
+    const paintedMap = {};
+
+    paintedPixels.forEach((item) => {
+      const [x, y] = item.split(",");
+
+      paintedMap[`${x}_${y}`] = true;
+    });
+
+    // background
+    ctx.fillStyle = "#1e293b";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // render
+    data.grid.forEach((row, y) => {
+      row.forEach((colorId, x) => {
+        if (colorId !== 0) {
+          const pixelKey = `${x}_${y}`;
+
+          // đã tô
+          if (paintedMap[pixelKey]) {
+            ctx.fillStyle = data.palette[colorId - 1];
+          } else {
+            // chưa tô
+            ctx.fillStyle = "#ffffff";
+          }
+
+          ctx.fillRect(x, y, 1, 1);
+        }
+      });
+    });
+  } catch (e) {
+    console.error("Preview failed", e);
+  }
+}
+
+// load lại tranh để vẽ lại nguyên vẹn những ô bạn đã tô.
+async function loadLevel(id, customData = null) {
+  try {
+    if (customData) {
+      appState.currentLevel = customData;
+    } else {
+      const response = await fetch(`data/${id}.json`);
+      appState.currentLevel = await response.json();
+    }
+    // Initialize Off-screen Progress Canvas
+    appState.progressCanvas = document.createElement("canvas");
+    appState.progressCanvas.width = appState.currentLevel.width;
+    appState.progressCanvas.height = appState.currentLevel.height;
+    appState.progressCtx = appState.progressCanvas.getContext("2d", {
+      alpha: true,
+    });
+
+    const width = appState.currentLevel.width;
+    const height = appState.currentLevel.height;
+    appState.paintedArray = new Uint8Array(width * height);
+
+    appState.paintedPixels.clear();
+    appState.selectedColorId = 1;
+    appState.selectedTool = null;
+    appState.hintPixel = null;
+    appState.colorTotals = {};
+    appState.colorPainted = {};
+
+    // Calculate totals
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const colorId = appState.currentLevel.grid[y][x];
+        if (colorId !== 0) {
+          appState.colorTotals[colorId] =
+            (appState.colorTotals[colorId] || 0) + 1;
+          appState.colorPainted[colorId] = 0;
+        }
+      }
+    }
+
+    // Load progress
+    const saved = localStorage.getItem(`save_${id}`);
+    if (saved) {
+      const arr = JSON.parse(saved);
+      const { palette, grid } = appState.currentLevel;
+      arr.forEach((p) => {
+        appState.paintedPixels.add(p);
+        const [px, py] = p.split(",").map(Number);
+        appState.paintedArray[py * width + px] = 1;
+
+        const colorId = grid[py][px];
+        appState.colorPainted[colorId] =
+          (appState.colorPainted[colorId] || 0) + 1;
+        appState.progressCtx.fillStyle = palette[colorId - 1];
+        appState.progressCtx.fillRect(px, py, 1, 1);
+      });
+    }
+
+    // Show view FIRST
+    document.getElementById("gallery-view").classList.remove("active");
+    document.getElementById("game-view").classList.add("active");
+
+    // Wait for a frame to ensure layout reflow
+    requestAnimationFrame(() => {
+      centerImage();
+      renderPalette();
+      updateProgress();
+      updateToolUI(); // Update tool UI on level load
+    });
+  } catch (e) {
+    console.error("Failed to load level", e);
+  }
+}
+
+function centerImage() {
+  if (!appState.currentLevel || !appState.container) return;
+
+  const pad = 40;
+  const containerW = appState.container.clientWidth;
+  const containerH = appState.container.clientHeight;
+
+  const scaleW = (containerW - pad) / appState.currentLevel.width;
+  const scaleH = (containerH - pad) / appState.currentLevel.height;
+
+  appState.scale = Math.floor(Math.min(scaleW, scaleH));
+  if (appState.scale < 5) appState.scale = 10;
+
+  appState.offsetX =
+    (containerW - appState.currentLevel.width * appState.scale) / 2;
+  appState.offsetY =
+    (containerH - appState.currentLevel.height * appState.scale) / 2;
+}
+
+// Render Palette
+function renderPalette() {
+  const scroll = document.getElementById("palette-scroll");
+  scroll.innerHTML = "";
+
+  appState.currentLevel.palette.forEach((color, index) => {
+    const colorId = index + 1;
+    const btn = document.createElement("div");
+    btn.className = `color-btn ${appState.selectedColorId === colorId ? "active" : ""}`;
+    btn.style.backgroundColor = color;
+    btn.style.flexDirection = "column";
+    btn.id = `color-btn-${colorId}`;
+
+    const idDiv = document.createElement("div");
+    idDiv.innerText = colorId;
+
+    const percentDiv = document.createElement("div");
+    percentDiv.id = `color-percent-${colorId}`;
+    percentDiv.style.fontSize = "0.6rem";
+    percentDiv.style.opacity = "0.8";
+    percentDiv.style.marginTop = "-2px";
+
+    const total = appState.colorTotals[colorId] || 0;
+    const painted = appState.colorPainted[colorId] || 0;
+    const percent = total > 0 ? Math.floor((painted / total) * 100) : 100;
+    percentDiv.innerText = `${percent}%`;
+
+    if (percent === 100) {
+      btn.classList.add("done");
+    }
+
+    btn.appendChild(idDiv);
+    btn.appendChild(percentDiv);
+
+    // Font brightness check
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+    btn.style.color = r * 0.299 + g * 0.587 + b * 0.114 > 186 ? "#000" : "#fff";
+
+    btn.onclick = () => {
+      appState.selectedColorId = colorId;
+      renderPalette();
+    };
+    scroll.appendChild(btn);
+  });
+}
+
+// Game Loop / Render
+function animate() {
+  if (appState.currentLevel) {
+    draw();
+  }
+  requestAnimationFrame(animate);
+}
+
+function draw() {
+  const { ctx, canvas, scale, offsetX, offsetY, currentLevel, paintedArray } =
+    appState;
+  if (!currentLevel) return;
+
+  // Background
+  ctx.fillStyle = "#0f172a";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+  ctx.scale(scale, scale);
+
+  const { width, height, grid, palette } = currentLevel;
+  const gridColor = "rgba(255,255,255,0.05)";
+  const unpaintedBg = "rgba(255,255,255,0.02)";
+  const invScale = 1 / scale;
+  const showNumbers = scale > 15;
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const colorId = grid[y][x];
+      if (colorId === 0) continue;
+
+      const isPainted = paintedArray[y * width + x] === 1;
+
+      // 1. Draw Unpainted background & Grid
+      if (!isPainted) {
+        ctx.fillStyle = unpaintedBg;
+        ctx.fillRect(x, y, 1, 1);
+
+        // Highlight color matching
+        if (colorId === appState.selectedColorId) {
+          ctx.fillStyle = "rgba(255,255,255,0.12)";
+          ctx.fillRect(x, y, 1, 1);
+        }
+
+        if (showNumbers) {
+          ctx.fillStyle = "rgba(255,255,255,0.3)";
+          ctx.font = `0.4px Outfit`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(colorId, x + 0.5, y + 0.5);
+        }
+      }
+
+      // 2. Draw Grid Lines
+      ctx.strokeStyle = gridColor;
+      ctx.lineWidth = invScale;
+      ctx.strokeRect(x, y, 1, 1);
+
+      // 3. Hint
+      if (
+        appState.hintPixel &&
+        appState.hintPixel.x === x &&
+        appState.hintPixel.y === y
+      ) {
+        ctx.strokeStyle = "#fff";
+        ctx.lineWidth = invScale * 3;
+        ctx.strokeRect(x, y, 1, 1);
+      }
+    }
+  }
+
+  // 4. Draw ALL Painted Pixels from off-screen canvas (Seamless & Fast)
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(appState.progressCanvas, 0, 0, width, height);
+
+  ctx.restore();
+
+  // Draw Mini-map overlay
+  drawMiniMap();
+}
+
+function drawMiniMap() {
+  const {
+    miniMapCanvas: canvas,
+    miniMapCtx: ctx,
+    currentLevel,
+    paintedPixels,
+    scale,
+    offsetX,
+    offsetY,
+    container,
+  } = appState;
+  if (!currentLevel) return;
+
+  const { width, height, grid, palette } = currentLevel;
+  const containerEl = document.getElementById("mini-map-container");
+
+  // Only show mini-map when zoomed in
+  const totalW = width * scale;
+  const totalH = height * scale;
+  const isZoomed =
+    totalW > container.clientWidth * 1.2 ||
+    totalH > container.clientHeight * 1.2;
+
+  containerEl.classList.toggle("active", isZoomed);
+  if (!isZoomed) return;
+
+  // Set mini-map canvas size
+  const maxMapSize = 110;
+  const mapScale = Math.min(maxMapSize / width, maxMapSize / height);
+  canvas.width = width * mapScale;
+  canvas.height = height * mapScale;
+
+  // Clear and draw mini-map bg (dark)
+  ctx.fillStyle = "rgba(0,0,0,0.5)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw pixel progress simplified
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const colorId = grid[y][x];
+      if (colorId === 0) continue;
+
+      const isPainted = paintedPixels.has(`${x},${y}`);
+      if (isPainted) {
+        ctx.fillStyle = palette[colorId - 1];
+        ctx.fillRect(x * mapScale, y * mapScale, mapScale, mapScale);
+      } else {
+        ctx.fillStyle = "rgba(255,255,255,0.05)";
+        ctx.fillRect(x * mapScale, y * mapScale, mapScale, mapScale);
+      }
+    }
+  }
+
+  // Draw Viewport Indicator
+  // The viewport rect in image coordinates:
+  // Left: -offsetX / scale, Top: -offsetY / scale
+  // Width: containerWidth / scale, Height: containerHeight / scale
+  const viewportX = (-offsetX / scale) * mapScale;
+  const viewportY = (-offsetY / scale) * mapScale;
+  const viewportW = (container.clientWidth / scale) * mapScale;
+  const viewportH = (container.clientHeight / scale) * mapScale;
+
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(viewportX, viewportY, viewportW, viewportH);
+
+  // Slight highlight on viewport
+  ctx.fillStyle = "rgba(255,255,255,0.1)";
+  ctx.fillRect(viewportX, viewportY, viewportW, viewportH);
+}
+
+// Events
+function setupEventListeners() {
+  const canvas = document.getElementById("game-canvas");
+
+  // Aggressive context menu suppression (prevent right-click menu)
+  window.addEventListener(
+    "contextmenu",
+    (e) => {
+      if (document.getElementById("game-view").classList.contains("active")) {
+        e.preventDefault();
+      }
+    },
+    true,
+  );
+
+  // Spacebar Panning (Modern design tool style)
+  canvas.onpointerdown = (e) => {
+    // Only capture for primary/secondary buttons
+    if (e.button === 0 || e.button === 2) {
+      canvas.setPointerCapture(e.pointerId);
+    }
+
+    appState.activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (appState.activePointers.size === 1) {
+      if (e.button === 2) {
+        appState.isPanning = true;
+        e.preventDefault();
+      } else if (e.button === 0) {
+        appState.isPainting = true;
+        paintPixel(e.clientX, e.clientY);
+      }
+    } else if (appState.activePointers.size === 2) {
+      // Two pointers: Always Pan/Zoom
+      appState.isPainting = false;
+      appState.isPanning = true;
+      appState.lastPinchDistance = getPinchDistance();
+    }
+
+    appState.lastScreenX = e.clientX;
+    appState.lastScreenY = e.clientY;
+  };
+
+  canvas.onpointermove = (e) => {
+    if (!appState.activePointers.has(e.pointerId)) return;
+
+    // Update pointer position
+    appState.activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    // Detect if right button is being held durante move
+    const isRightClick = (e.buttons & 2) === 2;
+    if (isRightClick) appState.isPanning = true;
+
+    if (
+      appState.isPainting &&
+      appState.activePointers.size === 1 &&
+      !isRightClick
+    ) {
+      paintPixel(e.clientX, e.clientY);
+    } else if (appState.isPanning || appState.activePointers.size === 2) {
+      e.preventDefault();
+      if (appState.activePointers.size === 2) {
+        // Handle Zoom
+        const currentDist = getPinchDistance();
+        if (appState.lastPinchDistance && currentDist) {
+          const ratio = currentDist / appState.lastPinchDistance;
+          const oldScale = appState.scale;
+          appState.scale *= ratio;
+          appState.scale = Math.max(2, Math.min(150, appState.scale));
+
+          // Zoom towards center of two fingers
+          const center = getPinchCenter();
+          const rect = appState.container.getBoundingClientRect();
+          const zoomRatio = appState.scale / oldScale;
+
+          appState.offsetX =
+            center.x -
+            rect.left -
+            (center.x - rect.left - appState.offsetX) * zoomRatio;
+          appState.offsetY =
+            center.y -
+            rect.top -
+            (center.y - rect.top - appState.offsetY) * zoomRatio;
+        }
+        appState.lastPinchDistance = currentDist;
+
+        // Handle Pan (average of two fingers)
+        const center = getPinchCenter();
+        const dx = center.x - appState.lastScreenX;
+        const dy = center.y - appState.lastScreenY;
+        appState.offsetX += dx;
+        appState.offsetY += dy;
+        appState.lastScreenX = center.x;
+        appState.lastScreenY = center.y;
+      } else {
+        // Handle Single-finger/Right-click Pan
+        const dx = e.clientX - appState.lastScreenX;
+        const dy = e.clientY - appState.lastScreenY;
+        appState.offsetX += dx;
+        appState.offsetY += dy;
+        appState.lastScreenX = e.clientX;
+        appState.lastScreenY = e.clientY;
+      }
+    }
+  };
+
+  const handlePointerUp = (e) => {
+    appState.activePointers.delete(e.pointerId);
+    if (appState.activePointers.size < 2) {
+      appState.lastPinchDistance = null;
+    }
+    if (appState.activePointers.size === 0) {
+      appState.isPainting = false;
+      appState.isPanning = false;
+    }
+  };
+
+  canvas.onpointerup = handlePointerUp;
+  canvas.onpointercancel = handlePointerUp;
+  canvas.onpointerleave = handlePointerUp;
+
+  canvas.onwheel = (e) => {
+    e.preventDefault();
+    const zoomSpeed = 0.001;
+    const delta = -e.deltaY;
+    const oldScale = appState.scale;
+
+    appState.scale *= 1 + delta * zoomSpeed;
+    appState.scale = Math.max(2, Math.min(150, appState.scale));
+
+    const rect = appState.container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const ratio = appState.scale / oldScale;
+    appState.offsetX = mouseX - (mouseX - appState.offsetX) * ratio;
+    appState.offsetY = mouseY - (mouseY - appState.offsetY) * ratio;
+  };
+
+  // Keyboard support for Spacebar Panning (fallback)
+  window.addEventListener("keydown", (e) => {
+    if (e.code === "Space") {
+      appState.isPanning = true;
+      canvas.style.cursor = "grab";
+      if (e.target === document.body) e.preventDefault();
+    }
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.code === "Space") {
+      appState.isPanning = false;
+      canvas.style.cursor = "crosshair";
+    }
+  });
+
+  // Navigation
+  document.getElementById("back-btn").onclick = () => {
+    document.getElementById("game-view").classList.remove("active");
+    document.getElementById("gallery-view").classList.add("active");
+    appState.currentLevel = null;
+  };
+  // Zoom reset
+  document.getElementById("zoom-reset-btn").onclick = centerImage;
+
+  // Tools
+  const wandBtn = document.getElementById("tool-wand");
+  const bombBtn = document.getElementById("tool-bomb");
+  const hintBtn = document.getElementById("tool-hint");
+
+  if (wandBtn)
+    wandBtn.onclick = () => {
+      appState.selectedTool = appState.selectedTool === "wand" ? null : "wand";
+      updateToolUI();
+    };
+  if (bombBtn)
+    bombBtn.onclick = () => {
+      appState.selectedTool = appState.selectedTool === "bomb" ? null : "bomb";
+      updateToolUI();
+    };
+  if (hintBtn) hintBtn.onclick = useHint;
+}
+
+function updateToolUI() {
+  const wandBtn = document.getElementById("tool-wand");
+  const bombBtn = document.getElementById("tool-bomb");
+  if (wandBtn)
+    wandBtn.classList.toggle("active", appState.selectedTool === "wand");
+  if (bombBtn)
+    bombBtn.classList.toggle("active", appState.selectedTool === "bomb");
+}
+
+function useHint() {
+  if (!appState.currentLevel) return;
+
+  // Find unpainted pixel for current color
+  let targetX = -1,
+    targetY = -1;
+  const { grid, width, height } = appState.currentLevel;
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (
+        grid[y][x] === appState.selectedColorId &&
+        !appState.paintedPixels.has(`${x},${y}`)
+      ) {
+        targetX = x;
+        targetY = y;
+        break;
+      }
+    }
+    if (targetX !== -1) break;
+  }
+
+  if (targetX !== -1) {
+    // Zoom and Pan to this pixel
+    appState.scale = 40; // Zoom in
+    const containerW = appState.container.clientWidth;
+    const containerH = appState.container.clientHeight;
+
+    appState.offsetX =
+      containerW / 2 - (targetX * appState.scale + appState.scale / 2);
+    appState.offsetY =
+      containerH / 2 - (targetY * appState.scale + appState.scale / 2);
+
+    appState.hintPixel = { x: targetX, y: targetY };
+    setTimeout(() => {
+      appState.hintPixel = null;
+    }, 3000);
+
+    if (navigator.vibrate) navigator.vibrate(50);
+  }
+}
+
+// Categories
+document.querySelectorAll(".tab-btn").forEach((btn) => {
+  btn.onclick = () => {
+    document.querySelector(".tab-btn.active").classList.remove("active");
+    btn.classList.add("active");
+    renderGallery(btn.dataset.category);
+  };
+});
+
+// Logic tô màu
+function paintPixel(screenX, screenY) {
+  if (!appState.currentLevel) return;
+
+  const rect = appState.canvas.getBoundingClientRect(); // Use appState.canvas
+  const x = Math.floor(
+    (screenX - rect.left - appState.offsetX) / appState.scale,
+  );
+  const y = Math.floor(
+    (screenY - rect.top - appState.offsetY) / appState.scale,
+  );
+
+  if (
+    x >= 0 &&
+    x < appState.currentLevel.width &&
+    y >= 0 &&
+    y < appState.currentLevel.height
+  ) {
+    if (appState.selectedTool === "wand") {
+      useMagicWand(x, y); // vẽ  lan theo số tool-wand
+      appState.selectedTool = null;
+      updateToolUI();
+      return;
+    }
+
+    if (appState.selectedTool === "bomb") {
+      useBomb(x, y); // boom nổ  tool-bomb
+      appState.selectedTool = null;
+      updateToolUI();
+      return;
+    }
+
+    const colorId = appState.currentLevel.grid[y][x];
+    if (colorId === appState.selectedColorId) {
+      const pos = `${x},${y}`;
+      if (!appState.paintedPixels.has(pos)) {
+        appState.paintedPixels.add(pos);
+        appState.colorPainted[colorId] =
+          (appState.colorPainted[colorId] || 0) + 1;
+        appState.paintedArray[y * appState.currentLevel.width + x] = 1;
+
+        // Draw to off-screen progress canvas
+        appState.progressCtx.fillStyle =
+          appState.currentLevel.palette[colorId - 1];
+        appState.progressCtx.fillRect(x, y, 1, 1);
+
+        appState.progressCtx.fillStyle =
+          appState.currentLevel.palette[colorId - 1];
+        appState.progressCtx.fillRect(x, y, 1, 1);
+
+        triggerHaptic();
+        SoundManager.playPop();
+        updateProgress();
+        checkWin(); // Kiểm tra win sau khi tô màu
+      }
+    }
+  }
+}
+
+function triggerHaptic() {
+  if (navigator.vibrate) {
+    navigator.vibrate(15);
+  }
+}
+// vẽ
+function useMagicWand(startX, startY) {
+  const targetColorId = appState.currentLevel.grid[startY][startX];
+  if (targetColorId === 0) return;
+
+  // Standard flood fill for connected region of SAME color number
+  const stack = [[startX, startY]];
+  const colorToFill = targetColorId;
+
+  while (stack.length > 0) {
+    const [x, y] = stack.pop();
+    const pos = `${x},${y}`;
+
+    if (
+      x < 0 ||
+      x >= appState.currentLevel.width ||
+      y < 0 ||
+      y >= appState.currentLevel.height
+    )
+      continue;
+    if (appState.currentLevel.grid[y][x] !== colorToFill) continue;
+    if (appState.paintedPixels.has(pos)) continue;
+    appState.paintedPixels.add(pos);
+    appState.colorPainted[colorToFill] =
+      (appState.colorPainted[colorToFill] || 0) + 1;
+    appState.paintedArray[y * appState.currentLevel.width + x] = 1;
+
+    // Draw to off-screen progress canvas
+    appState.progressCtx.fillStyle =
+      appState.currentLevel.palette[colorToFill - 1];
+    appState.progressCtx.fillRect(x, y, 1, 1);
+
+    stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+  }
+
+  if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+  SoundManager.playPop();
+  updateProgress();
+  checkWin(); // Kiểm tra win sau khi dùng công cụ
+}
+
+// boom nổ
+function useBomb(centerX, centerY) {
+  const radius = 3; // 7x7 area
+  let count = 0;
+
+  for (let y = centerY - radius; y <= centerY + radius; y++) {
+    for (let x = centerX - radius; x <= centerX + radius; x++) {
+      if (
+        x >= 0 &&
+        x < appState.currentLevel.width &&
+        y >= 0 &&
+        y < appState.currentLevel.height
+      ) {
+        const colorId = appState.currentLevel.grid[y][x];
+        if (colorId !== 0) {
+          const pos = `${x},${y}`;
+          if (!appState.paintedPixels.has(pos)) {
+            appState.paintedPixels.add(pos);
+            appState.colorPainted[colorId] =
+              (appState.colorPainted[colorId] || 0) + 1;
+            appState.paintedArray[y * appState.currentLevel.width + x] = 1;
+
+            // Draw to off-screen progress canvas
+            appState.progressCtx.fillStyle =
+              appState.currentLevel.palette[colorId - 1];
+            appState.progressCtx.fillRect(x, y, 1, 1);
+
+            count++;
+          }
+        }
+      }
+    }
+  }
+
+  if (count > 0) {
+    if (navigator.vibrate) navigator.vibrate(100);
+    SoundManager.playPop();
+    updateProgress();
+    checkWin(); // Check for win after using a tool
+  }
+}
+
+function getPinchDistance() {
+  const pointers = Array.from(appState.activePointers.values());
+  if (pointers.length < 2) return 0;
+  const dx = pointers[0].x - pointers[1].x;
+  const dy = pointers[0].y - pointers[1].y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function getPinchCenter() {
+  const pointers = Array.from(appState.activePointers.values());
+  if (pointers.length < 2) return pointers[0] || { x: 0, y: 0 };
+  return {
+    x: (pointers[0].x + pointers[1].x) / 2,
+    y: (pointers[0].y + pointers[1].y) / 2,
+  };
+}
+
+function updateProgress() {
+  if (!appState.currentLevel) return;
+  const total = appState.currentLevel.grid.flat().filter((c) => c !== 0).length;
+  const current = appState.paintedPixels.size;
+  const percent = Math.floor((current / total) * 100);
+
+  document.getElementById("progress-bar").style.width = `${percent}%`;
+  document.getElementById("progress-text").innerText = `${percent}%`;
+
+  // Update color buttons progress
+  for (const colorId in appState.colorTotals) {
+    const btn = document.getElementById(`color-btn-${colorId}`);
+    if (btn) {
+      const colorTotal = appState.colorTotals[colorId];
+      const colorPainted = appState.colorPainted[colorId] || 0;
+      const colorPercent =
+        colorTotal > 0 ? Math.floor((colorPainted / colorTotal) * 100) : 100;
+
+      const percentEl = document.getElementById(`color-percent-${colorId}`);
+      if (percentEl) {
+        percentEl.innerText = `${colorPercent}%`;
+      }
+      if (colorPercent === 100) {
+        btn.classList.add("done");
+      }
+    }
+  }
+
+  // Debounced Save
+  if (appState.saveTimeout) clearTimeout(appState.saveTimeout);
+  appState.saveTimeout = setTimeout(() => {
+    saveProgressImmediate();
+  }, 1000);
+}
+
+function saveProgressImmediate() {
+  if (!appState.currentLevel) return;
+  localStorage.setItem(
+    `save_${appState.currentLevel.id}`,
+    JSON.stringify(Array.from(appState.paintedPixels)),
+  );
+}
+
+function checkWin() {
+  const total = appState.currentLevel.grid.flat().filter((c) => c !== 0).length;
+  if (appState.paintedPixels.size === total) {
+    localStorage.setItem(`won_${appState.currentLevel.id}`, "true");
+
+    // Populate Result Preview
+    const previewContainer = document.getElementById("result-preview");
+    previewContainer.innerHTML = "";
+    const previewCanvas = document.createElement("canvas");
+    previewCanvas.width = appState.currentLevel.width;
+    previewCanvas.height = appState.currentLevel.height;
+    const pCtx = previewCanvas.getContext("2d");
+    pCtx.drawImage(appState.progressCanvas, 0, 0);
+
+    previewCanvas.classList.add("final-preview");
+    previewContainer.appendChild(previewCanvas);
+
+    document.getElementById("success-overlay").classList.add("active");
+    SoundManager.playSuccess();
+
+    // Confetti!
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#60a5fa", "#a78bfa", "#facc15"],
+    });
+  }
+}
+
+// Overlay controls
+document.getElementById("close-modal-btn").onclick = () => {
+  document.getElementById("success-overlay").classList.remove("active");
+};
+
+document.getElementById("next-btn").onclick = () => {
+  document.getElementById("success-overlay").classList.remove("active");
+  // Find next level logic...
+  const idx = appState.levels.findIndex(
+    (l) => l.id === appState.currentLevel.id,
+  );
+  if (idx < appState.levels.length - 1) {
+    loadLevel(appState.levels[idx + 1].id);
+  } else {
+    document.getElementById("back-btn").click();
+  }
+};
+
+init();
+  </script>
+</body>
+
+</html>

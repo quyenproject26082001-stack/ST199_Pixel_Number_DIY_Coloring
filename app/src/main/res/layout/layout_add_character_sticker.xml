@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lnlSticker"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_category"
+        android:id="@+id/rcvCategory"
+        />
+
+    <!--            &lt;!&ndash; Title: Sticker &ndash;&gt;-->
+    <TextView
+        android:id="@+id/tvTitleSticker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/game_paused_demo_regular"
+        android:gravity="center"
+        android:text="@string/sticker"
+        android:textColor="#C13F74"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <!--            rcvSticker-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvSticker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12.5dp"
+        android:layout_marginBottom="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="12.5dp"
+        android:paddingBottom="42dp"
+
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="5"
+        tools:listitem="@layout/item_sticker" />
+</LinearLayout>

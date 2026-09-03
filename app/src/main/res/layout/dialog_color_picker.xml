@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_dialog_delete_exit"
+            >
+
+
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/single_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/game_paused_demo_regular"
+                android:gravity="center"
+                android:layout_marginBottom="3dp"
+                android:layout_marginHorizontal="30dp"
+                android:text="@string/choose_color"
+                android:textColor="@color/app"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ir.kotlin.kavehcolorpicker.KavehColorPicker
+                android:id="@+id/colorPickerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:layout_marginHorizontal="29dp"
+                android:layout_marginTop="46dp"
+                app:sliderStrokeSize="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="21dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/colorPickerView"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ir.kotlin.kavehcolorpicker.KavehHueSlider
+                    android:id="@+id/hueSlider"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:sliderStrokeSize="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="34dp" />
+
+
+                <!--                btnDone-->
+                <RelativeLayout
+                    android:id="@+id/btnDone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnClose"
+                    app:layout_constraintTop_toBottomOf="@id/hueSlider"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="0dp"
+
+                    android:background="@drawable/ic_done1"
+
+                        >
+                    <TextView
+                        android:id="@+id/btnDoneText"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/game_paused_demo_regular"
+                        android:gravity="center"
+                        android:text="@string/done"
+                        style="@style/single_marquee"
+                        android:textColor="@color/app"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+                <!--                btnDone-->
+                <RelativeLayout
+                    android:id="@+id/btnClose"
+
+                    android:background="@drawable/ic_cancel"
+
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnDone"
+                    app:layout_constraintTop_toBottomOf="@id/hueSlider"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="15dp"
+                    >
+                    <TextView
+                        android:id="@+id/btnCancelText"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/game_paused_demo_regular"
+                        android:gravity="center"
+                        android:text="@string/cancel"
+                        style="@style/single_marquee"
+                        android:textColor="@color/app"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnStringColor"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="6dp"
+                    android:visibility="gone"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/btnDone"
+                    app:layout_constraintBottom_toBottomOf="@id/btnDone"
+                    app:layout_constraintEnd_toStartOf="@id/btnDone"
+                    android:background="@drawable/bg_string_color">
+
+                    <TextView
+                        android:id="@+id/tvColorString"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/game_paused_demo_regular"
+                        android:gravity="center"
+                        android:text="#FFFFFF"
+                        android:layout_marginStart="12dp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

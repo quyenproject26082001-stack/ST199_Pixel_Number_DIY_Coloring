@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "598460261830",
+    "project_id": "st269-clothes-skin-maker-rbx-3",
+    "storage_bucket": "st269-clothes-skin-maker-rbx-3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598460261830:android:3f2533f06561d8b2fdbec7",
+        "android_client_info": {
+          "package_name": "com.skin.rbx.clothes.makek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjvZikSBveFXQRTnygamPN6YAxZ2Vpz5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

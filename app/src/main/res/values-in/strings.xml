@@ -1,0 +1,157 @@
+<resources>
+
+
+    <string name="go_to_setting_message">Aplikasi membutuhkan izin ini</string>
+    <string name="this_action_can_contain_ads">Tindakan ini dapat mengandung iklan</string>
+    <string name="not_select_lang">Silakan pilih bahasa</string>
+    <string name="next">Lanjut</string>
+    <string name="language"> Bahasa </string>
+
+    <string name="title_1">Kustomisasi Pakaian RBX Anda!</string>
+    <string name="title_2">Tambahkan Aksesori RBX Favorit Anda!</string>
+    <string name="title_3">Mulai Buat Skin RBX Keren Sekarang!</string>
+
+    <string name="permission">Izin</string>
+    <string name="storage">\u00A0\u00A0Penyimpanan\u00A0\u00A0</string>
+    <string name="continue_per">Lanjutkan</string>
+    <string name="notification">\u00A0\u00A0Notifikasi\u00A0\u00A0</string>
+    <string name="no_internet">Tidak Ada Internet</string>
+    <string name="granted_notification">Izin notifikasi diberikan</string>
+    <string name="granted_storage">Izin penyimpanan diberikan</string>
+    <string name="allow">Izinkan</string>
+    <string name="to_access">untuk mengakses foto di perangkat Anda</string>
+    <string name="to_access_13">untuk mengakses notifikasi di perangkat Anda</string>
+
+    <string name="rate_us">\u00A0\u00A0Beri nilai\u00A0\u00A0</string>
+    <string name="share_app">\u00A0\u00A0Bagikan aplikasi\u00A0\u00A0</string>
+    <string name="privacy_policy"><![CDATA[\u00A0\u00A0Kebijakan Privasi\u00A0\u00A0]]></string>
+
+    <string name="zero_star_title">Apakah Anda menyukai aplikasi ini?</string>
+    <string name="zero_star">Beri tahu kami pengalaman Anda</string>
+
+    <string name="one_star_title">Oh, tidak!</string>
+    <string name="one_star">Beri kami masukan Anda</string>
+
+    <string name="two_star_title">Oh, tidak!</string>
+    <string name="two_star">Beri kami masukan Anda</string>
+
+    <string name="three_star_title">Oh, tidak!</string>
+    <string name="three_star">Beri kami masukan Anda</string>
+
+    <string name="four_star_title">Kami juga menyukai Anda!</string>
+    <string name="four_star">Terima kasih atas masukan Anda</string>
+
+    <string name="five_star_title">Kami juga menyukai Anda!</string>
+    <string name="five_star">Terima kasih atas masukan Anda</string>
+
+    <string name="rate_us_0">Anda belum memberinya penilaian!</string>
+    <string name="rate">Beri Nilai</string>
+    <string name="exit">Keluar</string>
+    <string name="have_rated">Terima kasih telah menilai aplikasi kami</string>
+    <string name="share">Bagikan</string>
+    <string name="delete">Hapus</string>
+    <string name="download">Unduh</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="ok">Ok</string>
+    <string name="wait_a_minute">Mohon tunggu...</string>
+    <string name="reset">Atur Ulang</string>
+    <string name="download_success">Berhasil diunduh ke album Skin Creator: RBX Clothes</string>
+    <string name="please_check_your_internet">Silakan periksa koneksi internet Anda</string>
+    <string name="please_select_an_image">Silakan pilih gambar</string>
+    <string name="error">Kesalahan</string>
+    <string name="an_error_occurred">Terjadi kesalahan, silakan coba lagi nanti.</string>
+    <string name="character_no_longer_available">Karakter ini tidak lagi tersedia dan tidak dapat diedit.</string>
+    <string name="image_has_been_saved_successfully">Proyek berhasil disimpan!</string>
+    <string name="save">Simpan</string>
+    <string name="are_you_sure_want_to_delete_this_item">Apakah Anda yakin ingin menghapus item ini?</string>
+    <string name="downloading">Mengunduh...</string>
+    <string name="successfully">Berhasil</string>
+    <string name="download_failed_please_try_again_later">Gagal mengunduh, silakan coba lagi nanti!</string>
+    <string name="save_failed_please_try_again">Gagal menyimpan, silakan coba lagi!</string>
+    <string name="delete_failed_please_try_again">Gagal menghapus, silakan coba lagi!</string>
+    <string name="my_creation">Karya Saya</string>
+    <string name="change_your_whole_design_are_you_sure">Apakah Anda ingin mengatur ulang semuanya?</string>
+    <string name="no_item_here">Tidak Ada Item di Sini</string>
+    <string name="category">Kategori Therian</string>
+
+    <string name="add_to_whatsapp">Tambahkan ke WhatsApp</string>
+    <string name="add_to_telegram">Tambahkan ke Telegram</string>
+    <string name="my_design">Desain Saya</string>
+    <string name="no_app_found_to_handle_this_action">Tidak ada aplikasi yang ditemukan untuk menangani tindakan ini</string>
+    <string name="invalid_action_msg">Aplikasi belum terinstal</string>
+    <string name="invalid_action">Kesalahan</string>
+    <string name="limit_3_items">Setidaknya diperlukan 3 item untuk membuat stiker</string>
+    <string name="limit_30_items">Hanya maksimal 30 item yang dapat ditambahkan</string>
+    <string name="create_package_name">Buat Nama Paket</string>
+    <string name="enter_your_package_name">Masukkan nama paket Anda</string>
+    <string name="please_enter_your_package_name">Silakan masukkan nama paket Anda!</string>
+    <string name="image">Gambar</string>
+    <string name="color">Warna</string>
+    <string name="add_image">Tambah gambar</string>
+    <string name="sticker">Stiker</string>
+    <string name="speech_bubbles">Gelembung Percakapan</string>
+    <string name="text">Teks</string>
+    <string name="font">Font</string>
+    <string name="choose_color">Pilih Warna</string>
+    <string name="done">Selesai</string>
+    <string name="null_edt">Silakan masukkan teks</string>
+    <string name="hello_world">Ketik konten Anda...</string>
+    <string name="loading">Memuat...</string>
+    <string name="internet_required_for_more_characters">Koneksi internet diperlukan untuk karakter lainnya</string>
+    <string name="do_you_want_to_exit">Belum disimpan, apakah Anda ingin keluar?</string>
+    <string name="generate">Acak</string>
+    <string name="random">\u00A0\u00A0Acak\u00A0\u00A0</string>
+    <string name="back">KEMBALI</string>
+    <string name="hello_world_hint">Ketik konten Anda...</string>
+    <string name="edit">Edit</string>
+    <string name="next_intro">Lanjut</string>
+    <string name="color_text">Warna</string>
+    <string name="playcos">\u00A0\u00A0Cosplay\u00A0\u00A0</string>
+    <string name="try_again">Coba lagi</string>
+    <string name="instruction">Petunjuk</string>
+    <string name="cancel">Batal</string>
+    <string name="image_has_been_saved_successful">Gambar berhasil disimpan!</string>
+    <string name="cosplay">Cosplay Therian</string>
+    <string name="guide_cosplay">Dalam Mode Cosplay, pemain secara acak diberikan satu gambar referensi untuk Diikuti. Tugas Anda adalah membuat ulang karakter tersebut seakurat mungkin dengan memilih gaya rambut, pakaian, warna, dan aksesori yang tepat. Setiap pencocokan yang benar meningkatkan skor persentase (%) Anda. Semakin mirip karakter Anda dengan gambar acak, semakin tinggi skor akhir Anda. Perhatikan detail kecil untuk mencapai hasil cosplay terbaik.</string>
+    <string name="facebook_share">Bagikan ke Facebook</string>
+    <string name="instagram_share">Bagikan ke Instagram</string>
+    <string name="size">Ukuran</string>
+    <string name="texture_brush_px">%1$d px</string>
+    <string name="cosplay_results">Hasil Cosplay</string>
+    <string name="your_cosplay_score">Skor Cosplay Anda</string>
+    <string name="_100_match">100% Cocok</string>
+    <string name="players_receive_a_random_reference_image_and_must_recreate_the_character_by_choosing_matching_hairstyles_outfits_colors_and_accessories_each_correct_choice_increases_the_percentage_score_the_closer_the_character_matches_the_image_the_higher_the_final_score">Pemain menerima gambar referensi acak dan harus membuat ulang karakter dengan memilih gaya rambut, pakaian, warna, dan aksesori yang sesuai. Setiap pilihan yang benar meningkatkan skor persentase; semakin cocok karakter dengan gambar, semakin tinggi skor akhirnya.</string>
+    <string name="score">Skor\u00a0</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="click_the_random_button_below_to_s_what_your_character_is">Klik tombol acak di bawah untuk melihat karakter Anda!</string>
+    <string name="special_clothes">PAKAIAN SPESIAL</string>
+    <string name="special_clothes1">Pakaian spesial</string>
+    <string name="accessory">Aksesori</string>
+    <string name="rbx_maker">PEMBUAT RBX</string>
+    <string name="rbx_maker1">Pembuat RBX</string>
+    <string name="basic_skin">SKIN DASAR</string>
+    <string name="outfit">Pakaian</string>
+    <string name="shirt">Kemeja</string>
+    <string name="pant">Celana</string>
+    <string name="maker">Daftar RBX</string>
+    <string name="preview">Pratinjau</string>
+    <string name="how_to_use">Cara penggunaan</string>
+    <string name="title_how_1">Buka situs web resmi RBX \ndi Chrome</string>
+    <string name="title_how_2">Buka halaman “Buat”</string>
+    <string name="title_how_3">Aktifkan mode “Situs Desktop”</string>
+    <string name="title_how_4">Buka bagian unggah pakaian</string>
+    <string name="title_how_5">Unggah skin kustom Anda ke RBX</string>
+    <string name="title_how_6">Buka “Galeri” dan pilih file skin Anda</string>
+    <string name="my_package">Paket Saya</string>
+    <string name="my_rbx">RBX Saya</string>
+    <string name="no_creations_yet">Belum ada karya</string>
+    <string name="setting">Pengaturan</string>
+    <string name="assessory">Aksesori</string>
+    <string name="shirt1">Kemeja</string>
+    <string name="pant1">Celana\n</string>
+    <string name="how_to_use_clothes_for_rbx">Cara menggunakan pakaian untuk RBX</string>
+    <string name="rate_us1">Rate Us</string>
+    <string name="color_pixel">Color Pixel</string>
+    <string name="my_work">My Work</string>
+</resources>

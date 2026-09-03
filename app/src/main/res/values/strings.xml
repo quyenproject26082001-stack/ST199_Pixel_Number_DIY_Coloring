@@ -1,0 +1,185 @@
+<resources>
+
+    <string name="app_name" translatable="false">Skin Creator: RBX Clothes</string>
+    <string name="pixel_coloring" translatable="false">Pixel Coloring</string>
+    <string name="pixel_gallery" translatable="false">Pixel Gallery</string>
+    <string name="pixel_upload" translatable="false">Upload image</string>
+    <string name="pixel_all" translatable="false">All</string>
+    <string name="pixel_animals" translatable="false">Animals</string>
+    <string name="pixel_food" translatable="false">Food</string>
+    <string name="pixel_people" translatable="false">People</string>
+    <string name="pixel_monsters" translatable="false">Monsters</string>
+    <string name="pixel_plants" translatable="false">Plants</string>
+    <string name="pixel_vehicles" translatable="false">Vehicles</string>
+    <string name="pixel_christmas" translatable="false">Christmas</string>
+    <string name="pixel_halloween" translatable="false">Halloween</string>
+    <string name="pixel_random" translatable="false">Random</string>
+    <string name="pixel_wand" translatable="false">Wand</string>
+    <string name="pixel_bomb" translatable="false">Bomb</string>
+    <string name="pixel_hint" translatable="false">Hint</string>
+    <string name="pixel_reset" translatable="false">Reset</string>
+    <string name="pixel_complete" translatable="false">Completed!</string>
+    <string name="pixel_next" translatable="false">Next level</string>
+    <string name="pixel_back_gallery" translatable="false">Back to gallery</string>
+    <string name="pixel_zero_percent" translatable="false">0%</string>
+    <string name="pixel_percent" translatable="false">%1$d%%</string>
+    <string name="pixel_complete_mark" translatable="false">✓</string>
+    <string name="pixel_image_error" translatable="false">Unable to read this image</string>
+
+
+    <string name="go_to_setting_message">The app needs this permission</string>
+    <string name="this_action_can_contain_ads">This action can contain ads</string>
+    <string name="not_select_lang">Please select a language</string>
+    <string name="next">Next</string>
+    <string name="language"> Language </string>
+
+    <string name="title_1">Create Your Own Avatar However \nYou Like</string>
+    <string name="title_2">Princess Avatar Maker</string>
+    <string name="title_3">Variety Of Unique Category</string>
+
+    <string name="permission">Permission</string>
+    <string name="storage">\u00A0\u00A0Storage\u00A0\u00A0</string>
+    <string name="continue_per">Continue</string>
+    <string name="notification">\u00A0\u00A0Notification\u00A0\u00A0</string>
+    <string name="no_internet">No Internet</string>
+    <string name="granted_notification">Notification permission granted</string>
+    <string name="granted_storage">Storage permission granted</string>
+    <string name="allow">Allow</string>
+    <string name="to_access">to access photos on your device</string>
+    <string name="to_access_13">to access notification on your device</string>
+    <string name="permission_message_format">%1$s %2$s %3$s</string>
+
+    <string name="rate_us">\u00A0\u00A0Rate Us\u00A0\u00A0</string>
+    <string name="share_app">\u00A0\u00A0Share\u00A0\u00A0</string>
+    <string name="privacy_policy"><![CDATA[\u00A0\u00A0Privacy And Policy\u00A0\u00A0]]></string>
+
+    <string name="zero_star_title">Do you like the app?</string>
+    <string name="zero_star">Let us know your experience</string>
+
+    <string name="one_star_title">Oh, no!</string>
+    <string name="one_star">Please give us some feedback</string>
+
+    <string name="two_star_title">Oh, no!</string>
+    <string name="two_star">Please give us some feedback</string>
+
+    <string name="three_star_title">Oh, no!</string>
+    <string name="three_star">Please give us some feedback</string>
+
+    <string name="four_star_title">We love you too!</string>
+    <string name="four_star">Thanks for your feedback</string>
+
+    <string name="five_star_title">We love you too!</string>
+    <string name="five_star">Thanks for your feedback</string>
+
+    <string name="rate_us_0">You have not rated it yet!</string>
+    <string name="rate">Rate</string>
+    <string name="exit">Exit</string>
+    <string name="have_rated">Thank you for rate our app</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+    <string name="download">Download</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">Ok</string>
+    <string name="wait_a_minute">Please wait...</string>
+    <string name="reset">Reset</string>
+    <string name="download_success">Download successful to the Skin Creator: RBX Clothes album</string>
+    <string name="please_check_your_internet">Please check your internet</string>
+    <string name="please_select_an_image">Please select an image</string>
+    <string name="error">Error</string>
+    <string name="an_error_occurred">An error occurred, please try again later.</string>
+    <string name="character_no_longer_available">This character is no longer available and cannot be edited.</string>
+    <string name="image_has_been_saved_successfully">The project has been saved successfully!</string>
+    <string name="save">Save</string>
+    <string name="are_you_sure_want_to_delete_this_item">Are you sure want to delete this item?</string>
+    <string name="downloading">Downloading...</string>
+    <string name="successfully">Successful</string>
+    <string name="download_failed_please_try_again_later">Download failed, please try again later!</string>
+    <string name="save_failed_please_try_again">Save failed, please try again!</string>
+    <string name="delete_failed_please_try_again">Delete failed, please try again!</string>
+    <string name="my_creation">My Creation</string>
+    <string name="change_your_whole_design_are_you_sure">Do you want to reset all?</string>
+    <string name="no_item_here">No Item Here</string>
+    <string name="category">Therian Category</string>
+
+    <string name="add_to_whatsapp">Add To WhatsApp</string>
+    <string name="add_to_telegram">Add To Telegram</string>
+    <string name="my_design">My Design</string>
+    <string name="no_app_found_to_handle_this_action">No app found to handle this action</string>
+    <string name="invalid_action_msg">Application not installed</string>
+    <string name="invalid_action">Error</string>
+    <string name="limit_3_items">At least 3 items are required to create a sticker</string>
+    <string name="limit_30_items">Only a maximum of 30 items can be added</string>
+    <string name="create_package_name">Create Package Name</string>
+    <string name="enter_your_package_name">Enter your package name</string>
+    <string name="please_enter_your_package_name">Please enter your package name!</string>
+    <string name="image">Image</string>
+    <string name="color">Color</string>
+    <string name="add_image">Add image</string>
+    <string name="sticker">Sticker</string>
+    <string name="speech_bubbles">Speech Bubbles</string>
+    <string name="text">Text</string>
+    <string name="font">Font</string>
+    <string name="choose_color">Choose Color</string>
+    <string name="done">Done</string>
+    <string name="null_edt">Please enter text</string>
+    <string name="hello_world">Type your content...</string>
+    <string name="loading">Loading...</string>
+    <string name="internet_required_for_more_characters">Internet required for more characters</string>
+    <string name="do_you_want_to_exit">Haven’t saved it yet, do you want to exit?</string>
+    <string name="generate">Random</string>
+    <string name="random">\u00A0\u00A0Random\u00A0\u00A0</string>
+    <string name="back">BACK</string>
+    <string name="hello_world_hint">Type your content...</string>
+    <string name="edit">Edit</string>
+    <string name="next_intro">Next</string>
+    <string name="color_text">Color</string>
+    <string name="playcos">\u00A0\u00A0Cosplay\u00A0\u00A0</string>
+    <string name="try_again">Try again</string>
+    <string name="instruction">Instruction</string>
+    <string name="cancel">Cancel</string>
+    <string name="image_has_been_saved_successful">Image has been saved successfully!</string>
+    <string name="cosplay">Cosplay Therian</string>
+    <string name="guide_cosplay">Cosplay Mode, players are randomly given one reference image to follow. Your task is to recreate that character as accurately as possible by choosing the right hairstyles, outfits, colors, and accessories. Every correct match increases your percentage score (%). The closer your character looks to the random image, the higher your final score will be. Pay attention to small details to achieve the best cosplay result.</string>
+    <string name="facebook_share">Facebook Share</string>
+    <string name="instagram_share">Instagram Share</string>
+    <string name="size">Size</string>
+    <string name="texture_brush_px">%1$d px</string>
+    <string name="cosplay_results">Cosplay Results</string>
+    <string name="your_cosplay_score">Your Cosplay Score</string>
+    <string name="_100_match">100% Match</string>
+    <string name="players_receive_a_random_reference_image_and_must_recreate_the_character_by_choosing_matching_hairstyles_outfits_colors_and_accessories_each_correct_choice_increases_the_percentage_score_the_closer_the_character_matches_the_image_the_higher_the_final_score">Players receive a random reference image and must recreate the character by choosing matching hairstyles, outfits, colors, and accessories. Each correct choice increases the percentage score the closer the character matches the image, the higher the final score.</string>
+    <string name="score">Score\u00a0</string>
+    <string name="retry">Retry</string>
+    <string name="click_the_random_button_below_to_s_what_your_character_is">Click the random button below to see what your character is!</string>
+    <string name="special_clothes">SPECIAL CLOTHES</string>
+    <string name="special_clothes1">Special clothes</string>
+    <string name="accessory">Accessory</string>
+    <string name="rbx_maker">RBX MAKER</string>
+    <string name="rbx_maker1">RBX Maker</string>
+    <string name="basic_skin">BASIC SKIN</string>
+    <string name="outfit">Outfit</string>
+    <string name="shirt">Shirt</string>
+    <string name="pant">Pant</string>
+    <string name="maker">List RBX</string>
+    <string name="preview">Preview</string>
+    <string name="how_to_use">How to use</string>
+    <string name="title_how_1">Launch the official RBX \nwebsite in Chrome</string>
+    <string name="title_how_2">Open the “Create” page</string>
+    <string name="title_how_3">Enable “Desktop Site” mode</string>
+    <string name="title_how_4">Open the clothing upload section</string>
+    <string name="title_how_5">Upload your custom skin to RBX</string>
+    <string name="title_how_6">Open “Gallery” and choose your skin file</string>
+    <string name="my_package">My Package</string>
+    <string name="my_rbx">My RBX</string>
+    <string name="no_creations_yet">No creations yet</string>
+    <string name="setting">Setting</string>
+    <string name="assessory">Assessory</string>
+    <string name="shirt1">Shirts</string>
+    <string name="pant1">Pants\n</string>
+    <string name="how_to_use_clothes_for_rbx">How to use clothes for RBX</string>
+    <string name="rate_us1">Rate Us</string>
+    <string name="color_pixel">Color Pixel</string>
+    <string name="my_work">My Work</string>
+
+</resources>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:clipChildren="false"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/sectionTab"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="28dp"
+        android:background="@color/transparent"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <!--                btnBackgroundImage-->
+        <FrameLayout
+            android:id="@+id/btnBackgroundImage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!--                imvBgImage (nền)-->
+            <ImageView
+                android:id="@+id/imvBgImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/subTabImage"
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="@drawable/un_selected_tab_sub"
+                android:visibility="gone" />
+
+            <!--                imvFocusImage (nền khi chọn)-->
+            <ImageView
+                android:id="@+id/imvFocusImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/selected_tab"
+                android:visibility="visible" />
+
+            <!--                tvBackgroundImage-->
+            <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tvBackgroundImage"
+                style="@style/single_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/game_paused_demo_regular"
+                android:gravity="center"
+                android:letterSpacing="0.05"
+                android:text="@string/image"
+
+                android:textColor="@color/app"
+                android:textSize="16sp" />
+
+        </FrameLayout>
+
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="match_parent" />
+        <!--                btnBackgroundColor-->
+        <FrameLayout
+            android:id="@+id/btnBackgroundColor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1">
+
+            <!--                imvBgColor (nền)-->
+            <ImageView
+                android:id="@+id/imvBgColor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/subTabColor"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@drawable/un_selected_tab_sub"
+                android:visibility="gone" />
+
+            <!--                imvFocusColor (nền xanh khi chọn)-->
+            <ImageView
+                android:id="@+id/imvFocusColor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:scaleX="1"
+                android:src="@drawable/un_selected_tab"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!--                tvBackgroundColor-->
+            <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tvBackgroundColor"
+                style="@style/single_marquee"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/game_paused_demo_regular"
+                android:gravity="center"
+                android:letterSpacing="0.05"
+                android:text="@string/color"
+                android:textColor="#C13F74"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <!--        lnlBackground-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lnlBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:clipChildren="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sectionTab"
+        tools:visibility="visible">
+
+        <!--            rcvBackgroundImage-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvBackgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            android:paddingBottom="42dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="5"
+            android:clipChildren="true"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_background_image"
+            tools:visibility="gone" />
+
+        <!--            rcvBackgroundColor-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvBackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            android:clipToPadding="false"
+            android:paddingHorizontal="20dp"
+            android:visibility="gone"
+            android:clipChildren="true"
+            android:paddingBottom="42dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="5"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_background_color"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

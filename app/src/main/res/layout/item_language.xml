@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="16dp">
+
+    <FrameLayout
+        android:id="@+id/flMain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_language_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="328:56"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.06097560975"
+                android:id="@+id/view"
+                />
+            <!--            imvFlag-->
+            <ImageView
+                android:id="@+id/imvFlag"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toEndOf="@id/view"
+                app:layout_constraintHeight_percent="0.57142857142"
+                android:src="@drawable/ic_flag_english"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintWidth_percent="0.06097560975"
+                android:id="@+id/view1"
+                app:layout_constraintStart_toEndOf="@id/imvFlag"
+                />
+
+            <!--            tvLang-->
+            <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tvLang"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.35714285714"
+                app:autoSizeMinTextSize="8sp"
+                android:maxLines="1"
+                app:autoSizeMaxTextSize="40sp"
+                app:autoSizeTextType="uniform"
+                app:autoSizeStepGranularity="0.5sp"
+                android:fontFamily="@font/game_paused_demo_regular"
+                tools:text="heheheheeh"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center|start"
+                android:includeFontPadding="false"
+                android:textColor="@color/app"
+                app:layout_constraintVertical_bias=".5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            btnRadio-->
+            <ImageView
+                android:id="@+id/btnRadio"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="20dp"
+                android:visibility="invisible"
+                android:src="@drawable/ic_tick_lang"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
