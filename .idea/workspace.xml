@@ -55,6 +55,16 @@
           <theme>@style/Theme.BaseProject</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_imv_bg_slt.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_imv_bg_uslt.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_item_outfit_download.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
@@ -66,6 +76,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_layout_bottom.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_pixel_1.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
         </config>
@@ -90,7 +105,22 @@
           <theme>@style/Theme.BaseProject</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_slt_text_color.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_sticker_speech.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_stroke_gradient_circle_color_text.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_uslt_text_color.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
         </config>
@@ -126,6 +156,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/sample.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/drawable/selector_text_color_border.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
         </config>
@@ -220,6 +255,11 @@
           <theme>@style/Theme.BaseProject</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_pixel_gallery.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_random_character.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
@@ -270,6 +310,11 @@
           <theme>@style/Theme.BaseProject</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/ads_native_big_btn_bottom_shimmer.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/ads_native_big_btn_top.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
@@ -290,12 +335,22 @@
           <theme>@style/Theme.BaseProject</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/ads_native_medium_btn_bottom_2_shimmer.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/bottom_sheet_accessory_picker.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/c253_dialog_text.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/c253_item_font.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
         </config>
@@ -385,6 +440,11 @@
           <theme>@style/Theme.BaseProject</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_choose_pixel.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_clothes.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
@@ -431,6 +491,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_package.xml">
+        <config>
+          <theme>@style/Theme.BaseProject</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_pixel_color.xml">
         <config>
           <theme>@style/Theme.BaseProject</theme>
         </config>
@@ -531,7 +596,76 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31619e55-3aba-4269-9734-fe301ba45adc" name="Changes" comment="make it for home" />
+    <list default="true" id="31619e55-3aba-4269-9734-fe301ba45adc" name="Changes" comment="make it for home">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_imv_bg_slt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_imv_bg_uslt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_pixel_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_slt_text_color.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_sticker_speech.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_uslt_text_color.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_bomb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_done_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_done_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_empt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_full.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_range.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/slt_tab.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/tab_slt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/tab_uslt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/uslt_tab.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/jersey15_regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_choose_pixel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.13/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/AddCharacterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/AddCharacterActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/BackgroundColorAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/BackgroundColorAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/BackgroundImageAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/BackgroundImageAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/TextColorAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/TextColorAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/TextFontAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/add_character/adapter/TextFontAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/home/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/home/HomeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelAdapters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelAdapters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelCanvasView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelCanvasView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelColoringActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelColoringActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelGalleryActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/skin/rbx/clothes/makek/ui/pixel_coloring/PixelGalleryActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_creation.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_creation.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_edit_text.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_edit_text.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_item_font_not_selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_item_font_not_selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_item_font_selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bg_item_font_selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bg_uslt_text_color.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_background.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_background.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_background_selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_background_selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_speech.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_speech.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_speech_selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_speech_selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sticker.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sticker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sticker_selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sticker_selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_text.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_text.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_text_selected.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_text_selected.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/img0text_color.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/img0text_color.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/selected_tab.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/selected_tab.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_character.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add_character.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_pixel_coloring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_pixel_coloring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_pixel_gallery.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_pixel_gallery.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_rate.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_rate.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_background_color.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_background_color.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_background_image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_background_image.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_pixel_color.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_pixel_color.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_speech.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_speech.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_sticker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_sticker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_text_color.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_text_color.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_add_character_speech.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_add_character_speech.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_add_character_sticker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_add_character_sticker.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_add_character_text.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_add_character_text.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -572,10 +706,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Object" />
-        <option value="layoutResourceFile" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile" />
         <option value="resourceFile" />
       </list>
     </option>
@@ -623,41 +757,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "Android App.main.executor": "Debug",
-    "ApkExportedModule": "ST269_Clothes_Skins_Maker_for_RBX_3.app",
-    "DEBUGGABLE_DEVICE": "xiaomi-redmi_8a-13ab3e590606",
-    "DEBUGGABLE_PROCESS": "com.therian.oc.makerr",
-    "DEBUGGER_ID": "Auto",
-    "ExportApk.ApkPathForST243_Avatar_Maker_Celebrities.app": "C:\\APPS\\st243\\ST225_CoupleMaker-KissCreator\\app",
-    "ExportApk.ApkPathForST269_Clothes_Skins_Maker_for_RBX_3.app": "/home/lequyen/LVT/269_true/ST269_Clothes Skins Maker for RBX 3/app",
-    "ExportApk.ApkPathForST300_Therian_OC_Maker.app": "/home/lequyen/LVT/ST300_Therian_OC_Maker/app",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SHOW_ALL_PROCESSES": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.developerphil.adbidea.selecteddevices": "UCQKCEPNE6ZLFMHM",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "git-widget-placeholder": "release/v1.0.0",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/lequyen/LVT/199/ST199_Pixel Number - DIY Coloring/app/src/main/res/drawable",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "nele.options"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Android App.main.executor&quot;: &quot;Debug&quot;,
+    &quot;ApkExportedModule&quot;: &quot;ST269_Clothes_Skins_Maker_for_RBX_3.app&quot;,
+    &quot;DEBUGGABLE_DEVICE&quot;: &quot;xiaomi-redmi_8a-13ab3e590606&quot;,
+    &quot;DEBUGGABLE_PROCESS&quot;: &quot;com.therian.oc.makerr&quot;,
+    &quot;DEBUGGER_ID&quot;: &quot;Auto&quot;,
+    &quot;ExportApk.ApkPathForST243_Avatar_Maker_Celebrities.app&quot;: &quot;C:\\APPS\\st243\\ST225_CoupleMaker-KissCreator\\app&quot;,
+    &quot;ExportApk.ApkPathForST269_Clothes_Skins_Maker_for_RBX_3.app&quot;: &quot;/home/lequyen/LVT/269_true/ST269_Clothes Skins Maker for RBX 3/app&quot;,
+    &quot;ExportApk.ApkPathForST300_Therian_OC_Maker.app&quot;: &quot;/home/lequyen/LVT/ST300_Therian_OC_Maker/app&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SHOW_ALL_PROCESSES&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.developerphil.adbidea.selecteddevices&quot;: &quot;UCQKCEPNE6ZLFMHM&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/lequyen/LVT/199/ST199_Pixel Number - DIY Coloring/app/src/main/res/drawable&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;nele.options&quot;
   },
-  "keyToStringList": {
-    "ExportApk.BuildVariants": [
-      "release"
+  &quot;keyToStringList&quot;: {
+    &quot;ExportApk.BuildVariants&quot;: [
+      &quot;release&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -1063,12 +1197,12 @@
         </entry>
         <entry key="com.skin.rbx.clothes.makek">
           <value>
-            <CheckInfo lastCheckTimestamp="1788409747521" />
+            <CheckInfo lastCheckTimestamp="1788497814930" />
           </value>
         </entry>
         <entry key="com.skin.rbx.clothes.makek.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1788409747518" />
+            <CheckInfo lastCheckTimestamp="1788497814929" />
           </value>
         </entry>
         <entry key="com.skin.rbx.clothes.maker">

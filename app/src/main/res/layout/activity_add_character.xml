@@ -117,17 +117,18 @@
         android:layout_height="0dp"
         android:layout_marginTop="0dp"
         android:clipChildren="false"
-        android:background="#E8E8E8"
+        android:background="@drawable/bg_bg"
         app:layout_constraintBottom_toTopOf="@id/lnlBottom"
         app:layout_constraintTop_toTopOf="@id/gl">
 
         <ImageView
             android:id="@+id/bg_bg"
+            tools:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:background="#E8E8E8" />
+            android:background="@drawable/bg_bg" />
 
         <ImageView
             android:id="@+id/bg_other"
@@ -135,13 +136,13 @@
             android:layout_height="match_parent"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:background="#E8E8E8"
+            android:background="@drawable/bg_bg"
             android:visibility="gone" />
 
 
         <include
             android:id="@+id/backgroundTab"
-            tools:visibility="gone"
+            tools:visibility="visible"
             layout="@layout/layout_add_character_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -162,7 +163,7 @@
 
         <include
             android:id="@+id/textTab"
-            tools:visibility="visible"
+            tools:visibility="gone"
             layout="@layout/layout_add_character_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -177,7 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="0dp"
         android:layout_marginBottom="0dp"
-        android:background="#81E1FF"
+        android:background="#00C3FF"
         android:elevation="10dp"
         android:gravity="center"
         android:paddingVertical="8dp"

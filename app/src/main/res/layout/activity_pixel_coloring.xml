@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pixel_background"
+    android:background="@drawable/bg_app"
     tools:context=".ui.pixel_coloring.PixelColoringActivity">
 
     <FrameLayout
         android:id="@+id/layoutActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:elevation="2dp"
         app:layout_constraintTop_toTopOf="parent">
         <include android:id="@+id/actionBar" layout="@layout/layout_actionbar" />
@@ -25,6 +24,7 @@
         android:orientation="horizontal"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar">
@@ -52,10 +52,15 @@
         android:id="@+id/canvasContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/toolContainer"
+        app:layout_constraintDimensionRatio="1:1"
+
+        android:background="@color/white"
+
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progressContainer">
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
         <com.skin.rbx.clothes.makek.ui.pixel_coloring.PixelCanvasView
             android:id="@+id/pixelCanvas"
             android:layout_width="match_parent"
@@ -66,7 +71,6 @@
             android:layout_height="120dp"
             android:layout_gravity="top|end"
             android:layout_margin="16dp"
-            android:background="@drawable/bg_pixel_minimap"
             android:padding="6dp"
             android:visibility="gone" />
     </FrameLayout>
@@ -79,25 +83,40 @@
         android:orientation="horizontal"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@id/paletteList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-        <Button
+        <ImageButton
             android:id="@+id/btnWand"
-            style="@style/PixelToolButton"
-            android:text="@string/pixel_wand" />
-        <Button
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@null"
+            android:contentDescription="@string/pixel_wand"
+            android:padding="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_range" />
+        <ImageButton
             android:id="@+id/btnBomb"
-            style="@style/PixelToolButton"
-            android:text="@string/pixel_bomb" />
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@null"
+            android:contentDescription="@string/pixel_bomb"
+            android:padding="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_bomb" />
         <Button
             android:id="@+id/btnHint"
             style="@style/PixelToolButton"
-            android:text="@string/pixel_hint" />
+            android:text="@string/pixel_hint"
+            android:visibility="gone" />
         <Button
             android:id="@+id/btnResetZoom"
             style="@style/PixelToolButton"
-            android:text="@string/pixel_reset" />
+            android:text="@string/pixel_reset"
+            android:visibility="gone" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

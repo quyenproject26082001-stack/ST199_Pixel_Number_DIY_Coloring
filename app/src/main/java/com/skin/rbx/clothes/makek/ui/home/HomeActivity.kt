@@ -69,8 +69,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun initActionBar() {
       binding.actionBar.apply {
         setImageActionBar(btnActionBarRight, R.drawable.ic_setting)
-          btnActionBarLeft.setImageResource(R.drawable.ic_creation)
-          btnActionBarLeft.visible()
           btnActionBarRight.visible()
       }
     }

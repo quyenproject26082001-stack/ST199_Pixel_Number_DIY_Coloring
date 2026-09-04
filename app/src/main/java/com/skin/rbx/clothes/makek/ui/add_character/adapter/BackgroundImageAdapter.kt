@@ -1,12 +1,6 @@
 package com.skin.rbx.clothes.makek.ui.add_character.adapter
-import com.skin.rbx.clothes.makek.core.helper.UnitHelper
-
-import android.content.Context
-import android.graphics.Color
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.skin.rbx.clothes.makek.core.base.BaseAdapter
 import com.skin.rbx.clothes.makek.R
 import com.skin.rbx.clothes.makek.core.utils.DataLocal
@@ -26,11 +20,7 @@ class BackgroundImageAdapter :
     override fun onBind(binding: ItemBackgroundImageBinding, item: SelectedModel, position: Int) {
         binding.apply {
             tvAddImg.isSelected=true
-            if (item.isSelected) {
-                containerCard.setStrokeColor(Color.parseColor("#000000"))
-            } else {
-                containerCard.setStrokeColor(Color.TRANSPARENT)
-            }
+            containerCard.isSelected = item.isSelected
 
             lnlAddItem.gone()
             btnNone.gone()
@@ -49,7 +39,6 @@ class BackgroundImageAdapter :
 
                 else -> {
                     imvImage.visible()
-                    val cornerRadiusPx = UnitHelper.dpToPxInt(root.resources, 8f)
                     val shimmerDrawable = ShimmerDrawable().apply {
                         setShimmer(DataLocal.shimmer)
                     }
@@ -60,7 +49,6 @@ class BackgroundImageAdapter :
                         .override(256, 256)
                         .encodeQuality(60)
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        .transform(RoundedCorners(cornerRadiusPx))
                         .into(imvImage)
                     imvImage.tap { onBackgroundImageClick.invoke(item.path, position) }
                 }

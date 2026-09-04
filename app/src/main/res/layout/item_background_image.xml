@@ -8,7 +8,6 @@
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,21 +15,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <com.google.android.material.card.MaterialCardView
+        <com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout
             android:id="@+id/containerCard"
-            android:elevation="1dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="3.5dp"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="0dp"
+            android:foreground="@drawable/selector_background_image_border"
             tools:layout_width="56dp"
-            tools:layout_height="56dp"
-            app:strokeColor="@color/app"
-            app:strokeWidth="2dp"
-
-            >
+            tools:layout_height="56dp">
 
             <!--            imvImage-->
             <ImageView
@@ -40,14 +31,12 @@
                 android:scaleType="centerCrop" />
 
             <!--            imvImage-->
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:id="@+id/btnNone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 android:visibility="gone"
-                app:strokeColor="@color/transparent"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="4dp"
                 tools:visibility="gone">
 
                 <ImageView
@@ -58,7 +47,7 @@
                     android:src="@drawable/ic_none_bg_ing"
                     />
 
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
 
 
@@ -106,7 +95,7 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout>
 
     </FrameLayout>
 

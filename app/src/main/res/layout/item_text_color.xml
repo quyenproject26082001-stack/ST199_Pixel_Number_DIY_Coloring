@@ -15,26 +15,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!--        vFocus (stroke - renders BEHIND)-->
-        <View
-            android:id="@+id/vFocus"
+        <com.skin.rbx.clothes.makek.core.custom.layout.TextColorClipLayout
+            android:id="@+id/colorClip"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
-            android:elevation="2dp"
-            android:background="@drawable/bg_stroke_gradient_circle_color_text" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/red_BA"
+            android:foreground="@drawable/selector_text_color_border"
             android:layout_margin="0dp"
             >
 
             <!--            imvColor-->
             <ImageView
                 android:id="@+id/imvColor"
-                tools:src="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="0dp" />
@@ -47,10 +38,10 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/img0text_color"
                 android:layout_gravity="center"
-                tools:visibility="gone"
+                tools:visibility="visible"
                 android:visibility="visible" />
 
-        </FrameLayout>
+        </com.skin.rbx.clothes.makek.core.custom.layout.TextColorClipLayout>
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

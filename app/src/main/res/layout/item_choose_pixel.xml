@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/bg_pixel_1"
+        android:foreground="@drawable/bg_pixel_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <com.skin.rbx.clothes.makek.ui.pixel_coloring.PixelPreviewView
+            android:id="@+id/imvPixel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:background="@color/blue_app"
+            />
+        <ImageView
+            android:id="@+id/ovlPixel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#4D000000"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/icDone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.32051282051"
+            android:background="@drawable/ic_done_1"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="120:14"
+            app:layout_constraintWidth_percent="0.76923076923"
+            android:id="@+id/ctnProgress"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/icEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_empt"/>
+            <ImageView
+                android:id="@+id/icFull"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_full"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

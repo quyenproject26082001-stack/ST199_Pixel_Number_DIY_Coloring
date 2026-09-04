@@ -72,11 +72,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="12.5dp"
-        android:paddingHorizontal="12.5dp"
+        android:paddingHorizontal="4dp"
         android:clipToPadding="false"
         android:paddingBottom="42dp"
         tools:itemCount="20"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="5"
+        app:spanCount="4"
         tools:listitem="@layout/item_speech" />
 </LinearLayout>

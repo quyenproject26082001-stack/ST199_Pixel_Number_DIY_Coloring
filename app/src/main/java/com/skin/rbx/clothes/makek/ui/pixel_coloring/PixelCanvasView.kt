@@ -1,6 +1,7 @@
 package com.skin.rbx.clothes.makek.ui.pixel_coloring
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -36,7 +37,7 @@ class PixelCanvasView @JvmOverloads constructor(
     private val gridPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         textAlign = Paint.Align.CENTER
-        color = 0x66FFFFFF
+        color = 0x994A1E1D.toInt()
     }
     private val handler = Handler(Looper.getMainLooper())
     private var level: PixelLevel? = null
@@ -95,6 +96,34 @@ class PixelCanvasView @JvmOverloads constructor(
     fun getTool(): PixelTool = selectedTool
     fun getPaintedSnapshot(): BooleanArray = painted.copyOf()
 
+    fun createCompletedBitmap(targetSize: Int = COMPLETED_BITMAP_SIZE): Bitmap? {
+        val data = level ?: return null
+        if (data.width <= 0 || data.height <= 0) return null
+
+        val bitmap = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        val scale = min(targetSize.toFloat() / data.width, targetSize.toFloat() / data.height)
+        val left = (targetSize - data.width * scale) / 2f
+        val top = (targetSize - data.height * scale) / 2f
+        val bitmapPaint = Paint().apply { isAntiAlias = false }
+
+        for (y in 0 until data.height) {
+            for (x in 0 until data.width) {
+                val colorId = data.grid[y][x]
+                if (colorId == 0) continue
+                bitmapPaint.color = colors.getOrElse(colorId - 1) { Color.WHITE }
+                canvas.drawRect(
+                    left + x * scale,
+                    top + y * scale,
+                    left + (x + 1) * scale,
+                    top + (y + 1) * scale,
+                    bitmapPaint,
+                )
+            }
+        }
+        return bitmap
+    }
+
     fun centerImage() {
         val data = level ?: return
         if (width == 0 || height == 0) return
@@ -130,14 +159,13 @@ class PixelCanvasView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawColor(0xFF0F172A.toInt())
         val data = level ?: return
         canvas.save()
         canvas.translate(offsetX, offsetY)
         canvas.scale(scale, scale)
         val showNumbers = scale > 15f
         gridPaint.strokeWidth = 1f / scale
-        gridPaint.color = 0x22FFFFFF
+        gridPaint.color = 0x334A1E1D
         textPaint.textSize = 0.42f
         for (y in 0 until data.height) {
             for (x in 0 until data.width) {
@@ -148,7 +176,7 @@ class PixelCanvasView @JvmOverloads constructor(
                     fillPaint.color = colors.getOrElse(colorId - 1) { Color.WHITE }
                     canvas.drawRect(x.toFloat(), y.toFloat(), x + 1f, y + 1f, fillPaint)
                 } else {
-                    fillPaint.color = if (colorId == selectedColorId) 0x22FFFFFF else 0x08FFFFFF
+                    fillPaint.color = if (colorId == selectedColorId) 0x224A1E1D else 0x084A1E1D
                     canvas.drawRect(x.toFloat(), y.toFloat(), x + 1f, y + 1f, fillPaint)
                     canvas.drawRect(x.toFloat(), y.toFloat(), x + 1f, y + 1f, gridPaint)
                     if (showNumbers) {
@@ -157,10 +185,10 @@ class PixelCanvasView @JvmOverloads constructor(
                     }
                 }
                 if (index == hintIndex) {
-                    gridPaint.color = Color.WHITE
+                    gridPaint.color = 0xFF4A1E1D.toInt()
                     gridPaint.strokeWidth = 3f / scale
                     canvas.drawRect(x.toFloat(), y.toFloat(), x + 1f, y + 1f, gridPaint)
-                    gridPaint.color = 0x22FFFFFF
+                    gridPaint.color = 0x334A1E1D
                     gridPaint.strokeWidth = 1f / scale
                 }
             }
@@ -327,6 +355,7 @@ class PixelCanvasView @JvmOverloads constructor(
     private fun parseColor(value: String): Int = runCatching { Color.parseColor(value) }.getOrDefault(Color.WHITE)
 
     companion object {
+        private const val COMPLETED_BITMAP_SIZE = 512
         private val HINT_TOKEN = Any()
     }
 }

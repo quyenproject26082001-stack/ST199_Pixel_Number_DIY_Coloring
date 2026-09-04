@@ -1,12 +1,8 @@
 package com.skin.rbx.clothes.makek.ui.add_character.adapter
-import com.skin.rbx.clothes.makek.core.helper.UnitHelper
-
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.util.Log
-import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.skin.rbx.clothes.makek.R
 import com.skin.rbx.clothes.makek.core.base.BaseAdapter
 import com.skin.rbx.clothes.makek.core.extensions.gone
@@ -26,17 +22,9 @@ class BackgroundColorAdapter :
 
         binding.apply {
             btnNone.gone()
-            if (item.isSelected) {
-                cardCtn.setStrokeColor(Color.parseColor("#000000"))
-            } else {
-                cardCtn.setStrokeColor(Color.TRANSPARENT)
-            }
-            // Set circular stroke for position 0, regular stroke for others
-
+            cardCtn.isSelected = item.isSelected
 
             if (position == ADD_COLOR_POSITION) {
-                cardCtn.cardElevation = 0f
-                cardCtn.setCardBackgroundColor(Color.TRANSPARENT)
                 imvColor.visible()
                 Log.d("BackgroundColorAdapter", "Position 0: Loading img with CircleCrop")
                 Glide.with(root.context).clear(imvColor)
@@ -47,7 +35,6 @@ class BackgroundColorAdapter :
                     .into(imvColor)
                 root.tap { onChooseColorClick.invoke() }
             } else {
-                cardCtn.cardElevation = UnitHelper.dpToPx(root.resources, 2f)
                 imvColor.visible()
                 Log.d("BackgroundColorAdapter", "Position $position: Setting color background")
                 Glide.with(root.context).clear(imvColor)

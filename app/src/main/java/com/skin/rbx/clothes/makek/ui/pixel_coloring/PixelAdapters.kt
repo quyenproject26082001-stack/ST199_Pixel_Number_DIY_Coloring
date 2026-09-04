@@ -1,15 +1,16 @@
 package com.skin.rbx.clothes.makek.ui.pixel_coloring
 
 import android.graphics.Color
+import android.graphics.Rect
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.doOnLayout
+import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
-import com.skin.rbx.clothes.makek.R
+import com.skin.rbx.clothes.makek.databinding.ItemChoosePixelBinding
 import com.skin.rbx.clothes.makek.databinding.ItemPixelColorBinding
-import com.skin.rbx.clothes.makek.databinding.ItemPixelLevelBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -32,21 +33,21 @@ class PixelLevelAdapter(
     fun refreshProgress() = notifyDataSetChanged()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder = Holder(
-        ItemPixelLevelBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+        ItemChoosePixelBinding.inflate(LayoutInflater.from(parent.context), parent, false),
     )
 
     override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(items[position])
     override fun getItemCount(): Int = items.size
     override fun onViewRecycled(holder: Holder) = holder.recycle()
 
-    inner class Holder(private val binding: ItemPixelLevelBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(private val binding: ItemChoosePixelBinding) : RecyclerView.ViewHolder(binding.root) {
         private var loadJob: Job? = null
 
         fun bind(entry: PixelLevelEntry) {
             loadJob?.cancel()
-            binding.preview.clearLevel()
+            binding.imvPixel.clearLevel()
             val completed = progressStore.isCompleted(entry.id)
-            binding.tvCompleted.visibility = if (completed) View.VISIBLE else View.GONE
+            showProgress(if (completed) 100 else 0, completed)
             binding.root.setOnClickListener { onClick(entry) }
             loadJob = scope.launch {
                 val result = withContext(Dispatchers.IO) {
@@ -61,13 +62,41 @@ class PixelLevelAdapter(
                 ) return@launch
                 val painted = BooleanArray(result.first.width * result.first.height)
                 result.second.forEach { index -> if (index in painted.indices) painted[index] = true }
-                binding.preview.setLevel(result.first, painted, result.third)
+                val progress = if (result.third) {
+                    100
+                } else if (result.first.totalPaintable == 0) {
+                    0
+                } else {
+                    result.second.size * 100 / result.first.totalPaintable
+                }
+                val isFinished = result.third || progress >= 100
+                binding.imvPixel.setLevel(result.first, painted, showCompleted = true)
+                showProgress(progress, isFinished)
+            }
+        }
+
+        private fun showProgress(progress: Int, completed: Boolean) = with(binding) {
+            val normalizedProgress = progress.coerceIn(0, 100)
+            val hasProgress = completed || normalizedProgress > 0
+            ovlPixel.isVisible = hasProgress
+            icDone.isVisible = completed
+            ctnProgress.isVisible = hasProgress && !completed
+            icFull.tag = normalizedProgress
+            icFull.doOnLayout { view ->
+                val currentProgress = (view.tag as? Int)?.coerceIn(0, 100) ?: 0
+                view.clipBounds = Rect(
+                    0,
+                    0,
+                    view.width * currentProgress / 100,
+                    view.height,
+                )
             }
         }
 
         fun recycle() {
             loadJob?.cancel()
-            binding.preview.clearLevel()
+            binding.imvPixel.clearLevel()
+            showProgress(0, completed = false)
         }
     }
 }
@@ -94,13 +123,14 @@ class PixelPaletteAdapter(
     inner class Holder(private val binding: ItemPixelColorBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PixelPaletteItem) = with(binding) {
             colorCard.setCardBackgroundColor(item.color)
-            colorCard.strokeWidth = if (item.colorId == selectedColorId) 4 else 0
-            colorCard.alpha = if (item.percent == 100) 0.55f else 1f
+            root.alpha = if (item.percent >= 100) 0.3f else 1f
+            progressRing.progress = item.percent
+            val selected = item.colorId == selectedColorId
+            icDone2.isVisible = selected
+            tvColorNumber.isVisible = !selected
             val textColor = if (ColorUtils.calculateLuminance(item.color) > 0.6) Color.BLACK else Color.WHITE
             tvColorNumber.setTextColor(textColor)
-            tvColorProgress.setTextColor(textColor)
             tvColorNumber.text = item.colorId.toString()
-            tvColorProgress.text = root.context.getString(R.string.pixel_percent, item.percent)
             root.setOnClickListener { onClick(item.colorId) }
         }
     }

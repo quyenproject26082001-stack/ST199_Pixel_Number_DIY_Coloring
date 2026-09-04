@@ -4,7 +4,6 @@ import com.skin.rbx.clothes.makek.core.helper.UnitHelper
 import android.annotation.SuppressLint
 import android.graphics.drawable.GradientDrawable
 import android.util.Log
-import androidx.core.view.isVisible
 import com.skin.rbx.clothes.makek.R
 import com.skin.rbx.clothes.makek.core.base.BaseAdapter
 import com.skin.rbx.clothes.makek.core.extensions.gone
@@ -24,14 +23,7 @@ class TextColorAdapter : BaseAdapter<SelectedModel, ItemTextColorBinding>(ItemTe
         Log.d("TextColorAdapter", "onBind position=$position, color=${String.format("#%06X", 0xFFFFFF and item.value)}, isSelected=${item.isSelected}")
 
         binding.apply {
-            vFocus.isVisible = true
-            if (item.isSelected) {
-                vFocus.setBackgroundResource(R.drawable.bg_stroke_gradient_circle_color_text)
-            }
-            else{
-                vFocus.setBackgroundResource(R.drawable.bg_uslt_text_color)
-
-            }
+            colorClip.isSelected = item.isSelected
 
             if (position == 0) {
                 Log.d("TextColorAdapter", "Position 0: Clearing and loading img0text_color")

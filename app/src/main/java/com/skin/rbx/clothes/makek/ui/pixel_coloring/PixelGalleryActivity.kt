@@ -43,14 +43,14 @@ class PixelGalleryActivity : BaseActivity<ActivityPixelGalleryBinding>() {
         levelAdapter = PixelLevelAdapter(repository, progressStore, lifecycleScope, ::openLevel)
         binding.levelList.adapter = levelAdapter
         (binding.levelList.layoutManager as? GridLayoutManager)?.spanCount =
-            if (resources.configuration.smallestScreenWidthDp >= 600) 5 else 3
+            if (resources.configuration.smallestScreenWidthDp >= 600) 3 else 2
         selectCategory(CATEGORY_ALL, binding.btnAll)
         loadCatalog()
     }
 
     override fun viewListener() = with(binding) {
         actionBar.btnActionBarLeft.tap { handleBackLeftToRight() }
-        btnUpload.tap { imagePicker.launch("image/*") }
+//        btnUpload.tap { imagePicker.launch("image/*") }
         categoryButtons().forEach { (button, category) ->
             button.setOnClickListener { selectCategory(category, button) }
         }
@@ -58,7 +58,6 @@ class PixelGalleryActivity : BaseActivity<ActivityPixelGalleryBinding>() {
 
     override fun initActionBar() = with(binding.actionBar) {
         setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
-        setTextActionBar(tvCenter, getString(R.string.pixel_gallery))
     }
 
     override fun onResume() {
@@ -112,13 +111,11 @@ class PixelGalleryActivity : BaseActivity<ActivityPixelGalleryBinding>() {
 
     private fun createLevelFromImage(uri: Uri) {
         binding.loading.visibility = View.VISIBLE
-        binding.btnUpload.isEnabled = false
         lifecycleScope.launch {
             val level = withContext(Dispatchers.IO) {
                 runCatching { quantizeBitmap(decodeForPixelArt(uri)) }.getOrNull()
             }
             binding.loading.visibility = View.GONE
-            binding.btnUpload.isEnabled = true
             if (level == null) {
                 showToast(R.string.pixel_image_error)
                 return@launch

@@ -1,22 +1,23 @@
 package com.skin.rbx.clothes.makek.ui.pixel_coloring
 
-import android.app.Dialog
+import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Handler
 import android.os.Looper
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.skin.rbx.clothes.makek.R
 import com.skin.rbx.clothes.makek.core.base.BaseActivity
 import com.skin.rbx.clothes.makek.core.extensions.handleBackLeftToRight
 import com.skin.rbx.clothes.makek.core.extensions.setImageActionBar
 import com.skin.rbx.clothes.makek.core.extensions.setTextActionBar
+import com.skin.rbx.clothes.makek.core.extensions.startIntentRightToLeft
 import com.skin.rbx.clothes.makek.core.extensions.tap
 import com.skin.rbx.clothes.makek.databinding.ActivityPixelColoringBinding
-import com.skin.rbx.clothes.makek.databinding.DialogPixelCompleteBinding
+import com.skin.rbx.clothes.makek.ui.add_character.AddCharacterActivity
+import java.io.File
+import java.io.FileOutputStream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -30,7 +31,7 @@ class PixelColoringActivity : BaseActivity<ActivityPixelColoringBinding>(), Pixe
     private var currentLevel: PixelLevel? = null
     private var selectedColorId = 1
     private var lastColorPercents = IntArray(0)
-    private var completionDialog: Dialog? = null
+    private var navigatingAfterCompletion = false
 
     override fun setViewBinding() = ActivityPixelColoringBinding.inflate(LayoutInflater.from(this))
 
@@ -64,7 +65,6 @@ class PixelColoringActivity : BaseActivity<ActivityPixelColoringBinding>(), Pixe
 
     override fun initActionBar() = with(binding.actionBar) {
         setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
-        setTextActionBar(tvCenter, getString(R.string.pixel_coloring))
     }
 
     private fun loadLevel(id: String, customJson: String? = null) {
@@ -95,10 +95,21 @@ class PixelColoringActivity : BaseActivity<ActivityPixelColoringBinding>(), Pixe
     override fun onToolConsumed() = updateToolSelection()
 
     override fun onCompleted() {
+        if (navigatingAfterCompletion) return
         val level = currentLevel ?: return
         saveProgress()
         progressStore.setCompleted(level.id)
-        showCompletionDialog(level)
+        val bitmap = binding.pixelCanvas.createCompletedBitmap() ?: return
+        navigatingAfterCompletion = true
+        lifecycleScope.launch {
+            val path = saveCompletedArtwork(bitmap, level.id)
+            if (path == null) {
+                navigatingAfterCompletion = false
+                showToast(R.string.save_failed_please_try_again)
+                return@launch
+            }
+            startIntentRightToLeft(AddCharacterActivity::class.java, path)
+        }
     }
 
     private fun updatePalette(percents: IntArray) {
@@ -114,8 +125,20 @@ class PixelColoringActivity : BaseActivity<ActivityPixelColoringBinding>(), Pixe
     }
 
     private fun updateToolSelection() = with(binding) {
-        btnWand.isSelected = pixelCanvas.getTool() == PixelTool.WAND
-        btnBomb.isSelected = pixelCanvas.getTool() == PixelTool.BOMB
+        val selectedTool = pixelCanvas.getTool()
+        btnWand.isSelected = selectedTool == PixelTool.WAND
+        btnBomb.isSelected = selectedTool == PixelTool.BOMB
+        btnWand.animateSelectedScale(btnWand.isSelected)
+        btnBomb.animateSelectedScale(btnBomb.isSelected)
+    }
+
+    private fun View.animateSelectedScale(selected: Boolean) {
+        val targetScale = if (selected) 1.2f else 1f
+        animate()
+            .scaleX(targetScale)
+            .scaleY(targetScale)
+            .setDuration(150L)
+            .start()
     }
 
     private fun saveProgress() {
@@ -123,46 +146,21 @@ class PixelColoringActivity : BaseActivity<ActivityPixelColoringBinding>(), Pixe
         progressStore.save(level.id, binding.pixelCanvas.getPaintedSnapshot())
     }
 
-    private fun showCompletionDialog(level: PixelLevel) {
-        if (completionDialog?.isShowing == true) return
-        val dialogBinding = DialogPixelCompleteBinding.inflate(layoutInflater)
-        val dialog = Dialog(this).apply {
-            setContentView(dialogBinding.root)
-            setCancelable(false)
-            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            window?.setGravity(Gravity.CENTER)
+    private suspend fun saveCompletedArtwork(bitmap: Bitmap, levelId: String): String? =
+        withContext(Dispatchers.IO) {
+            try {
+                val directory = File(filesDir, "pixel_coloring_completed").apply { mkdirs() }
+                val file = File(directory, "$levelId.png")
+                FileOutputStream(file).use { output ->
+                    check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, output))
+                }
+                file.absolutePath
+            } catch (_: Exception) {
+                null
+            } finally {
+                bitmap.recycle()
+            }
         }
-        dialogBinding.resultPreview.setLevel(level, showCompleted = true)
-        dialogBinding.btnClose.tap {
-            dialog.dismiss()
-            closeEditor()
-        }
-        dialogBinding.btnNext.tap {
-            dialog.dismiss()
-            openNextLevel(level)
-        }
-        dialog.setOnDismissListener { completionDialog = null }
-        completionDialog = dialog
-        dialog.show()
-        dialog.window?.setLayout(
-            (resources.displayMetrics.widthPixels * 0.9f).toInt(),
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-        )
-    }
-
-    private fun openNextLevel(level: PixelLevel) {
-        if (level.category == "custom") {
-            closeEditor()
-            return
-        }
-        lifecycleScope.launch {
-            val catalog = withContext(Dispatchers.IO) { repository.loadCatalog() }
-            val index = catalog.indexOfFirst { it.id == level.id }
-            val next = catalog.getOrNull(index + 1)
-            if (next == null) closeEditor() else loadLevel(next.id)
-        }
-    }
 
     private fun closeEditor() {
         saveProgress()
@@ -173,12 +171,6 @@ class PixelColoringActivity : BaseActivity<ActivityPixelColoringBinding>(), Pixe
         saveHandler.removeCallbacks(saveRunnable)
         saveProgress()
         super.onPause()
-    }
-
-    override fun onDestroy() {
-        completionDialog?.dismiss()
-        completionDialog = null
-        super.onDestroy()
     }
 
     companion object {

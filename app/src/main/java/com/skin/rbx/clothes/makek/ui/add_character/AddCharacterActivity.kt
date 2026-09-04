@@ -844,7 +844,7 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
         textView.setTextColor(Color.parseColor("#000000"))
 
         // Show selected_tab drawable
-        focusImage.setImageResource(R.drawable.selected_tab)
+        focusImage.setImageResource(R.drawable.slt_tab)
         focusImage.scaleX = 1f
         focusImage.visible()
 
@@ -876,7 +876,7 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
 
 
         // Show un_selected_tab drawable
-        focusImage.setImageResource(R.drawable.un_selected_tab)
+        focusImage.setImageResource(R.drawable.uslt_tab)
         // Flip horizontally if on left side
         focusImage.scaleX = if (isLeftTab) -1f else 1f
         focusImage.visible()

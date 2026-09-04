@@ -18,24 +18,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!--        vFocus-->
-        <View
-            android:id="@+id/vNotFocus"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="3.5dp"
-            android:visibility="visible" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardCornerRadius="99dp"
-            app:cardBackgroundColor="@color/transparent"
-            app:strokeColor="@color/app"
-            app:strokeWidth="2dp"
-            app:cardElevation="2dp"
+        <com.skin.rbx.clothes.makek.core.custom.layout.TextColorClipLayout
             android:id="@+id/cardCtn"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@drawable/selector_text_color_border">
 
             <ImageView
                 android:id="@+id/imvColor"
@@ -51,7 +38,7 @@
                 android:padding="15dp"
                 android:scaleType="fitCenter"
                 android:visibility="gone"/>
-        </com.google.android.material.card.MaterialCardView>
+        </com.skin.rbx.clothes.makek.core.custom.layout.TextColorClipLayout>
 
 
     </FrameLayout>
