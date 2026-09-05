@@ -20,12 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="2"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="@dimen/dp_16"
         android:fontFamily="@font/game_paused_demo_regular"
         android:gravity="center"
         android:textColor="@color/app"
-        android:layout_marginBottom="31.5dp"
+        android:layout_marginBottom="@dimen/dp_31_5"
         app:layout_constraintBottom_toBottomOf="@id/imvImage"
-        android:textSize="20sp"
+        android:textSize="@dimen/sp_20"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#FFD2D2"
     android:layout_height="match_parent"
     android:paddingTop="0dp"
     android:clipToPadding="false"
@@ -15,49 +14,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="true"
-        android:paddingHorizontal="8.5dp"
-        android:paddingBottom="100dp"
+        android:paddingHorizontal="@dimen/dp_8_5"
+        android:paddingBottom="@dimen/dp_80"
         android:clipToPadding="true"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_my_design" />
 
-    <!-- No Item-->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutNoItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="236:205"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.72580645161"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.65555555555">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="125:32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.97"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.016"
+            app:layout_constraintWidth_percent="0.52966101694">
+
+            <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:autoSizeMaxTextSize="@dimen/sp_30"
+                android:autoSizeMinTextSize="@dimen/sp_7"
+                android:autoSizeStepGranularity="@dimen/sp_0_5"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/game_paused_demo_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@string/no_item_here"
+                android:textColor="@color/app"
+                app:layout_constraintHeight_percent="0.46875"
+                tools:text="akskahdakjhcshascajcjascacjascjakscjasc" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/loading"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="16dp"
-        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/pixel_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutActionBar">
-
-        <ImageView
-            android:layout_width="164dp"
-            android:layout_height="180dp"
-            android:visibility="gone"
-            android:adjustViewBounds="true"
-            android:src="@drawable/img_no_item" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
-            android:id="@+id/tvNoitem"
-            style="@style/single_marquee"
-            android:layout_width="match_parent"
-            android:layout_height="37dp"
-            android:fontFamily="@font/game_paused_demo_regular"
-            android:gravity="center"
-            android:paddingHorizontal="33dp"
-            android:text="@string/no_creations_yet"
-            android:textColor="@color/app"
-            android:textSize="16sp"
-            android:translationY="0dp" />
-    </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

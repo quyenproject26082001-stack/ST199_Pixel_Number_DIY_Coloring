@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/dp_120"
         android:background="@color/transparent"
         android:clipChildren="false"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,20 +22,20 @@
         <!--    btnDone-->
         <ImageView
             android:id="@+id/btnDone"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/dp_44"
+            android:layout_height="@dimen/dp_44"
 
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/dp_16"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_done2"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="1dp"
+            app:cardCornerRadius="@dimen/dp_32"
+            app:cardElevation="@dimen/dp_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/dp_10"
             app:strokeColor="#E6E6E6"
-            app:strokeWidth="0.5dp" />
+            app:strokeWidth="@dimen/dp_0_5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
@@ -49,7 +49,7 @@
         android:id="@+id/flExport"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginHorizontal="0dp"
         app:layout_constraintDimensionRatio="580:559"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,12 +82,12 @@
         android:id="@+id/rcvList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/dp_12"
         android:background="#E8E8E8"
         android:clipChildren="true"
         android:clipToPadding="false"
-        android:paddingHorizontal="20dp"
-        android:paddingBottom="42dp"
+        android:paddingHorizontal="@dimen/dp_20"
+        android:paddingBottom="@dimen/dp_42"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +101,7 @@
         android:id="@+id/lnlOption"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/dp_16"
         android:background="@drawable/ic_pen_slt"
         android:orientation="horizontal"
         android:visibility="invisible"
@@ -127,7 +127,7 @@
                 android:id="@+id/btnEraser"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="@dimen/dp_4"
                 android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
@@ -140,7 +140,7 @@
         android:visibility="invisible"
         android:clipToPadding="false"
         android:clipChildren="true"
-        android:paddingBottom="44dp"
+        android:paddingBottom="@dimen/dp_44"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lnlOption"
         tools:visibility="visible">
@@ -148,34 +148,34 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="24dp">
+            android:paddingBottom="@dimen/dp_24">
 
             <TextView
                 android:id="@+id/tvSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="23dp"
+                android:layout_marginStart="@dimen/dp_19"
+                android:layout_marginTop="@dimen/dp_23"
                 android:fontFamily="@font/game_paused_demo_regular"
                 android:text="@string/size"
                 android:textColor="@color/app"
-                android:textSize="16sp"
+                android:textSize="@dimen/sp_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/sbDrag"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginHorizontal="13dp"
+                android:layout_height="@dimen/dp_30"
+                android:layout_marginHorizontal="@dimen/dp_13"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_size_drag"
                 app:layout_constraintTop_toBottomOf="@id/tvSize" />
 
             <ImageView
                 android:id="@+id/icThumb"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_thumb2"
                 app:layout_constraintBottom_toBottomOf="@id/sbDrag"
@@ -187,12 +187,12 @@
                 android:id="@+id/tvPx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/dp_4"
                 android:fontFamily="@font/game_paused_demo_regular"
                 android:gravity="center"
                 android:text="30 px"
                 android:textColor="@color/app"
-                android:textSize="12sp"
+                android:textSize="@dimen/sp_12"
                 app:layout_constraintEnd_toEndOf="@id/icThumb"
                 app:layout_constraintStart_toStartOf="@id/icThumb"
                 app:layout_constraintTop_toBottomOf="@id/icThumb" />
@@ -201,12 +201,12 @@
                 android:id="@+id/tvColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginStart="@dimen/dp_19"
+                android:layout_marginTop="@dimen/dp_60"
                 android:fontFamily="@font/game_paused_demo_regular"
                 android:text="@string/color"
                 android:textColor="#003B50"
-                android:textSize="16sp"
+                android:textSize="@dimen/sp_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvSize" />
 
@@ -215,12 +215,12 @@
                 android:id="@+id/rcvColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_4"
                 android:clipChildren="true"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingEnd="16dp"
+                android:paddingEnd="@dimen/dp_16"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/tvColor"
                 tools:listitem="@layout/item_texture_brush_color" />

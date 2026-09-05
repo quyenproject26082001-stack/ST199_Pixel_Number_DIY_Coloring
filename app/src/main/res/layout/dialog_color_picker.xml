@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,133 +14,175 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/body"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="328:314"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_dialog_delete_exit"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:background="@drawable/bg_dl_pick_color"
             >
 
 
 
-            <TextView
-                android:id="@+id/tvTitle"
-                style="@style/single_marquee"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctnTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/game_paused_demo_regular"
-                android:gravity="center"
-                android:layout_marginBottom="3dp"
-                android:layout_marginHorizontal="30dp"
-                android:text="@string/choose_color"
-                android:textColor="@color/app"
-                android:textSize="20sp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.20382165605"
+                >
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/single_marquee"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHeight_percent="0.453125"
+                    android:layout_gravity="center_horizontal"
+                    android:clipChildren="false"
+                    android:clipToOutline="false"
+                    android:clipToPadding="false"
+                    android:autoSizeStepGranularity="@dimen/sp_0_5"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMaxTextSize="@dimen/sp_30"
+                    android:autoSizeMinTextSize="@dimen/sp_12"
+                    android:elevation="@dimen/dp_1"
+                    android:fontFamily="@font/game_paused_demo_regular"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp_5"
+                    android:text="@string/choose_color"
+                    android:textColor="@color/app"
+                    app:layout_constraintTop_toTopOf="parent"
+                   />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             <ir.kotlin.kavehcolorpicker.KavehColorPicker
                 android:id="@+id/colorPickerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1:1"
-                android:layout_marginHorizontal="29dp"
-                android:layout_marginTop="46dp"
-                app:sliderStrokeSize="4dp"
+                android:layout_marginHorizontal="@dimen/dp_4"
+                app:layout_constraintDimensionRatio="296:120"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.3901237113402"
+                app:sliderStrokeSize="@dimen/dp_4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
 
 
+
+
+            <ir.kotlin.kavehcolorpicker.KavehHueSlider
+                android:id="@+id/hueSlider"
+                app:layout_constraintTop_toTopOf="parent"
+                app:sliderStrokeSize="@dimen/dp_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.71052631578"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="296:29"/>
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.890243902439"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="21dp"
+                android:layout_marginHorizontal="0dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginBottom="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:gravity="center"
+                app:layout_constraintVertical_bias="0.892301369863"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/colorPickerView"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
 
-                <ir.kotlin.kavehcolorpicker.KavehHueSlider
-                    android:id="@+id/hueSlider"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:sliderStrokeSize="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_width="0dp"
-                    android:layout_marginHorizontal="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_height="34dp" />
 
 
                 <!--                btnDone-->
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/btnDone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btnClose"
-                    app:layout_constraintTop_toBottomOf="@id/hueSlider"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dp_10"
                     android:layout_width="0dp"
-
-                    android:background="@drawable/ic_done1"
+                    app:layout_constraintDimensionRatio="130:36"
+                    android:background="@drawable/ic_yes_bg"
 
                         >
                     <TextView
                         android:id="@+id/btnDoneText"
-
+                        android:autoSizeMinTextSize="@dimen/sp_8"
+                        android:autoSizeMaxTextSize="@dimen/sp_30"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeStepGranularity="@dimen/sp_0_5"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHeight_percent="0.41666666666"
                         android:fontFamily="@font/game_paused_demo_regular"
                         android:gravity="center"
-                        android:text="@string/done"
+                        android:text="@string/save"
                         style="@style/single_marquee"
                         android:textColor="@color/app"
-                        android:textSize="16sp" />
-                </RelativeLayout>
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
                 <!--                btnDone-->
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/btnClose"
 
-                    android:background="@drawable/ic_cancel"
+                    android:background="@drawable/ic_no_bg"
 
 
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/btnDone"
-                    app:layout_constraintTop_toBottomOf="@id/hueSlider"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="130:36"
+                    android:layout_marginEnd="@dimen/dp_10"
                     >
+
                     <TextView
                         android:id="@+id/btnCancelText"
-
+                        style="@style/single_marquee"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_centerInParent="true"
+                        android:autoSizeMaxTextSize="@dimen/sp_30"
+                        android:autoSizeMinTextSize="@dimen/sp_8"
+                        android:autoSizeStepGranularity="@dimen/sp_0_5"
+                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/game_paused_demo_regular"
                         android:gravity="center"
                         android:text="@string/cancel"
-                        style="@style/single_marquee"
                         android:textColor="@color/app"
-                        android:textSize="16sp" />
-                </RelativeLayout>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.41666666666"
 
-                <RelativeLayout
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/btnStringColor"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/dp_40"
                     android:layout_gravity="start"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="@dimen/dp_6"
                     android:visibility="gone"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/dp_16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/btnDone"
@@ -150,15 +193,23 @@
                     <TextView
                         android:id="@+id/tvColorString"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_centerInParent="true"
+                        android:autoSizeMinTextSize="@dimen/sp_8"
+                        android:autoSizeMaxTextSize="@dimen/sp_30"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeStepGranularity="@dimen/sp_0_5"
                         android:fontFamily="@font/game_paused_demo_regular"
                         android:gravity="center"
                         android:text="#FFFFFF"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="@dimen/dp_12"
                         android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
-                </RelativeLayout>
+                        android:textSize="@dimen/sp_20" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

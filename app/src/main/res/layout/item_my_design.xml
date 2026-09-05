@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="7.5dp"
-    android:clipChildren="false"
-    android:clipToPadding="false"
-    tools:layout_height="180dp"
-    tools:layout_width="180dp">
+    android:layout_margin="@dimen/dp_8"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="0dp"
+    <com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="4dp"
+        tools:layout_height="@dimen/dp_156"
+        tools:layout_width="@dimen/dp_156"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/bg_pixel_1"
+        android:foreground="@drawable/bg_pixel_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardElevation="4dp"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="false"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp">
-
-        <ImageView
-            android:id="@+id/imvImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <com.skin.rbx.clothes.makek.ui.pixel_coloring.PixelPreviewView
+            android:id="@+id/imvPixel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:scaleType="centerCrop"
-            tools:src="@color/red_BA" />
+            tools:background="@color/blue_app"
+            />
 
         <FrameLayout
             android:id="@+id/frameCover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#33000000" />
+            android:background="#4D000000"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/btnDelete"
-            android:layout_width="24dp"
-            android:visibility="gone"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
             android:src="@drawable/ic_delete_item"
-            />
+            android:visibility="gone" />
 
-        <!--btnSelect-->
         <ImageView
             android:id="@+id/btnSelect"
-            android:layout_width="24dp"
-            android:layout_margin="4dp"
-            android:layout_height="24dp"
-            android:layout_gravity="top|end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.90625"
+            app:layout_constraintHeight_percent="0.17948717948"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintVertical_bias="0.09375"
+            app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/ic_uslt_item"
-         />
-    </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout><!--btnDelete-->
+            android:visibility="visible" />
 
 
-
-
+    </com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

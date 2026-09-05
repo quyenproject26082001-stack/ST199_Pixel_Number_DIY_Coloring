@@ -128,9 +128,7 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
         binding.apply {
             actionBar.apply {
                 btnActionBarLeft.tap { showInterAll { handleBack() } }
-                btnDownload.tap {
-                    checkStoragePermission()
-                }
+
                 btnActionBarNextRight.tap(1000) {
                     if (viewModel.statusFrom == AVATAR_TYPE) handleEditClick(viewModel.pathInternal.value)
                     else checkStoragePermission()

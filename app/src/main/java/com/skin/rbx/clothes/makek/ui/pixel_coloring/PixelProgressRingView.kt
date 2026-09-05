@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+import com.skin.rbx.clothes.makek.core.helper.UnitHelper
 import kotlin.math.min
 
 class PixelProgressRingView @JvmOverloads constructor(
@@ -14,7 +15,7 @@ class PixelProgressRingView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
 ) : View(context, attrs) {
 
-    private val strokeWidth = 3f * resources.displayMetrics.density
+    private val strokeWidth = UnitHelper.dpToPx(resources, 3f)
     private val progressBounds = RectF()
     private val progressPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor("#891903")

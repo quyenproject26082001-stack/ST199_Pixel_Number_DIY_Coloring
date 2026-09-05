@@ -19,11 +19,16 @@ class MyDesignViewModel : ViewModel() {
     val myDesignList = _myDesignList.asStateFlow()
     private val _isLastItem = MutableStateFlow<Boolean>(false)
     val isLastItem: StateFlow<Boolean> = _isLastItem
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading = _isLoading.asStateFlow()
     private var loadJob: Job? = null
+    private var loadGeneration = 0
 
     fun loadMyDesign(context: Context) {
         val appContext = context.applicationContext
+        val generation = ++loadGeneration
         loadJob?.cancel()
+        _isLoading.value = true
         loadJob = viewModelScope.launch {
             try {
                 val paths = PersistenceRepository.getAlbumPathsAsync(
@@ -39,6 +44,8 @@ class MyDesignViewModel : ViewModel() {
                 android.util.Log.e("MyDesignViewModel", "Failed to load saved designs", error)
                 _myDesignList.value = arrayListOf()
                 checkLastItem()
+            } finally {
+                if (generation == loadGeneration) _isLoading.value = false
             }
         }
     }
@@ -55,7 +62,9 @@ class MyDesignViewModel : ViewModel() {
     }
 
     suspend fun deleteItem(context: Context, pathList: ArrayList<String>) {
+        loadGeneration++
         loadJob?.cancel()
+        _isLoading.value = false
         MediaHelper.deleteFileByPathNotFlow(pathList, context)
         _myDesignList.value = _myDesignList.value
             .filterNot { it.path in pathList }

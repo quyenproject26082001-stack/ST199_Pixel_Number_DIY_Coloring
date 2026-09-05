@@ -8,7 +8,7 @@
     </item>
 
     <item
-        android:height="8dp"
+        android:height="@dimen/dp_8"
         android:gravity="top"
         >
         <shape android:shape="rectangle">

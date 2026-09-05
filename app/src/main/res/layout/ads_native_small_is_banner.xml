@@ -18,20 +18,20 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:padding="@dimen/dp_8">
 
                 <ImageView
                     android:id="@+id/ad_app_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
                     android:adjustViewBounds="true"
                     android:src="@color/colorPrimary" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:layout_marginRight="@dimen/dp_8"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -43,10 +43,10 @@
                         android:maxLines="1"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="@dimen/dp_12" />
 
                     <LinearLayout
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/dp_4"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -54,28 +54,28 @@
                             style="@style/AppTheme.Ads"
                             android:background="@color/native_bg_btn" />
                         <TextView
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="@dimen/dp_5"
                             android:id="@+id/ad_body"
                             android:lines="2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:maxLines="1"
                             android:text=""
-                            android:textSize="10dp" />
+                            android:textSize="@dimen/dp_10" />
 
                     </LinearLayout>
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ad_call_to_action"
-                    android:layout_width="110dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/dp_110"
+                    android:layout_height="@dimen/dp_35"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/bg_btn_ads_native"
                     android:gravity="center"
                     android:text="Cài Đặt"
                     android:textColor="@color/colorWhite"
-                    android:textSize="8dp" />
+                    android:textSize="@dimen/dp_8" />
 
             </LinearLayout>
 

@@ -10,10 +10,10 @@
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="56dp"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_56"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,25 +22,25 @@
         <!--    btnDone-->
         <ImageView
             android:id="@+id/btnDone"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_marginTop="@dimen/dp_56"
+            android:layout_marginEnd="@dimen/dp_16"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_done2"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="1dp"
+            app:cardCornerRadius="@dimen/dp_32"
+            app:cardElevation="@dimen/dp_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="#E6E6E6"
-            app:strokeWidth="0.5dp" />
+            app:strokeWidth="@dimen/dp_0_5" />
         <!--        flText-->
         <FrameLayout
             android:id="@+id/flText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="35dp"
+            android:layout_marginHorizontal="@dimen/dp_35"
             app:layout_constraintBottom_toTopOf="@+id/listContainer"
             app:layout_constraintTop_toBottomOf="@+id/btnDone">
 
@@ -53,9 +53,9 @@
                 android:background="@color/transparent"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="@dimen/dp_10"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/sp_20"
                 android:visibility="invisible" />
 
             <!--            edtText-->
@@ -72,7 +72,7 @@
                 android:imeOptions="actionDone"
                 android:maxLength="50"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/sp_20"
                 android:visibility="visible" />
 
         </FrameLayout>
@@ -80,18 +80,18 @@
         <FrameLayout
             android:id="@+id/listContainer"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginBottom="@dimen/dp_8"
             app:layout_constraintBottom_toTopOf="@+id/sectionTab">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvTextColor"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
+                android:layout_height="@dimen/dp_32"
                 android:layout_gravity="center_vertical"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
+                android:paddingHorizontal="@dimen/dp_16"
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/c253_item_text_color" />
@@ -99,20 +99,20 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvFont"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/dp_48"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
+                android:paddingHorizontal="@dimen/dp_16"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/c253_item_font" />
         </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sectionTab"
-            android:layout_width="328dp"
-            android:layout_height="44dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginHorizontal="16dp"
+            android:layout_width="@dimen/dp_328"
+            android:layout_height="@dimen/dp_44"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:layout_marginHorizontal="@dimen/dp_16"
             android:background="@drawable/bg_font_slt"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,14 +132,14 @@
                 android:gravity="center"
                 android:text="Aa"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/sp_20"
                 app:layout_constraintEnd_toStartOf="@id/tabCenter"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvColor"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
                 android:background="@drawable/color_1_frame"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

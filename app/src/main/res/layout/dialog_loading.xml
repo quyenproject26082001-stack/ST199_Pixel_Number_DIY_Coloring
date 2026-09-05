@@ -15,9 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/dp_16"
             app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="@dimen/dp_8"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,39 +26,47 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/containerDialog"
-                android:layout_width="328dp"
-                android:layout_height="200dp"
-                android:background="@drawable/bg_dialog_delete_exit">
+                android:layout_width="@dimen/dp_328"
+                android:layout_height="@dimen/dp_204"
+                android:background="@drawable/bg_dl">
 
                 <!--  tvTitle (Top) -->
 
-                <TextView
-                    android:id="@+id/tvTitle"
-                    style="@style/single_marquee"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="20dp"
-                    android:includeFontPadding="false"
-                    android:elevation="1dp"
-                    android:fontFamily="@font/game_paused_demo_regular"
-                    android:gravity="center"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="5dp"
-                    android:text="@string/loading"
-                    android:textColor="@color/app"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                <FrameLayout
+                    android:id="@+id/ctnTitle"
+                    android:layout_width="@dimen/dp_328"
                     app:layout_constraintTop_toTopOf="parent"
-                     />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="@dimen/dp_64">
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        style="@style/single_marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:clipChildren="false"
+                        android:clipToOutline="false"
+                        android:clipToPadding="false"
+                        android:elevation="@dimen/dp_1"
+                        android:fontFamily="@font/game_paused_demo_regular"
+                        android:gravity="center"
+                        android:paddingVertical="@dimen/dp_5"
+                        android:text="@string/loading1"
+                        android:textColor="@color/app"
+                        android:textSize="@dimen/sp_26"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="dele" />
+                </FrameLayout>
 
                 <!-- ivSpinner (Center) -->
                 <ImageView
                     android:id="@+id/ivSpinner"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="@dimen/dp_48"
+                    android:layout_height="@dimen/dp_48"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:visibility="gone"
                     android:src="@drawable/ic_loading_dialog"
         app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -72,14 +80,15 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="center"
-                    android:paddingHorizontal="24dp"
+                    android:paddingHorizontal="@dimen/dp_24"
                     android:text="@string/wait_a_minute"
                     android:textColor="@color/app"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_20"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ivSpinner" />
+                    android:layout_marginBottom="@dimen/dp_20"
+             />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

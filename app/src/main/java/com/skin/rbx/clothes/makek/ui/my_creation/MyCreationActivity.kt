@@ -6,7 +6,6 @@ import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityOptionsCompat
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.os.Build
@@ -31,7 +30,6 @@ import com.skin.rbx.clothes.makek.core.extensions.hideNavigation
 import com.skin.rbx.clothes.makek.core.extensions.invisible
 import com.skin.rbx.clothes.makek.core.extensions.loadNativeCollabAds
 import com.skin.rbx.clothes.makek.core.extensions.requestPermission
-import com.skin.rbx.clothes.makek.core.extensions.select
 import com.skin.rbx.clothes.makek.core.extensions.setImageActionBar
 import com.skin.rbx.clothes.makek.core.extensions.setTextActionBar
 import com.skin.rbx.clothes.makek.core.extensions.tap
@@ -55,6 +53,7 @@ import com.skin.rbx.clothes.makek.ui.my_creation.adapter.TypeAdapter
 import com.skin.rbx.clothes.makek.ui.my_creation.fragment.MyAvatarFragment
 import com.skin.rbx.clothes.makek.ui.my_creation.fragment.MyDesignFragment
 import com.skin.rbx.clothes.makek.ui.my_creation.fragment.MyPackageFragment
+import com.skin.rbx.clothes.makek.ui.my_creation.fragment.MyPixelFragment
 import com.skin.rbx.clothes.makek.ui.my_creation.view_model.MyAvatarViewModel
 import com.skin.rbx.clothes.makek.ui.my_creation.view_model.MyCreationViewModel
 import com.skin.rbx.clothes.makek.ui.permission.PermissionViewModel
@@ -87,9 +86,16 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
         viewActivityLauncher.launch(intent, options)
     }
 
+    fun markPixelTabsDirty(levelId: String) {
+        inProgressPixelFragment?.markDataDirty(levelId)
+        finishedPixelFragment?.markDataDirty(levelId)
+    }
+
     private var myAvatarFragment: MyAvatarFragment? = null
     private var myDesignFragment: MyDesignFragment? = null
     private var myPackageFragment: MyPackageFragment? = null
+    private var inProgressPixelFragment: MyPixelFragment? = null
+    private var finishedPixelFragment: MyPixelFragment? = null
     private var isInSelectionMode = false
     private var isAllSelected = false
     private var isAvatarListEmpty = true
@@ -126,29 +132,23 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                             if (type != -1) {
                                 when (type) {
                                     ValueKey.PACKAGE_TYPE -> {
-                                        imvTabBackground.setImageResource(R.drawable.tab_package_slt)
-                                        frmList.setBackgroundColor(Color.parseColor("#FFEED2"))
-                                        setupSelectedTab(tvPK)
-                                        setupUnselectedTab(tvMyPride)
-                                        setupUnselectedTab(tvMyDesign)
+                                        btnPK.isSelected = true
+                                        btnMyPixel.isSelected = false
+                                        btnMyDesign.isSelected = false
                                         showFragment(ValueKey.PACKAGE_TYPE)
                                     }
 
                                     ValueKey.AVATAR_TYPE -> {
-                                        imvTabBackground.setImageResource(R.drawable.tab_avatar_slt)
-                                        frmList.setBackgroundColor(Color.parseColor("#D2F7FF"))
-                                        setupUnselectedTab(tvPK)
-                                        setupSelectedTab(tvMyPride)
-                                        setupUnselectedTab(tvMyDesign)
+                                        btnPK.isSelected = false
+                                        btnMyPixel.isSelected = true
+                                        btnMyDesign.isSelected = false
                                         showFragment(ValueKey.AVATAR_TYPE)
                                     }
 
                                     ValueKey.MY_DESIGN_TYPE -> {
-                                        imvTabBackground.setImageResource(R.drawable.tab_design_slt)
-                                        frmList.setBackgroundColor(Color.parseColor("#FFD2D2"))
-                                        setupUnselectedTab(tvPK)
-                                        setupUnselectedTab(tvMyPride)
-                                        setupSelectedTab(tvMyDesign)
+                                        btnPK.isSelected = false
+                                        btnMyPixel.isSelected = false
+                                        btnMyDesign.isSelected = true
                                         showFragment(ValueKey.MY_DESIGN_TYPE)
                                     }
                                 }
@@ -467,20 +467,17 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
             btnActionBarLeft.visible()
             btnActionBarNextRight.gone()
             tvCenter.visible()
-            tvCenter.setText(R.string.my_creation)
+            tvCenter.setText(R.string.my_work)
             // Delete All button - hidden initially, only shown in selection mode
-            btnActionBarRight.setImageResource(R.drawable.ic_delete_creation)
-            btnActionBarRight.translationX = -0 * resources.displayMetrics.density
-            btnActionBarRight.translationY = 0 * resources.displayMetrics.density
-            btnActionBarRight.invisible()
+
         }
     }
 
     override fun initText() {
         binding.apply {
-            tvMyPride.select()
-            tvMyDesign.select()
-            tvPK.select()
+            btnPK.isSelected = viewModel.typeStatus.value == ValueKey.PACKAGE_TYPE
+            btnMyPixel.isSelected = viewModel.typeStatus.value == ValueKey.AVATAR_TYPE
+            btnMyDesign.isSelected = viewModel.typeStatus.value == ValueKey.MY_DESIGN_TYPE
         }
     }
 
@@ -586,63 +583,54 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
             ?: supportFragmentManager.findFragmentByTag("MyDesignFragment") as? MyDesignFragment
         myPackageFragment = myPackageFragment
             ?: supportFragmentManager.findFragmentByTag("MyPackageFragment") as? MyPackageFragment
+        inProgressPixelFragment = inProgressPixelFragment
+            ?: supportFragmentManager.findFragmentByTag("InProgressPixelFragment") as? MyPixelFragment
+        finishedPixelFragment = finishedPixelFragment
+            ?: supportFragmentManager.findFragmentByTag("FinishedPixelFragment") as? MyPixelFragment
 
         val transaction = supportFragmentManager.beginTransaction()
             .setReorderingAllowed(true)
 
-        when (type) {
+        val targetFragment: Fragment = when (type) {
             ValueKey.PACKAGE_TYPE -> {
-                val packageFragment = myPackageFragment ?: MyPackageFragment().also {
-                    myPackageFragment = it
-                    transaction.add(R.id.frmList, it, "MyPackageFragment")
-                }
-                myAvatarFragment?.let {
-                    transaction.hide(it)
-                    transaction.setMaxLifecycle(it, Lifecycle.State.CREATED)
-                }
-                myDesignFragment?.let {
-                    transaction.hide(it)
-                    transaction.setMaxLifecycle(it, Lifecycle.State.CREATED)
-                }
-                transaction.show(packageFragment)
-                transaction.setMaxLifecycle(packageFragment, Lifecycle.State.RESUMED)
+                inProgressPixelFragment ?: MyPixelFragment
+                    .newInstance(MyPixelFragment.MODE_IN_PROGRESS).also {
+                        inProgressPixelFragment = it
+                        transaction.add(R.id.frmList, it, "InProgressPixelFragment")
+                    }
             }
 
             ValueKey.AVATAR_TYPE -> {
-                val avatarFragment = myAvatarFragment ?: MyAvatarFragment().also {
-                    myAvatarFragment = it
-                    transaction.add(R.id.frmList, it, "MyAvatarFragment")
-                }
-                myPackageFragment?.let {
-                    transaction.hide(it)
-                    transaction.setMaxLifecycle(it, Lifecycle.State.CREATED)
-                }
-                myDesignFragment?.let {
-                    transaction.hide(it)
-                    transaction.setMaxLifecycle(it, Lifecycle.State.CREATED)
-                }
-                transaction.show(avatarFragment)
-                transaction.setMaxLifecycle(avatarFragment, Lifecycle.State.RESUMED)
+                finishedPixelFragment ?: MyPixelFragment
+                    .newInstance(MyPixelFragment.MODE_FINISHED).also {
+                        finishedPixelFragment = it
+                        transaction.add(R.id.frmList, it, "FinishedPixelFragment")
+                    }
             }
 
-            ValueKey.MY_DESIGN_TYPE -> {
-                val designFragment = myDesignFragment ?: MyDesignFragment().also {
+            else -> {
+                myDesignFragment ?: MyDesignFragment().also {
                     myDesignFragment = it
                     transaction.add(R.id.frmList, it, "MyDesignFragment")
                 }
-                myPackageFragment?.let {
-                    transaction.hide(it)
-                    transaction.setMaxLifecycle(it, Lifecycle.State.CREATED)
-                }
-                myAvatarFragment?.let {
-                    transaction.hide(it)
-                    transaction.setMaxLifecycle(it, Lifecycle.State.CREATED)
-                }
-                transaction.show(designFragment)
-                transaction.setMaxLifecycle(designFragment, Lifecycle.State.RESUMED)
             }
         }
 
+        listOfNotNull(
+            myAvatarFragment,
+            myPackageFragment,
+            myDesignFragment,
+            inProgressPixelFragment,
+            finishedPixelFragment,
+        ).filter { it !== targetFragment }.forEach { fragment ->
+            if (fragment.isAdded) {
+                transaction.hide(fragment)
+                transaction.setMaxLifecycle(fragment, Lifecycle.State.STARTED)
+            }
+        }
+
+        transaction.show(targetFragment)
+        transaction.setMaxLifecycle(targetFragment, Lifecycle.State.RESUMED)
         transaction.commit()
     }
 
@@ -733,7 +721,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
             btnActionBarNextRight.visible()
             btnActionBarNextRight1.gone()
             btnActionBarRight.visible()
-            btnActionBarNextRight.setImageResource(R.drawable.ic_delete)
+            btnActionBarNextRight.setImageResource(R.drawable.ic_delete_creation)
             btnActionBarRight.setImageResource(R.drawable.ic_not_select_all)
 
             btnActionBarNextRight.translationY = -0 * resources.displayMetrics.density
@@ -804,7 +792,6 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
         // ActionBar download/share buttons: only in selection mode (avatar tab only)
         binding.actionBar.apply {
             if (isInSelectionMode && (viewModel.typeStatus.value == ValueKey.AVATAR_TYPE || viewModel.typeStatus.value == ValueKey.MY_DESIGN_TYPE || viewModel.typeStatus.value == ValueKey.PACKAGE_TYPE)) {
-                btnActionBarNextRight.setImageResource(R.drawable.ic_delete)
                 btnActionBarRight.setImageResource(if (isAllSelected) R.drawable.ic_select_all else R.drawable.ic_not_select_all)
                 btnActionBarNextRight.visible()
                 btnActionBarNextRight1.gone()
@@ -816,17 +803,6 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                 btnActionBarNextRight1.invisible()
             }
         }
-    }
-
-    private fun setupSelectedTab(textView: com.skin.rbx.clothes.makek.core.custom.text.OuterStrokeTextView) {
-        textView.setTextColor(Color.parseColor("#000000"))
-        //textView.setShadowLayer(2f, 0f, 2f, Color.WHITE)
-        //textView.setupSelectedTab()
-    }
-
-    private fun setupUnselectedTab(textView: com.skin.rbx.clothes.makek.core.custom.text.OuterStrokeTextView) {
-        textView.setTextColor(Color.parseColor("#000000"))
-        //textView.setupUnselectedTab()
     }
 
     // Public method to update select all icon based on selection state

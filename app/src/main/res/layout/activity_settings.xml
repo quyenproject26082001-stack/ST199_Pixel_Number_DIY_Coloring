@@ -32,15 +32,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:paddingHorizontal="12dp"
+        android:layout_marginTop="@dimen/dp_11"
+        android:paddingHorizontal="@dimen/dp_12"
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="48dp">
+            android:paddingBottom="@dimen/dp_48">
 
             <!--            btnLang-->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,27 +89,22 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="8"
-                    android:autoSizeMaxTextSize="100sp"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="@dimen/sp_100"
+                    android:autoSizeMinTextSize="@dimen/sp_8"
                     android:autoSizeTextType="uniform"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="start|center"
                     android:text="@string/language"
                     android:textColor="@color/app"
-                    android:textSize="20sp"
-                    app:autoSizeStepGranularity="0.5sp"
+                    android:textSize="@dimen/sp_20"
+                    app:autoSizeStepGranularity="@dimen/sp_0_5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.35714285714"
+                    app:layout_constraintHeight_percent="0.32714285714"
                     app:layout_constraintStart_toEndOf="@id/sp1"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginStart="15dp"
-                    android:background="@drawable/arrow"
-                    android:visibility="gone" />
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -119,7 +114,7 @@
                 android:id="@+id/btnRate"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:background="@drawable/bg_frame_setting"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -160,28 +155,21 @@
                 <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:autoSizeMaxTextSize="100sp"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="@dimen/sp_100"
+                    android:autoSizeMinTextSize="@dimen/sp_8"
                     android:autoSizeTextType="uniform"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="start|center"
                     android:text="@string/rate_us"
                     android:textColor="@color/app"
-                    android:textSize="20sp"
-                    app:autoSizeStepGranularity="0.5sp"
+                    android:textSize="@dimen/sp_20"
+                    app:autoSizeStepGranularity="@dimen/sp_0_5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.35714285714"
+                    app:layout_constraintHeight_percent="0.32714285714"
                     app:layout_constraintStart_toEndOf="@id/sp3"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-
-                    android:layout_marginStart="15dp"
-                    android:background="@drawable/arrow"
-                    android:visibility="gone" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -191,7 +179,7 @@
                 android:id="@+id/btnShareApp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:background="@drawable/bg_frame_setting"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -232,28 +220,21 @@
                 <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:autoSizeMaxTextSize="100sp"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="@dimen/sp_100"
+                    android:autoSizeMinTextSize="@dimen/sp_8"
                     android:autoSizeTextType="uniform"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="start|center"
                     android:text="@string/share_app"
                     android:textColor="@color/app"
-                    android:textSize="20sp"
-                    app:autoSizeStepGranularity="0.5sp"
+                    android:textSize="@dimen/sp_20"
+                    app:autoSizeStepGranularity="@dimen/sp_0_5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.35714285714"
+                    app:layout_constraintHeight_percent="0.32714285714"
                     app:layout_constraintStart_toEndOf="@id/sp5"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-
-                    android:layout_marginStart="15dp"
-                    android:background="@drawable/arrow"
-                    android:visibility="gone" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -262,7 +243,7 @@
                 android:id="@+id/btnPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dp_20"
                 android:background="@drawable/bg_frame_setting"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -303,27 +284,21 @@
                 <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:autoSizeMaxTextSize="100sp"
-                    android:autoSizeMinTextSize="8sp"
+                    android:autoSizeMaxTextSize="@dimen/sp_100"
+                    android:autoSizeMinTextSize="@dimen/sp_8"
                     android:autoSizeTextType="uniform"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="start|center"
                     android:text="@string/privacy_policy"
                     android:textColor="@color/app"
-                    android:textSize="20sp"
-                    app:autoSizeStepGranularity="0.5sp"
+                    android:textSize="@dimen/sp_20"
+                    app:autoSizeStepGranularity="@dimen/sp_0_5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.35714285714"
+                    app:layout_constraintHeight_percent="0.32714285714"
                     app:layout_constraintStart_toEndOf="@id/sp7"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginStart="15dp"
-                    android:background="@drawable/arrow"
-                    android:visibility="gone" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

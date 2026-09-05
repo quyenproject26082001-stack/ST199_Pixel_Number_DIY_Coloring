@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="7.5dp"
+    android:layout_margin="@dimen/dp_7_5"
     android:clipChildren="false"
     android:clipToPadding="false"
-    tools:layout_height="160dp"
-    tools:layout_width="160dp">
+    tools:layout_height="@dimen/dp_160"
+    tools:layout_width="@dimen/dp_160">
 
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="@dimen/dp_4"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/dp_1">
 
         <ImageView
             android:id="@+id/imvImage"
@@ -42,17 +42,17 @@
 
         <ImageView
             android:id="@+id/btnDelete"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
             android:visibility="gone"
             android:src="@drawable/ic_delete_item"
         />
 
         <ImageView
             android:id="@+id/btnSelect"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_margin="4dp"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_margin="@dimen/dp_4"
             android:layout_gravity="top|end"
             android:src="@drawable/ic_slt_item"
             />

@@ -2,9 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="36dp"
-    android:layout_height="36dp"
-    android:layout_marginEnd="12dp"
+    android:layout_width="@dimen/dp_36"
+    android:layout_height="@dimen/dp_36"
+    android:layout_marginEnd="@dimen/dp_12"
     android:clipChildren="false"
     android:clipToPadding="false">
 
@@ -13,19 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        app:cardCornerRadius="99dp"
+        app:cardCornerRadius="@dimen/dp_99"
         app:cardElevation="0dp"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:strokeColor="@color/black"
         app:cardBackgroundColor="@color/transparent"
-        app:strokeWidth="2dp"
+        app:strokeWidth="@dimen/dp_2"
         tools:cardBackgroundColor="@color/black">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardCornerRadius="99dp"
+            app:cardCornerRadius="@dimen/dp_99"
             app:cardBackgroundColor="@color/transparent"
             app:strokeColor="@color/transparent"
             android:id="@+id/ctnCard"

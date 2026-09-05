@@ -34,6 +34,11 @@ class MyCreationViewModel : ViewModel() {
     private val _downloadState = MutableSharedFlow<HandleState>()
     val downloadState: SharedFlow<HandleState> = _downloadState
 
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading = _isLoading.asStateFlow()
+
+
+
     fun setStatusFrom(status: Boolean){
         _isFromSuccess.value = status
     }

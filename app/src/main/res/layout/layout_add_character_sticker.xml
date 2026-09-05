@@ -11,10 +11,10 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/dp_16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/dp_24"
         android:orientation="horizontal"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -27,12 +27,12 @@
         android:id="@+id/tvTitleSticker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="@dimen/dp_7"
         android:fontFamily="@font/game_paused_demo_regular"
         android:gravity="center"
         android:text="@string/sticker"
         android:textColor="#C13F74"
-        android:textSize="20sp"
+        android:textSize="@dimen/sp_20"
         android:visibility="gone" />
 
     <!--            rcvSticker-->
@@ -40,11 +40,11 @@
         android:id="@+id/rcvSticker"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="12.5dp"
+        android:layout_marginTop="@dimen/dp_12_5"
         android:layout_marginBottom="0dp"
         android:clipToPadding="false"
-        android:paddingHorizontal="7.5dp"
-        android:paddingBottom="42dp"
+        android:paddingHorizontal="@dimen/dp_7_5"
+        android:paddingBottom="@dimen/dp_42"
 
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

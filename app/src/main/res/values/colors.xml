@@ -2,7 +2,7 @@
 <resources>
     <color name="white">#FFFFFFFF</color>
     <color name="app">#4A1E1D</color>
-    <color name="hanldeBox">#000000</color>
+    <color name="hanldeBox">#4A1E1D</color>
     <color name="app1">#FF8D1A</color>
     <color name="black">#000000</color>
     <color name="transparent">#00FFFFFF</color>

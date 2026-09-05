@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="2dp">
+        android:padding="@dimen/dp_2">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -27,17 +27,17 @@
                 <com.google.android.gms.ads.nativead.MediaView
                     android:id="@+id/ad_media"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="@dimen/dp_120"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/dp_5"
                     android:layout_weight="1"
-                    android:minWidth="120dp"
-                    android:minHeight="120dp" />
+                    android:minWidth="@dimen/dp_120"
+                    android:minHeight="@dimen/dp_120" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
+                    android:layout_marginStart="@dimen/dp_3"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -45,20 +45,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="4dp">
+                        android:padding="@dimen/dp_4">
 
                         <View
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="6.5dp"
-                            android:layout_marginTop="6.5dp"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
+                            android:layout_marginLeft="@dimen/dp_6_5"
+                            android:layout_marginTop="@dimen/dp_6_5"
                             android:background="@color/lightTransparent" />
 
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="6.5dp"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:layout_marginTop="@dimen/dp_6_5"
                             android:orientation="vertical">
 
                             <LinearLayout
@@ -77,7 +77,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="@dimen/sp_14" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -88,14 +88,14 @@
                             android:id="@+id/ad_body"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/dp_5"
                             android:layout_weight="1"
                             android:background="@color/lightTransparent"
                             android:ellipsize="end"
                             android:lines="2"
                             android:maxLines="2"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/sp_12" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -103,14 +103,14 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ad_call_to_action"
                 android:layout_width="fill_parent"
-                android:layout_height="38dp"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
+                android:layout_height="@dimen/dp_38"
+                android:layout_marginHorizontal="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginBottom="@dimen/dp_4"
                 android:background="@color/lightTransparent"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/sp_14" />
         </LinearLayout>
     </RelativeLayout>
 </com.facebook.shimmer.ShimmerFrameLayout>

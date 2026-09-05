@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="22dp">
+    android:paddingBottom="@dimen/dp_22">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/lnlShareButtons"
@@ -20,14 +20,14 @@
             android:id="@+id/btnWhatsapp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_8"
             android:layout_weight="1"
-            android:padding="2dp">
+            android:padding="@dimen/dp_2">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="@dimen/dp_44"
                 android:scaleType="fitXY"
                 app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="0dp"
@@ -52,8 +52,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="8dp"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/dp_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -64,12 +64,12 @@
                     style="@style/single_marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="6dp"
+                    android:layout_marginHorizontal="@dimen/dp_6"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="center"
                     android:text="@string/my_creation"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/sp_18" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -79,15 +79,15 @@
             android:id="@+id/btnTelegram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_8"
 
             android:layout_weight="1"
-            android:padding="2dp">
+            android:padding="@dimen/dp_2">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="@dimen/dp_44"
                 android:scaleType="fitXY"
                 app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="0dp"
@@ -113,8 +113,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="8dp"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:paddingVertical="@dimen/dp_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -125,12 +125,12 @@
                     style="@style/single_marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="6dp"
+                    android:layout_marginHorizontal="@dimen/dp_6"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="center"
                     android:text="@string/download"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/sp_18" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -146,10 +146,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_8"
         app:layout_constraintTop_toBottomOf="@id/lnlShareButtons"
         android:id="@+id/btnFBShare"
         app:layout_constraintEnd_toEndOf="@+id/GLCenter"
@@ -158,13 +158,13 @@
         >
         <ImageView
             android:id="@+id/icFb"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
             android:src="@drawable/ic_fb"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/dp_10"
             android:scaleType="fitXY"/>
 
         <TextView
@@ -173,7 +173,7 @@
             android:text="@string/facebook_share"
             android:fontFamily="@font/game_paused_demo_regular"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             android:gravity="center"
 style="@style/single_marquee"
             android:id="@+id/tvFB"
@@ -188,10 +188,10 @@ style="@style/single_marquee"
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginEnd="@dimen/dp_16"
         android:id="@+id/btnInstagram"
         app:layout_constraintTop_toBottomOf="@id/lnlShareButtons"
         app:layout_constraintEnd_toEndOf="parent"
@@ -200,13 +200,13 @@ style="@style/single_marquee"
         >
         <ImageView
             android:id="@+id/icIst"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
             android:src="@drawable/ic_inst"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/dp_10"
             android:scaleType="fitXY"/>
 
         <TextView
@@ -215,7 +215,7 @@ style="@style/single_marquee"
             android:text="@string/instagram_share"
             android:fontFamily="@font/game_paused_demo_regular"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             android:gravity="center"
             android:id="@+id/tvIns"
             style="@style/single_marquee"

@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D2F7FF"
     android:paddingTop="0dp"
     android:clipToPadding="false"
     tools:context=".ui.my_creation.fragment.MyAvatarFragment">
-whe
     <!--    rcvMyAvatar-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvMyAvatar"
@@ -17,8 +15,8 @@ whe
         android:clipChildren="true"
         android:clipToPadding="true"
         android:layout_marginTop="0dp"
-        android:paddingHorizontal="8.5dp"
-        android:paddingBottom="150dp"
+        android:paddingHorizontal="@dimen/dp_8_5"
+        android:paddingBottom="@dimen/dp_150"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_my_album" />
@@ -27,12 +25,12 @@ whe
     <LinearLayout
         android:id="@+id/layoutNoItem"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/dp_56"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="@dimen/dp_50"
         android:orientation="vertical"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="@dimen/dp_16"
         android:visibility="gone"
         tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,9 +39,9 @@ whe
         app:layout_constraintTop_toBottomOf="@+id/layoutActionBar">
 
         <ImageView
-            android:layout_width="164dp"
+            android:layout_width="@dimen/dp_164"
             android:visibility="gone"
-            android:layout_height="180dp"
+            android:layout_height="@dimen/dp_180"
             android:adjustViewBounds="true"
             android:src="@drawable/img_no_item" />
 
@@ -51,14 +49,14 @@ whe
             android:id="@+id/tvNoitem"
             style="@style/single_marquee"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="@dimen/dp_37"
             android:fontFamily="@font/game_paused_demo_regular"
             android:gravity="center"
-            android:paddingHorizontal="33dp"
+            android:paddingHorizontal="@dimen/dp_33"
             android:text="@string/no_creations_yet"
             tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
             android:textColor="@color/app"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             android:translationY="0dp" />
     </LinearLayout>
 

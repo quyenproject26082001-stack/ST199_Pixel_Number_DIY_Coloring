@@ -23,6 +23,7 @@ import android.widget.ImageView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -154,7 +155,6 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
         viewModel.layoutParams = binding.flFunction.layoutParams as ViewGroup.MarginLayoutParams
         viewModel.originalMarginBottom =
             viewModel.layoutParams.topMargin  // Capture initial topMargin
-        binding.actionBar.btnActionBarRightText.visible()
         initRcv()
         initDrawView()
         initData()
@@ -353,7 +353,7 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
             actionBar.apply {
                 btnActionBarLeft.tap { confirmExit() }
                 btnActionBarCenter.tap { confirmReset() }
-                btnActionBarRightText.tap(1000) {
+                btnActionBarRight.tap(1000) {
                     handleSave()
                 }
             }
@@ -502,9 +502,9 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
             params.horizontalBias = 0.5f
             params.marginEnd = 0
             btnActionBarCenter.layoutParams = params
-            btnActionBarRightText.visible()
-            tvRightText.visible()
-            tvRightText.setText(R.string.save)
+            btnActionBarRight.visible()
+            btnActionBarRight.setImageResource(R.drawable.ic_save)
+            btnActionBarCenter.visible()
         }
     }
 
@@ -779,19 +779,12 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
                     backgroundTab.rcvBackgroundImage.visible()
                     backgroundTab.rcvBackgroundColor.gone()
                     setupSelectedTabBackground(
-                        backgroundTab.btnBackgroundImage,
                         backgroundTab.tvBackgroundImage,
-                        backgroundTab.imvFocusImage,
-                        backgroundTab.subTabImage,
-                        isLeftTab = true
                     )
                     setupUnselectedTabBackground(
-                        backgroundTab.btnBackgroundColor,
                         backgroundTab.tvBackgroundColor,
-                        backgroundTab.imvFocusColor,
-                        backgroundTab.subTabColor,
-                        isLeftTab = false
                     )
+                    backgroundTab.imvBgImage.setImageResource(R.drawable.tab_slt_bg)
                     backgroundImageAdapter.submitList(viewModel.backgroundImageList)
                 }
 
@@ -799,19 +792,13 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
                     backgroundTab.rcvBackgroundImage.gone()
                     backgroundTab.rcvBackgroundColor.visible()
                     setupSelectedTabBackground(
-                        backgroundTab.btnBackgroundColor,
                         backgroundTab.tvBackgroundColor,
-                        backgroundTab.imvFocusColor,
-                        backgroundTab.subTabColor,
-                        isLeftTab = false
                     )
                     setupUnselectedTabBackground(
-                        backgroundTab.btnBackgroundImage,
                         backgroundTab.tvBackgroundImage,
-                        backgroundTab.imvFocusImage,
-                        backgroundTab.subTabImage,
-                        isLeftTab = true
+
                     )
+                    backgroundTab.imvBgImage.setImageResource(R.drawable.tab_uslt_bg)
                     backgroundColorAdapter.submitList(viewModel.backgroundColorList)
                 }
 
@@ -821,68 +808,29 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
     }
 
     private fun setupSelectedTabBackground(
-        tabView: View,
         textView: android.widget.TextView,
-        focusImage: android.widget.ImageView,
-        subTab: View,
-        isLeftTab: Boolean
     ) {
-        // Set weight = 1.6
-        val params = tabView.layoutParams as android.widget.LinearLayout.LayoutParams
-        params.weight = 1.0f
-        params.topMargin = 0
-        tabView.layoutParams = params
-
         // Set text size = 18sp
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, UnitHelper.spToPx(resources, 16f))
-
         if (textView is OuterStrokeTextView) {
             textView.setupSelectedTab()
         }
-
         // Apply gradient color from top to bottom - WHITE gradient for selected
-        textView.setTextColor(Color.parseColor("#000000"))
+        textView.setTextColor(ContextCompat.getColor(this,R.color.app))
 
-        // Show selected_tab drawable
-        focusImage.setImageResource(R.drawable.slt_tab)
-        focusImage.scaleX = 1f
-        focusImage.visible()
 
-        // Hide subTab
-        subTab.gone()
     }
 
     private fun setupUnselectedTabBackground(
-        tabView: View,
         textView: android.widget.TextView,
-        focusImage: android.widget.ImageView,
-        subTab: View,
-        isLeftTab: Boolean
     ) {
-        // Set weight = 1
-        val params = tabView.layoutParams as android.widget.LinearLayout.LayoutParams
-        params.weight = 1f
-        params.topMargin = UnitHelper.dpToPxInt(resources, 0f)
-        tabView.layoutParams = params
-
-        // Set text size = 14sp, color = colorPrimary
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, UnitHelper.spToPx(resources, 16f))
-
+        // Set text size = 18sp
         if (textView is OuterStrokeTextView) {
-            textView.setupUnselectedTab()
+            textView.setupSelectedTab()
         }
-        // Apply RED gradient for unselected
-        textView.setTextColor(Color.parseColor("#000000"))
+        // Apply gradient color from top to bottom - WHITE gradient for selected
+        textView.setTextColor(ContextCompat.getColor(this,R.color.app))
 
 
-        // Show un_selected_tab drawable
-        focusImage.setImageResource(R.drawable.uslt_tab)
-        // Flip horizontally if on left side
-        focusImage.scaleX = if (isLeftTab) -1f else 1f
-        focusImage.visible()
-
-        // Show subTab
-        subTab.gone()
     }
 
     private fun setupTypeNavigation(type: Int) {

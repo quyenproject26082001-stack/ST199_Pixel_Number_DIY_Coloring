@@ -51,110 +51,52 @@
         android:id="@+id/frmList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        android:background="#D2F7FF"
+        android:layout_marginTop="@dimen/dp_12"
+        android:background="@android:color/transparent"
         android:paddingTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cvType"
+        app:layout_constraintTop_toBottomOf="@id/categoryScroll"
         app:layout_constraintVertical_bias="0.0"
         app:layout_goneMarginTop="0dp"
         android:clipChildren="true"
-        tools:background="@drawable/bg_down"
         tools:layout_editor_absoluteX="0dp" />
 
-    <FrameLayout
-        android:id="@+id/cvType"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:elevation="1dp"
+    <HorizontalScrollView
+        android:id="@+id/categoryScroll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_14"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:cardBackgroundColor="@android:color/transparent"
-        android:layout_marginTop="6dp"
-    android:layout_marginHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/native_ads"
-        app:strokeColor="@color/transparent"
-        app:strokeWidth="0dp"
-        app:cardElevation="0dp">
-
-        <!-- background tab full-width, đổi src theo tab được chọn -->
-        <ImageView
-            android:id="@+id/imvTabBackground"
-            android:layout_width="match_parent"
-            tools:background="@drawable/bg_avatar_slt"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            />
+        app:layout_constraintTop_toBottomOf="@id/native_ads">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/categoryContainer"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_8">
 
-            <!--            btnMyPixel-->
-            <FrameLayout
+            <Button
                 android:id="@+id/btnPK"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                style="@style/PixelCategoryButton"
+                android:text="@string/pixel_in_progress" />
 
-            <com.skin.rbx.clothes.makek.core.custom.text.OuterStrokeTextView
-                android:id="@+id/tvPK"
-                style="@style/single_marquee"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/game_paused_demo_regular"
-                android:gravity="center"
-                android:layout_marginEnd="5dp"
-                android:text="@string/my_package"
-                android:textColor="@color/app"
-                android:textSize="16sp" />
-            </FrameLayout>
-
-            <!--            btnMyPixel-->
-            <FrameLayout
+            <Button
                 android:id="@+id/btnMyPixel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+                style="@style/PixelCategoryButton"
+                android:text="@string/pixel_finished" />
 
-                <com.skin.rbx.clothes.makek.core.custom.text.OuterStrokeTextView
-                    android:id="@+id/tvMyPride"
-                    style="@style/single_marquee"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/game_paused_demo_regular"
-                    android:gravity="center"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/my_rbx"
-                    android:textColor="@color/app"
-                    android:textSize="16sp" />
-
-            </FrameLayout>
-
-            <!--            btnMyDesign-->
-            <FrameLayout
+            <Button
                 android:id="@+id/btnMyDesign"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <com.skin.rbx.clothes.makek.core.custom.text.OuterStrokeTextView
-                    android:id="@+id/tvMyDesign"
-                    style="@style/single_marquee"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/game_paused_demo_regular"
-                    android:gravity="center"
-                    android:text="@string/my_design"
-                    android:layout_marginStart="5dp"
-                    android:textColor="@color/app"
-                    android:textSize="16sp" />
-
-            </FrameLayout>
-
+                style="@style/PixelCategoryButton"
+                android:text="@string/my_design" />
         </LinearLayout>
-
-    </FrameLayout>
+    </HorizontalScrollView>
 
     <!--    flBottomView (share/download - shown in select mode) -->
     <FrameLayout
@@ -162,7 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="0dp"
-        android:elevation="2dp"
+        android:elevation="@dimen/dp_2"
         android:visibility="gone"
         tools:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -180,10 +122,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:paddingHorizontal="0dp"
-        android:elevation="1dp"
+        android:elevation="@dimen/dp_1"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/flBottomView"
-        app:layout_goneMarginBottom="44dp">
+        app:layout_goneMarginBottom="@dimen/dp_44">
 
         <include layout="@layout/layout_bottom" />
 
@@ -196,7 +138,7 @@
         android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="10dp"
+            android:elevation="@dimen/dp_10"
             app:layout_constraintBottom_toBottomOf="parent">
 
         </FrameLayout>

@@ -95,18 +95,21 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
 
                 }
                 btnActionBarRight.tap(2000) {
-                    viewModel.shareFiles(this@SuccessActivity)
+                    showInterAll {  startIntentWithClearTop(HomeActivity::class.java)}
+
                 }
 
                 btnCreation.tap(2590) {
                     showInterAll {
-                        startIntentRightToLeft(MyCreationActivity::class.java, IntentKey.TAB_KEY, ValueKey.AVATAR_TYPE)
+                        startIntentRightToLeft(MyCreationActivity::class.java, IntentKey.TAB_KEY, ValueKey.MY_DESIGN_TYPE)
                         finish()
                     }
                 }
             }
-            btnDownload.tap(1000){
-                checkStoragePermission()
+            btnShareSuccess.tap(1000){
+                //checkStoragePermission()
+                viewModel.shareFiles(this@SuccessActivity)
+
             }
 
             // My Album button
@@ -140,15 +143,14 @@ class SuccessActivity : BaseActivity<ActivitySuccessBinding>() {
             btnActionBarLeft.visible()
             btnActionBarLeft.setImageResource(R.drawable.ic_back)
             btnActionBarNextRight.visible()
-            btnActionBarNextRight.setImageResource(R.drawable.ic_home)
+            btnActionBarRight.setImageResource(R.drawable.ic_home)
             tvCenter.visible()
             tvCenter.setText(R.string.successfully)
             tvCenter.updateLayoutParams {
 
             }
             imgCenter.gone()
-            btnActionBarRight.setImageResource(R.drawable.ic_share)
-            btnActionBarRight.visible()
+
 
 
         }

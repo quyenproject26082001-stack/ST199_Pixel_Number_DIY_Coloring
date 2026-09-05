@@ -21,16 +21,16 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardContainer"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/dp_8"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
+            app:cardCornerRadius="@dimen/dp_4"
+            app:cardElevation="@dimen/dp_4"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="false"
             app:strokeColor="@android:color/black"
-            app:strokeWidth="1dp">
+            app:strokeWidth="@dimen/dp_1">
 
             <!--            imvImage-->
             <ImageView

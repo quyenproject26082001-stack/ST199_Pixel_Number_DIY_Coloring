@@ -18,12 +18,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/dp_16"
             android:clipChildren="false"
             android:clipToOutline="false"
             android:clipToPadding="false"
             app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="8dp"
+            app:cardCornerRadius="@dimen/dp_8"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,56 +33,65 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/containerDialog"
-                android:layout_width="328dp"
-                android:layout_height="210dp"
-                android:background="@drawable/bg_dialog_delete_exit"
+                android:layout_width="@dimen/dp_328"
+                android:layout_height="@dimen/dp_204"
+                android:background="@drawable/bg_dl"
                 android:clipChildren="false"
                 android:clipToOutline="false"
                 android:clipToPadding="false">
 
+                <FrameLayout
+                    android:id="@+id/ctnTitle"
+                    android:layout_width="@dimen/dp_328"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="@dimen/dp_64">
                 <TextView
                     android:id="@+id/tvTitle"
                     style="@style/single_marquee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/dp_16"
                     android:clipChildren="false"
                     android:clipToOutline="false"
                     android:clipToPadding="false"
-                    android:elevation="1dp"
+                    android:elevation="@dimen/dp_1"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="center"
-                    android:paddingVertical="5dp"
+                    android:paddingVertical="@dimen/dp_5"
                     android:text="@string/delete"
                     android:textColor="@color/app"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/sp_26"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="dele" />
+                </FrameLayout>
                 <!--            tvDescription-->
                 <com.skin.rbx.clothes.makek.core.custom.text.DoubleStrokeTextView
                     android:id="@+id/tvDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/game_paused_demo_regular"
                     android:gravity="center"
-                    android:paddingHorizontal="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:paddingHorizontal="@dimen/dp_24"
                     android:text="@string/do_you_want_to_exit"
                     android:textColor="@color/app"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/sp_20"
+                    tools:text="asdasjd"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/llButtons"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="@dimen/dp_20"
                     android:gravity="center"
                     app:layout_constraintVertical_bias="1"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="@dimen/dp_25"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +102,8 @@
                     <ImageView
                         android:id="@+id/icYesbg"
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/dp_36"
                         android:src="@drawable/ic_yes_bg"
-                        android:translationY="1dp"
                         android:scaleType="fitXY"
                         app:layout_constraintTop_toTopOf="@id/btnYes"
                         app:layout_constraintBottom_toBottomOf="@id/btnYes"
@@ -105,27 +113,26 @@
                     <!--                    btnNo-->
                     <TextView
                         android:id="@+id/btnYes"
-                        android:layout_width="128dp"
+                        android:layout_width="@dimen/dp_130"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btnNo"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:fontFamily="@font/game_paused_demo_regular"
                         android:gravity="center"
-                        android:paddingVertical="8dp"
                         android:text="@string/yes"
-                        app:layout_constraintEnd_toStartOf="@id/btnNo"
+                        android:layout_marginStart="@dimen/dp_8"
                         android:textColor="@color/app"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
 
                     <!--                    btnYes-->
                     <ImageView
                         android:layout_width="0dp"
-                        android:layout_height="40dp"
+                        android:layout_height="@dimen/dp_36"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_no_bg"
-                        android:translationY="1dp"
                         app:layout_constraintTop_toTopOf="@id/btnNo"
                         app:layout_constraintBottom_toBottomOf="@id/btnNo"
                         app:layout_constraintStart_toStartOf="@id/btnNo"
@@ -133,28 +140,26 @@
 
                     <TextView
                         android:id="@+id/btnNo"
-                        android:layout_width="128dp"
+                        android:layout_width="@dimen/dp_130"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:layout_weight="1"
-                        app:layout_constraintStart_toEndOf="@id/btnYes"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btnYes"
                         android:fontFamily="@font/game_paused_demo_regular"
                         android:gravity="center"
-                        android:paddingVertical="8dp"
                         android:text="@string/no"
                         android:textColor="@color/app"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/sp_16" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
                 android:id="@+id/spin"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:layout_width="@dimen/dp_42"
+                android:layout_height="@dimen/dp_42"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_loading"
                 android:visibility="gone" />

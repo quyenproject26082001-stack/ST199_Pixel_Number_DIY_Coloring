@@ -39,6 +39,7 @@ import com.skin.rbx.clothes.makek.ui.my_creation.view_model.MyAvatarViewModel
 import com.skin.rbx.clothes.makek.ui.my_creation.view_model.MyDesignViewModel
 import com.skin.rbx.clothes.makek.ui.view.ViewActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.getValue
@@ -56,7 +57,7 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
     }
 
     override fun initView() {
-        binding.tvNoitem.select()
+        binding.emptyText.select()
         initRcv()
         // ✅ FIX: Removed redundant load - onStart() will handle it
         android.util.Log.d("MyDesignFragment", "initView() - NOT loading data (onStart will do it)")
@@ -66,9 +67,13 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.myDesignList.collect { list ->
+                    combine(viewModel.myDesignList, viewModel.isLoading) { list, isLoading ->
+                        list to isLoading
+                    }.collect { (list, isLoading) ->
                         myDesignAdapter.submitList(list)
-                        binding.layoutNoItem.isVisible = list.isEmpty()
+                        binding.loading.isVisible = isLoading
+                        binding.layoutNoItem.isVisible = !isLoading && list.isEmpty()
+                        binding.rcvMyDesign.isVisible = !isLoading && list.isNotEmpty()
                         if (myCreationViewModel.typeStatus.value == ValueKey.MY_DESIGN_TYPE) {
                             myAlbumActivity.refreshBottomButtonsVisibility()
                         }
@@ -119,7 +124,7 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
                 myAlbumActivity.updateSelectAllIcon(allSelected)
             }
             myDesignAdapter.onDeleteClick = { pathInternal -> handleDelete(arrayListOf(pathInternal)) }
-            myDesignAdapter.onLongClick = { position -> handleLongClick(position) }
+            myDesignAdapter.onLongClick = { position -> enterSelectMode(position) }
         }
     }
 
@@ -166,8 +171,13 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
 
     private fun handleItemClick(pathInternal: String) {
         if (myDesignAdapter.items.any { it.isShowSelection }) {
-            // In selection mode - reset before navigating
-            resetSelectionMode()
+            val position = viewModel.myDesignList.value.indexOfFirst { it.path == pathInternal }
+            if (position >= 0) {
+                viewModel.toggleSelect(position)
+                val allSelected = viewModel.myDesignList.value.all { it.isSelected }
+                myAlbumActivity.updateSelectAllIcon(allSelected)
+            }
+            return
         }
         val intent = Intent(myAlbumActivity, ViewActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -179,7 +189,7 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
         myAlbumActivity.showInterAll { myAlbumActivity.launchViewActivity(intent, options) }
     }
 
-    private fun handleLongClick(position: Int) {
+    private fun enterSelectMode(position: Int) {
         if (position >= viewModel.myDesignList.value.size) return
         viewModel.showLongClick(position)
         myAlbumActivity.enterSelectionMode()

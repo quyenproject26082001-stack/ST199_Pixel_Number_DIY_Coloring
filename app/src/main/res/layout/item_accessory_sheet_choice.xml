@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:layout_margin="@dimen/dp_4">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardItem"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="1dp"
+        android:layout_margin="@dimen/dp_1"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="1dp"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="@dimen/dp_1"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
             android:id="@+id/imvImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="4dp"
+            android:padding="@dimen/dp_4"
             android:visibility="gone"
             tools:src="@drawable/ic_none_accessory" />
 
@@ -36,8 +36,8 @@
             android:id="@+id/imvNoneAccessory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_width="76dp"
-            tools:layout_height="76dp"
+            tools:layout_width="@dimen/dp_76"
+            tools:layout_height="@dimen/dp_76"
             android:scaleY="0.57"
             android:scaleX="0.57"
             android:scaleType="fitCenter"

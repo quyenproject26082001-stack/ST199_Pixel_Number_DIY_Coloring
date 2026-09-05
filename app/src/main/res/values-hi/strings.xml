@@ -1,5 +1,32 @@
 <resources>
 
+    <string name="pixel_coloring">पिक्सेल रंग भरना</string>
+    <string name="pixel_gallery">पिक्सेल गैलरी</string>
+    <string name="pixel_upload">चित्र अपलोड करें</string>
+    <string name="pixel_all">सभी</string>
+    <string name="pixel_animals">जानवर</string>
+    <string name="pixel_food">खाना</string>
+    <string name="pixel_people">लोग</string>
+    <string name="pixel_monsters">राक्षस</string>
+    <string name="pixel_plants">पौधे</string>
+    <string name="pixel_vehicles">वाहन</string>
+    <string name="pixel_christmas">क्रिसमस</string>
+    <string name="pixel_halloween">हैलोवीन</string>
+    <string name="pixel_random">रैंडम</string>
+    <string name="pixel_wand">जादुई छड़ी</string>
+    <string name="pixel_bomb">बम</string>
+    <string name="pixel_hint">संकेत</string>
+    <string name="pixel_reset">रीसेट करें</string>
+    <string name="pixel_complete">पूरा हुआ!</string>
+    <string name="pixel_next">अगला स्तर</string>
+    <string name="pixel_back_gallery">गैलरी पर वापस जाएं</string>
+    <string name="pixel_zero_percent">0%</string>
+    <string name="pixel_percent">%1$d%%</string>
+    <string name="pixel_image_error">यह चित्र पढ़ा नहीं जा सका</string>
+    <string name="pixel_in_progress">जारी है</string>
+    <string name="pixel_finished">पूरा हुआ</string>
+    <string name="permission_message_format">%1$s %2$s %3$s</string>
+
 
     <string name="go_to_setting_message">ऐप को इस अनुमति की आवश्यकता है</string>
     <string name="this_action_can_contain_ads">इस कार्रवाई में विज्ञापन शामिल हो सकते हैं</string>
@@ -7,9 +34,9 @@
     <string name="next">आगे</string>
     <string name="language"> भाषा </string>
 
-    <string name="title_1">अपने RBX कपड़ों को कस्टमाइज़ करें!</string>
-    <string name="title_2">अपने पसंदीदा RBX एक्सेसरीज़ जोड़ें!</string>
-    <string name="title_3">अभी शानदार RBX स्किन्स बनाना शुरू करें!</string>
+    <string name="title_1">अपनी पसंद का अवतार बनाएं</string>
+    <string name="title_2">राजकुमारी अवतार मेकर</string>
+    <string name="title_3">अनोखी श्रेणियों की विविधता</string>
 
     <string name="permission">अनुमति</string>
     <string name="storage">\u00A0\u00A0स्टोरेज\u00A0\u00A0</string>
@@ -151,7 +178,9 @@
     <string name="shirt1">शर्ट्स</string>
     <string name="pant1">पैंट्स\n</string>
     <string name="how_to_use_clothes_for_rbx">RBX के लिए कपड़ों का उपयोग कैसे करें</string>
-    <string name="rate_us1">Rate Us</string>
-    <string name="color_pixel">Color Pixel</string>
-    <string name="my_work">My Work</string>
+    <string name="rate_us1">हमें रेटिंग दें</string>
+    <string name="color_pixel">पिक्सेल रंगें</string>
+    <string name="my_work">मेरा काम</string>
+    <string name="loading1">लोड हो रहा है</string>
+    <string name="pixel_image">पिक्सेल चित्र</string>
 </resources>

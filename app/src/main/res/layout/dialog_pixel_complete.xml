@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:background="@drawable/bg_pixel_dialog" android:gravity="center"
-    android:orientation="vertical" android:padding="24dp">
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="@font/game_paused_demo_regular" android:gravity="center" android:text="@string/pixel_complete" android:textColor="@color/white" android:textSize="24sp" />
-    <com.skin.rbx.clothes.makek.ui.pixel_coloring.PixelPreviewView android:id="@+id/resultPreview" android:layout_width="220dp" android:layout_height="220dp" android:layout_marginTop="16dp" />
-    <Button android:id="@+id/btnNext" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="20dp" android:background="@drawable/bg_pixel_primary_button" android:text="@string/pixel_next" android:textAllCaps="false" android:textColor="@color/white" />
-    <Button android:id="@+id/btnClose" android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="8dp" android:background="@drawable/bg_pixel_secondary_button" android:text="@string/pixel_back_gallery" android:textAllCaps="false" android:textColor="@color/white" />
+    android:orientation="vertical" android:padding="@dimen/dp_24">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="@font/game_paused_demo_regular" android:gravity="center" android:text="@string/pixel_complete" android:textColor="@color/white" android:textSize="@dimen/sp_24" />
+    <com.skin.rbx.clothes.makek.ui.pixel_coloring.PixelPreviewView android:id="@+id/resultPreview" android:layout_width="@dimen/dp_220" android:layout_height="@dimen/dp_220" android:layout_marginTop="@dimen/dp_16" />
+    <Button android:id="@+id/btnNext" android:layout_width="match_parent" android:layout_height="@dimen/dp_48" android:layout_marginTop="@dimen/dp_20" android:background="@drawable/bg_pixel_primary_button" android:text="@string/pixel_next" android:textAllCaps="false" android:textColor="@color/white" />
+    <Button android:id="@+id/btnClose" android:layout_width="match_parent" android:layout_height="@dimen/dp_48" android:layout_marginTop="@dimen/dp_8" android:background="@drawable/bg_pixel_secondary_button" android:text="@string/pixel_back_gallery" android:textAllCaps="false" android:textColor="@color/white" />
 </LinearLayout>

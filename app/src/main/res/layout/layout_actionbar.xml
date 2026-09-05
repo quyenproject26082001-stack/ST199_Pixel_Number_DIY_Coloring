@@ -2,18 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="@dimen/actionbar"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/transparent"
-    tools:layout_height="120dp">
+    tools:layout_height="@dimen/dp_120">
 
     <!--    btnActionBarLeft-->
     <ImageView
         android:id="@+id/btnActionBarLeft"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="invisible"
         android:src="@drawable/ic_back"
@@ -23,10 +23,10 @@
     <!--            btnActionBarRightText-->
     <FrameLayout
         android:id="@+id/btnActionBarLeftText"
-        android:layout_width="80dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="@drawable/ic_next"
 
         android:visibility="gone"
@@ -40,13 +40,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="@dimen/dp_5"
             android:fontFamily="@font/game_paused_demo_regular"
             android:gravity="center"
             android:text="@string/back"
             android:visibility="visible"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp_16" />
     </FrameLayout>
 
 
@@ -54,10 +54,10 @@
     <!--    btnActionBarLeft-->
     <ImageView
         android:id="@+id/btnReset"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,13 +66,13 @@
     <!--    cvLogo-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cvLogo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="invisible"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="@dimen/dp_8"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -90,13 +90,13 @@
         android:id="@+id/tvStart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
         android:fontFamily="@font/game_paused_demo_regular"
         android:gravity="start"
         android:text="@string/language"
         android:textColor="@color/app"
-        android:textSize="26sp"
+        android:textSize="@dimen/sp_26"
         tools:visibility="visible"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/btnActionBarLeft"
@@ -110,11 +110,11 @@
         style="@style/single_marquee"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="100dp"
+        android:layout_marginHorizontal="@dimen/dp_100"
         android:fontFamily="@font/game_paused_demo_regular"
         android:gravity="center"
         android:text="@string/language"
-        android:textSize="26sp"
+        android:textSize="@dimen/sp_26"
         android:visibility="gone"
         tools:visibility="visible"
         android:textColor="@color/app"
@@ -126,11 +126,11 @@
     <!--    tvCenter-->
     <ImageView
         android:id="@+id/imgCenter"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginHorizontal="@dimen/dp_16"
         android:gravity="center"
-        android:textSize="32sp"
+        android:textSize="@dimen/sp_32"
         android:scaleType="fitXY"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/btnActionBarLeft"
@@ -141,8 +141,8 @@
     <!--    btnActionBarCenter-->
     <ImageView
         android:id="@+id/btnActionBarCenter"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
         android:background="@drawable/ic_reset"
         android:visibility="invisible"
         tools:visibility="visible"
@@ -154,8 +154,8 @@
     <!--    btnActionBarCenter-->
     <ImageView
         android:id="@+id/btnActionBarCenterLeft"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="invisible"
         tools:visibility="visible"
@@ -169,8 +169,8 @@
     <!--    btnActionBarCenterRight-->
     <ImageView
         android:id="@+id/btnActionBarCenterRight"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="gone"
         tools:visibility="gone"
@@ -184,10 +184,10 @@
     <!--    btnActionBarNextRight-->
     <ImageView
         android:id="@+id/btnActionBarNextRight1"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:layout_marginBottom="@dimen/dp_10"
         tools:visibility="visible"
         tools:src="@drawable/ic_share"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -198,10 +198,10 @@
     <!--    btnActionBarNextRight-->
     <ImageView
         android:id="@+id/btnActionBarNextRight"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:layout_marginBottom="@dimen/dp_10"
         tools:visibility="visible"
         tools:src="@drawable/ic_creation"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -212,10 +212,10 @@
     <!--    btnActionBarRight-->
     <ImageView
         android:id="@+id/btnActionBarRight"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="invisible"
         android:src="@drawable/ic_home"
@@ -226,9 +226,9 @@
     <!--    btnActionBarRight-->
     <ImageView
         android:id="@+id/btnActionBarRightLang"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24"
+        android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginBottom="0dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:visibility="invisible"
@@ -241,10 +241,10 @@
     <!--    btnShare-->
     <ImageView
         android:id="@+id/btnShare"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_share_ss"
         android:visibility="gone"
@@ -255,8 +255,8 @@
     <FrameLayout
         android:id="@+id/btnActionBarRightText"
         android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_16"
         app:layout_constraintDimensionRatio="62:36"
         android:background="@drawable/ic_bg_next"
         android:visibility="gone"
@@ -271,13 +271,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="@dimen/dp_5"
             android:fontFamily="@font/game_paused_demo_regular"
             android:gravity="center"
             android:text="@string/next"
             android:visibility="visible"
             android:textColor="@color/app"
-            android:textSize="16sp" />
+            android:textSize="@dimen/sp_16" />
     </FrameLayout>
 
     <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"

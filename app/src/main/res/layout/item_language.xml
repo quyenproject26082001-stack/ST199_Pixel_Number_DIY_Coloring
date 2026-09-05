@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="16dp">
+    android:layout_marginBottom="@dimen/dp_16">
 
     <FrameLayout
         android:id="@+id/flMain"
@@ -59,11 +59,11 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintHeight_percent="0.35714285714"
-                app:autoSizeMinTextSize="8sp"
+                app:autoSizeMinTextSize="@dimen/sp_8"
                 android:maxLines="1"
-                app:autoSizeMaxTextSize="40sp"
+                app:autoSizeMaxTextSize="@dimen/sp_40"
                 app:autoSizeTextType="uniform"
-                app:autoSizeStepGranularity="0.5sp"
+                app:autoSizeStepGranularity="@dimen/sp_0_5"
                 android:fontFamily="@font/game_paused_demo_regular"
                 tools:text="heheheheeh"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,9 +78,9 @@
             <!--            btnRadio-->
             <ImageView
                 android:id="@+id/btnRadio"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:visibility="invisible"
                 android:src="@drawable/ic_tick_lang"
                 app:layout_constraintBottom_toBottomOf="parent"

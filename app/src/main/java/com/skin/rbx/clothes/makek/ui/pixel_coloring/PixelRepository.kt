@@ -10,11 +10,18 @@ class PixelRepository(context: Context) {
     private val gson = Gson()
     private val cache = LruCache<String, PixelLevel>(24)
 
-    fun loadCatalog(): List<PixelLevelEntry> =
-        appContext.assets.open("$ASSET_ROOT/data/levels.json").bufferedReader().use { reader ->
+    fun loadCatalog(): List<PixelLevelEntry> {
+        synchronized(catalogLock) { catalogCache?.let { return it } }
+        val catalog = appContext.assets.open("$ASSET_ROOT/data/levels.json").bufferedReader().use { reader ->
             val type = object : TypeToken<List<PixelLevelEntry>>() {}.type
-            gson.fromJson<List<PixelLevelEntry>>(reader, type).orEmpty()
+            gson.fromJson<List<PixelLevelEntry>>(reader, type).orEmpty().toList()
         }
+        synchronized(catalogLock) {
+            catalogCache?.let { return it }
+            catalogCache = catalog
+        }
+        return catalog
+    }
 
     fun loadLevel(id: String): PixelLevel {
         synchronized(cache) { cache.get(id)?.let { return it } }
@@ -30,5 +37,8 @@ class PixelRepository(context: Context) {
 
     companion object {
         const val ASSET_ROOT = "pixel_coloring"
+        private val catalogLock = Any()
+        @Volatile
+        private var catalogCache: List<PixelLevelEntry>? = null
     }
 }

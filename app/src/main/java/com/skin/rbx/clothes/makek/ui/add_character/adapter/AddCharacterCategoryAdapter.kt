@@ -59,7 +59,7 @@ class AddCharacterCategoryAdapter : RecyclerView.Adapter<AddCharacterCategoryAda
                 tvCategory.isSelected = true
                 tvCategory.setBackgroundResource(
                     if (item.isSelected) R.drawable.selected_tab
-                    else R.drawable.un_selected_tab
+                    else R.drawable.tab_slt
                 )
 
                 root.tap {

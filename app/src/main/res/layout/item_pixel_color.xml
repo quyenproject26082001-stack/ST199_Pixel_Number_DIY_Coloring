@@ -2,17 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="56dp"
-    android:layout_height="56dp"
-    android:layout_marginStart="4dp"
-    android:layout_marginEnd="4dp">
+    android:layout_width="@dimen/dp_56"
+    android:layout_height="@dimen/dp_56"
+    android:layout_marginStart="@dimen/dp_4"
+    android:layout_marginEnd="@dimen/dp_4">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/colorCard"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
         android:layout_gravity="center"
-        app:cardCornerRadius="28dp"
+        app:cardCornerRadius="@dimen/dp_28"
         app:cardElevation="0dp"
         app:strokeWidth="0dp">
 
@@ -29,15 +29,16 @@
             android:fontFamily="@font/jersey15_regular"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="36sp"
+            android:textSize="@dimen/sp_36"
             android:visibility="visible"
             tools:text="12" />
 
         <FrameLayout
             android:id="@+id/ic_done_2"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
             android:layout_gravity="center"
+
             android:background="@drawable/ic_done_2"
             android:visibility="gone" />
 

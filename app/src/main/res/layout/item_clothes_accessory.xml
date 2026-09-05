@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="7dp"
+    android:layout_margin="@dimen/dp_7"
     android:clipToOutline="false"
     android:clipChildren="false"
     android:clipToPadding="true">
@@ -25,12 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="3dp"
+            app:cardCornerRadius="@dimen/dp_4"
+            app:cardElevation="@dimen/dp_3"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="false"
             app:strokeColor="@android:color/black"
-            app:strokeWidth="1dp">
+            app:strokeWidth="@dimen/dp_1">
 
             <!--            imvImage-->
             <ImageView

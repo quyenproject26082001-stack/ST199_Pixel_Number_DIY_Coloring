@@ -41,7 +41,7 @@ class MyDesignAdapter : BaseAdapter<MyAlbumModel, ItemMyDesignBinding>(ItemMyDes
                 .override(256, 256)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .signature(ObjectKey(file.lastModified()))
-                .into(imvImage)
+                .into(imvPixel)
 
             if (item.isShowSelection) {
                 btnSelect.visible()
@@ -81,7 +81,7 @@ class MyDesignAdapter : BaseAdapter<MyAlbumModel, ItemMyDesignBinding>(ItemMyDes
     override fun onViewRecycled(
         holder: BaseAdapter<MyAlbumModel, ItemMyDesignBinding>.BaseViewHolder
     ) {
-        Glide.with(holder.binding.root).clear(holder.binding.imvImage)
+        Glide.with(holder.binding.root).clear(holder.binding.imvPixel)
         super.onViewRecycled(holder)
     }
 

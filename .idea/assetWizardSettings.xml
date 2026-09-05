@@ -79,6 +79,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="$USER_HOME$/Desktop/Option 1.png" />
                                                 <entry key="scalingPercent" value="67" />
                                               </map>
                                             </option>

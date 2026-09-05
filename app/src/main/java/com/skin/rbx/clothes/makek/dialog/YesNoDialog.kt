@@ -42,7 +42,7 @@ class YesNoDialog(
     }
 
     private fun initBackground() {
-        binding.containerDialog.setBackgroundResource(R.drawable.bg_dialog_delete_exit)
+        binding.containerDialog.setBackgroundResource(R.drawable.bg_dl)
 //        binding.btnNo.setBackgroundResource(R.drawable.ic_no_dialog)
 //        binding.btnYes.setBackgroundResource(R.drawable.ic_yes_dialog)
         val paddingVertical = UnitHelper.dpToPxInt(context.resources, 9f)

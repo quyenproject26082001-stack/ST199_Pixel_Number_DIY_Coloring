@@ -16,9 +16,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/dp_4"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="1000dp"
+            app:cardCornerRadius="@dimen/dp_1000"
             app:cardElevation="0dp">
 
             <!--            imvImage-->
@@ -35,7 +35,7 @@
             android:id="@+id/vFocus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="3.5dp"
+            android:layout_margin="@dimen/dp_3_5"
             android:background="@drawable/bg_1000_stroke_blue"/>
     </FrameLayout>
 

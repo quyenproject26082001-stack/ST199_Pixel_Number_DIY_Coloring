@@ -1,5 +1,32 @@
 <resources>
 
+    <string name="pixel_coloring">Colorear píxeles</string>
+    <string name="pixel_gallery">Galería de píxeles</string>
+    <string name="pixel_upload">Subir imagen</string>
+    <string name="pixel_all">Todo</string>
+    <string name="pixel_animals">Animales</string>
+    <string name="pixel_food">Comida</string>
+    <string name="pixel_people">Personas</string>
+    <string name="pixel_monsters">Monstruos</string>
+    <string name="pixel_plants">Plantas</string>
+    <string name="pixel_vehicles">Vehículos</string>
+    <string name="pixel_christmas">Navidad</string>
+    <string name="pixel_halloween">Halloween</string>
+    <string name="pixel_random">Aleatorio</string>
+    <string name="pixel_wand">Varita</string>
+    <string name="pixel_bomb">Bomba</string>
+    <string name="pixel_hint">Pista</string>
+    <string name="pixel_reset">Restablecer</string>
+    <string name="pixel_complete">¡Completado!</string>
+    <string name="pixel_next">Siguiente nivel</string>
+    <string name="pixel_back_gallery">Volver a la galería</string>
+    <string name="pixel_zero_percent">0%</string>
+    <string name="pixel_percent">%1$d%%</string>
+    <string name="pixel_image_error">No se puede leer esta imagen</string>
+    <string name="pixel_in_progress">En progreso</string>
+    <string name="pixel_finished">Terminado</string>
+    <string name="permission_message_format">%1$s %2$s %3$s</string>
+
 
     <string name="go_to_setting_message">La aplicación necesita este permiso</string>
     <string name="this_action_can_contain_ads">Esta acción puede contener anuncios</string>
@@ -7,9 +34,9 @@
     <string name="next">Siguiente</string>
     <string name="language"> Idioma </string>
 
-    <string name="title_1">¡Personaliza tu ropa de RBX!</string>
-    <string name="title_2">¡Añade tus accesorios RBX favoritos!</string>
-    <string name="title_3">¡Empieza a crear increíbles skins de RBX ahora!</string>
+    <string name="title_1">Crea tu propio avatar como más te guste</string>
+    <string name="title_2">Creador de avatares de princesas</string>
+    <string name="title_3">Variedad de categorías únicas</string>
 
     <string name="permission">Permiso</string>
     <string name="storage">\u00A0\u00A0Almacenamiento\u00A0\u00A0</string>
@@ -151,7 +178,9 @@
     <string name="shirt1">Camisas</string>
     <string name="pant1">Pantalones\n</string>
     <string name="how_to_use_clothes_for_rbx">Cómo usar ropa para RBX</string>
-    <string name="rate_us1">Rate Us</string>
-    <string name="color_pixel">Color Pixel</string>
-    <string name="my_work">My Work</string>
+    <string name="rate_us1">Califícanos</string>
+    <string name="color_pixel">Colorear píxeles</string>
+    <string name="my_work">Mi trabajo</string>
+    <string name="loading1">Cargando</string>
+    <string name="pixel_image">Imagen de píxeles</string>
 </resources>

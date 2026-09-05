@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="328:384"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:background="@drawable/bg_dl_retry"
+            >
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctnTitle"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.16666666666"
+                >
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/single_marquee"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHeight_percent="0.483125"
+                    android:layout_gravity="center_horizontal"
+                    android:clipChildren="false"
+                    android:clipToOutline="false"
+                    android:clipToPadding="false"
+                    android:autoSizeStepGranularity="@dimen/sp_0_5"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMaxTextSize="@dimen/sp_30"
+                    android:autoSizeMinTextSize="@dimen/sp_12"
+                    android:elevation="@dimen/dp_1"
+                    android:fontFamily="@font/game_paused_demo_regular"
+                    android:gravity="center"
+                    android:paddingVertical="@dimen/dp_5"
+                    android:text="@string/pixel_image"
+                    android:textColor="@color/app"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="0.60975609756"
+                app:layout_constraintDimensionRatio="1:1"
+                android:background="@drawable/bg_pixel_1"
+                android:foreground="@drawable/bg_pixel_1"
+                app:layout_constraintVertical_bias="0.43478260869"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                >
+            <com.skin.rbx.clothes.makek.ui.pixel_coloring.PixelPreviewView
+                android:id="@+id/imvPixel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                tools:background="@color/blue_app"
+                />
+            </com.skin.rbx.clothes.makek.core.custom.layout.PixelBorderClipLayout>
+
+
+
+            <FrameLayout
+                android:id="@+id/btnClose"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:background="@drawable/ic_close2"
+                app:layout_constraintWidth_percent="0.0487804878"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/ctnTitle"
+                app:layout_constraintHorizontal_bias=".9"/>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.84146341463"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="0dp"
+                android:layout_marginTop="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center"
+                app:layout_constraintVertical_bias="0.87356321839"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+                <!--                btnRetry-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnRetry"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnShare"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="130:36"
+                    android:background="@drawable/ic_yes_bg"
+
+                    >
+                    <TextView
+                        android:id="@+id/btnDoneText"
+                        android:autoSizeMinTextSize="@dimen/sp_8"
+                        android:autoSizeMaxTextSize="@dimen/sp_30"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeStepGranularity="@dimen/sp_0_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHeight_percent="0.41666666666"
+                        android:fontFamily="@font/game_paused_demo_regular"
+                        android:gravity="center"
+                        android:text="@string/retry"
+                        style="@style/single_marquee"
+                        android:textColor="@color/app"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--                btnRetry-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnShare"
+                    android:background="@drawable/ic_no_bg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnRetry"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="130:36"
+                    android:layout_marginEnd="@dimen/dp_10"
+                    >
+
+                    <TextView
+                        android:id="@+id/tvShare"
+                        style="@style/single_marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_centerInParent="true"
+                        android:autoSizeMaxTextSize="@dimen/sp_30"
+                        android:autoSizeMinTextSize="@dimen/sp_8"
+                        android:autoSizeStepGranularity="@dimen/sp_0_5"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/game_paused_demo_regular"
+                        android:gravity="center"
+                        android:text="@string/share"
+                        android:textColor="@color/app"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.41666666666"
+
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnStringColor"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:visibility="gone"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/btnRetry"
+                    app:layout_constraintBottom_toBottomOf="@id/btnRetry"
+                    app:layout_constraintEnd_toStartOf="@id/btnRetry"
+                    android:background="@drawable/bg_string_color">
+
+                    <TextView
+                        android:id="@+id/tvColorString"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_centerInParent="true"
+                        android:autoSizeMinTextSize="@dimen/sp_8"
+                        android:autoSizeMaxTextSize="@dimen/sp_30"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeStepGranularity="@dimen/sp_0_5"
+                        android:fontFamily="@font/game_paused_demo_regular"
+                        android:gravity="center"
+                        android:text="#FFFFFF"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/sp_20" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp">
+    android:layout_marginBottom="@dimen/dp_16">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -20,12 +20,12 @@
             android:id="@+id/tvTypeClothes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/dp_16"
             android:fontFamily="@font/montserrat_medium"
             android:text="Shirt"
             android:textColor="@color/app"
-            android:textSize="14sp"
-            android:translationY="1dp"
+            android:textSize="@dimen/sp_14"
+            android:translationY="@dimen/dp_1"
             app:layout_constraintBottom_toBottomOf="@+id/tvExtension"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvExtension" />
@@ -35,16 +35,16 @@
             android:id="@+id/tvExtension"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/dp_8"
             android:background="@drawable/bg_png_item_outfit"
             android:fontFamily="@font/inter_nedium"
-            android:paddingHorizontal="6dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="1dp"
+            android:paddingHorizontal="@dimen/dp_6"
+            android:paddingTop="@dimen/dp_3"
+            android:paddingBottom="@dimen/dp_1"
             android:text="PNG"
             android:textAllCaps="true"
             android:textColor="#848484"
-            android:textSize="10sp"
+            android:textSize="@dimen/sp_10"
             app:layout_constraintBottom_toBottomOf="@+id/btnDownload"
             app:layout_constraintStart_toEndOf="@+id/tvTypeClothes"
             app:layout_constraintTop_toTopOf="@+id/btnDownload" />
@@ -52,9 +52,9 @@
         <!--        btnDownload-->
         <ImageView
             android:id="@+id/btnDownload"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_margin="8dp"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:layout_margin="@dimen/dp_8"
             android:src="@drawable/ic_download"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -64,8 +64,8 @@
             android:id="@+id/imvThumb"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="44dp"
-            android:layout_marginVertical="24dp"
+            android:layout_marginHorizontal="@dimen/dp_44"
+            android:layout_marginVertical="@dimen/dp_24"
             android:scaleType="fitCenter"
             android:src="@drawable/test"
             app:layout_constraintBottom_toBottomOf="parent"

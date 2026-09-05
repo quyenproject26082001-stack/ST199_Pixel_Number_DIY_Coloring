@@ -154,4 +154,6 @@
     <string name="rate_us1">Rate Us</string>
     <string name="color_pixel">Color Pixel</string>
     <string name="my_work">My Work</string>
+    <string name="loading1">Loading</string>
+    <string name="pixel_image">Pixel Image</string>
 </resources>

@@ -5,12 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="7.5dp"
+    android:layout_margin="@dimen/dp_7_5"
     android:clipChildren="false"
     android:clipToPadding="false"
     app:layout_constraintDimensionRatio="160:160"
-    tools:layout_height="160dp"
-    tools:layout_width="160dp">
+    tools:layout_height="@dimen/dp_160"
+    tools:layout_width="@dimen/dp_160">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
@@ -29,14 +29,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="4dp"
+                app:cardCornerRadius="@dimen/dp_4"
                 android:clipChildren="false"
                 android:clipToOutline="false"
-                app:cardElevation="4dp"
+                app:cardElevation="@dimen/dp_4"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="false"
                 app:strokeColor="@color/black"
-                app:strokeWidth="1dp">
+                app:strokeWidth="@dimen/dp_1">
 
                 <ImageView
                     android:id="@+id/imvImage"
@@ -55,10 +55,10 @@
 
                 <ImageView
                     android:id="@+id/btnDelete"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
                     android:layout_gravity="end|top"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="@dimen/dp_8"
                     android:visibility="gone"
                     android:src="@drawable/ic_delete_item"
                     />
@@ -66,10 +66,10 @@
                 <!--btnEdit-->
                 <ImageView
                     android:id="@+id/btnEdit"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
                     android:layout_gravity="start|top"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/dp_8"
                     android:src="@drawable/ic_edit"
                     android:visibility="gone"
                  />
@@ -77,12 +77,12 @@
                 <!--btnSelect-->
                 <ImageView
                     android:id="@+id/btnSelect"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
                     android:layout_gravity="end|top"
                     android:src="@drawable/ic_uslt_item"
                     android:visibility="gone"
-                    android:layout_margin="4dp"
+                    android:layout_margin="@dimen/dp_4"
 
                     tools:visibility="visible" />
             </com.google.android.material.card.MaterialCardView>

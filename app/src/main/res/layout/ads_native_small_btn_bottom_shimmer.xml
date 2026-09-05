@@ -20,26 +20,26 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingStart="25dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="10dp">
+                android:paddingStart="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_10">
 
                 <ImageView
                     android:id="@+id/ad_app_icon"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/dp_35"
+                    android:layout_height="@dimen/dp_35"
                     android:adjustViewBounds="true" />
 
                 <TextView
                     style="@style/AppTheme.Ads"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="@dimen/dp_5"
                     android:backgroundTint="@color/native_bg_btn" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="@dimen/dp_5"
                     android:orientation="vertical">
 
                     <TextView
@@ -50,7 +50,7 @@
                         android:maxLines="2"
                         android:text=""
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/sp_12"
                         android:textStyle="bold" />
 
 
@@ -62,7 +62,7 @@
                         android:gravity="bottom"
                         android:lines="1"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/sp_10" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -70,25 +70,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:paddingBottom="10dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:layout_marginHorizontal="@dimen/dp_20"
                     android:id="@+id/ad_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/sp_12" />
 
             </LinearLayout>
             <ImageView
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="@dimen/dp_5"
                 android:id="@+id/ad_call_to_action"
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
                 android:gravity="center"
                 android:textColor="@color/native_text_color_btn"
-                android:textSize="12sp"
+                android:textSize="@dimen/sp_12"
                 android:textStyle="bold"/>
         </LinearLayout>
 

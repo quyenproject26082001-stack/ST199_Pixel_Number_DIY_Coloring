@@ -33,23 +33,23 @@
     <!-- tvCountDown -->
     <TextView
         android:id="@+id/tvCountDown"
-        android:layout_width="64dp"
-        android:layout_height="36dp"
+        android:layout_width="@dimen/dp_64"
+        android:layout_height="@dimen/dp_36"
         android:background="@drawable/bg_count_down2"
         android:fontFamily="@font/game_paused_demo_regular"
         android:gravity="center"
         android:text="10:00"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginBottom="@dimen/dp_16"
         app:layout_constraintBottom_toTopOf="@id/layoutCustomLayerBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:layout_width="81dp"
-        android:layout_height="6dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="@dimen/dp_81"
+        android:layout_height="@dimen/dp_6"
+        android:layout_marginTop="@dimen/dp_12"
         android:src="@drawable/ic_timing_shadow"
         app:layout_constraintEnd_toEndOf="@id/tvCountDown"
         app:layout_constraintStart_toStartOf="@id/tvCountDown"
@@ -67,10 +67,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginBottom="0dp"
         app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="@dimen/dp_4"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toTopOf="@id/glHorizontal"
         app:layout_constraintDimensionRatio="1:1"
@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
         app:layout_constraintVertical_bias="0"
         app:strokeColor="#861629"
-        app:strokeWidth="1dp"
+        app:strokeWidth="@dimen/dp_1"
         tools:background="@color/app">
 
         <FrameLayout
@@ -99,10 +99,10 @@
     <!-- btnFlip -->
     <ImageView
         android:id="@+id/btnFlip"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginEnd="@dimen/dp_16"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_flip"
         android:visibility="invisible"
@@ -112,10 +112,10 @@
     <!-- btnHide -->
     <ImageView
         android:id="@+id/btnHide"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/dp_32"
+        android:layout_height="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_16"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_show"
         android:visibility="invisible"
@@ -125,13 +125,13 @@
     <!-- containerBtnSamplePhoto (small reference image, top-left) -->
     <FrameLayout
         android:id="@+id/containerBtnSamplePhoto"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_16"
         android:background="@drawable/frame_sample"
         android:visibility="visible"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="@dimen/dp_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvCountDown"
         app:strokeColor="#861629">
@@ -141,9 +141,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="2dp"
-            android:layout_marginTop="2.5dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginHorizontal="@dimen/dp_2"
+            android:layout_marginTop="@dimen/dp_2_5"
+            android:layout_marginBottom="@dimen/dp_4"
             android:scaleType="fitCenter"
             app:shapeAppearanceOverlay="@style/border_image_6"
             tools:src="@color/dark" />
@@ -152,12 +152,12 @@
     <!-- btnMan (gone) -->
     <TextView
         android:id="@+id/btnMan"
-        android:layout_width="64dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="@dimen/dp_64"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
         android:background="@drawable/selector_btn_man"
-        android:elevation="1dp"
+        android:elevation="@dimen/dp_1"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/color" />
@@ -165,11 +165,11 @@
     <!-- btnWooman (gone) -->
     <TextView
         android:id="@+id/btnWooman"
-        android:layout_width="64dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="@dimen/dp_64"
+        android:layout_height="@dimen/dp_48"
+        android:layout_marginStart="@dimen/dp_12"
         android:background="@drawable/selector_btn_woman"
-        android:elevation="1dp"
+        android:elevation="@dimen/dp_1"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@id/btnMan"
         app:layout_constraintTop_toTopOf="@id/btnMan" />
@@ -177,11 +177,11 @@
     <!-- progressContainer -->
     <FrameLayout
         android:id="@+id/progressContainer"
-        android:layout_width="20dp"
-        android:layout_height="250dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_250"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_25"
+        android:layout_marginEnd="@dimen/dp_16"
         android:background="@drawable/bg_progress_container2"
         android:clipToOutline="true"
         android:visibility="gone"
@@ -199,10 +199,10 @@
     <!-- tvThumbProgress -->
     <TextView
         android:id="@+id/ic_thumb"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         android:background="@drawable/ic_thumb"
-        android:elevation="1dp"
+        android:elevation="@dimen/dp_1"
         android:visibility="gone"
         android:fontFamily="@font/game_paused_demo_regular"
         android:gravity="center"
@@ -215,10 +215,10 @@
         android:id="@+id/tvThumbProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="@dimen/dp_6"
         android:fontFamily="@font/fredoka"
         android:textColor="@color/app"
-        android:textSize="16sp"
+        android:textSize="@dimen/sp_16"
         app:layout_constraintEnd_toEndOf="@id/progressContainer"
         app:layout_constraintStart_toStartOf="@id/progressContainer"
         app:layout_constraintTop_toBottomOf="@id/progressContainer" />
@@ -244,8 +244,8 @@
         android:id="@+id/color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
         android:background="@color/transparent"
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@id/btnRandom"
@@ -256,8 +256,8 @@
         <!-- btnColor -->
         <ImageView
             android:id="@+id/btnColor"
-            android:layout_width="40dp"
-            android:layout_height="39dp"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_39"
             android:src="@drawable/ic_color"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -270,7 +270,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
-            android:elevation="1dp"
+            android:elevation="@dimen/dp_1"
             android:gravity="start"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/btnColor"
@@ -283,7 +283,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:strokeColor="@color/transparent"
-                app:cardCornerRadius="13.5dp"
+                app:cardCornerRadius="@dimen/dp_13_5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -295,20 +295,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:cardBackgroundColor="#FEBF7F"
-                app:cardCornerRadius="12dp"
-                android:layout_margin="1.5dp"
+                app:cardCornerRadius="@dimen/dp_12"
+                android:layout_margin="@dimen/dp_1_5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeColor="#FF8D19"
-                app:strokeWidth="2dp">
+                app:strokeWidth="@dimen/dp_2">
 
 
                 <RelativeLayout
                     android:id="@+id/relative"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginVertical="6dp">
+                    android:layout_marginVertical="@dimen/dp_6">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcvColor"
@@ -316,7 +316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
-                        android:layout_marginHorizontal="4dp"
+                        android:layout_marginHorizontal="@dimen/dp_4"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -337,12 +337,12 @@
     <!-- btnRandom -->
     <ImageView
         android:id="@+id/btnRandom"
-        android:layout_width="40dp"
-        android:layout_height="38.8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_38_8"
+        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginEnd="@dimen/dp_16"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:elevation="2dp"
+        android:elevation="@dimen/dp_2"
         android:src="@drawable/ic_random"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -353,7 +353,7 @@
         android:id="@+id/bg_cus"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/dp_12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/color" />
 
@@ -364,12 +364,12 @@
         android:id="@+id/rcvLayer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="@dimen/dp_4"
         android:clipToPadding="false"
         android:layerType="hardware"
-        android:paddingHorizontal="20dp"
-        android:paddingBottom="20dp"
-        android:layout_marginTop="56dp"
+        android:paddingHorizontal="@dimen/dp_20"
+        android:paddingBottom="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_56"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/flBottomNav"
         app:layout_constraintTop_toTopOf="@id/glHorizontal"
@@ -398,7 +398,7 @@
             android:clipToPadding="false"
             android:layerType="hardware"
             android:orientation="horizontal"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/dp_8"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_bottom_navigation" />
     </FrameLayout>
@@ -410,7 +410,7 @@
         android:layout_height="match_parent"
         android:background="#80000000"
         android:clickable="true"
-        android:elevation="2dp"
+        android:elevation="@dimen/dp_2"
         android:focusable="true"
         android:visibility="gone">
 
@@ -420,12 +420,12 @@
             android:id="@+id/containerBtnSamplePhotoShow"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_116"
             android:background="@drawable/frame1"
-            android:elevation="5dp"
+            android:elevation="@dimen/dp_5"
             android:visibility="visible"
-            app:cardCornerRadius="4dp"
+            app:cardCornerRadius="@dimen/dp_4"
             app:layout_constraintDimensionRatio="320:360"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -437,7 +437,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#B25324"
-                android:textSize="28sp"
+                android:textSize="@dimen/sp_28"
                 android:text="80%"
                 android:gravity="center"
                 android:fontFamily="@font/game_paused_demo_regular"
@@ -449,10 +449,10 @@
                 android:id="@+id/ctnID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="64dp"
-                app:cardCornerRadius="4dp"
+                android:layout_marginHorizontal="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_24"
+                android:layout_marginBottom="@dimen/dp_64"
+                app:cardCornerRadius="@dimen/dp_4"
                 app:layout_constraintDimensionRatio="152:152"
                 app:strokeColor="@color/transparent">
 
@@ -461,7 +461,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="0dp"
-                        android:elevation="5dp"
+                        android:elevation="@dimen/dp_5"
                         android:scaleType="fitCenter"
                         tools:src="@color/white" />
                 </com.google.android.material.card.MaterialCardView>
@@ -469,9 +469,9 @@
 
         <TextView
             android:id="@+id/btnCloseImage"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            android:layout_marginTop="@dimen/dp_24"
             android:background="@drawable/ic_close_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -482,7 +482,7 @@
         android:id="@+id/flNativeCollab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
+        android:elevation="@dimen/dp_5"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent">
 

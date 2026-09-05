@@ -1,30 +1,30 @@
 <resources>
 
     <string name="app_name" translatable="false">Skin Creator: RBX Clothes</string>
-    <string name="pixel_coloring" translatable="false">Pixel Coloring</string>
-    <string name="pixel_gallery" translatable="false">Pixel Gallery</string>
-    <string name="pixel_upload" translatable="false">Upload image</string>
-    <string name="pixel_all" translatable="false">All</string>
-    <string name="pixel_animals" translatable="false">Animals</string>
-    <string name="pixel_food" translatable="false">Food</string>
-    <string name="pixel_people" translatable="false">People</string>
-    <string name="pixel_monsters" translatable="false">Monsters</string>
-    <string name="pixel_plants" translatable="false">Plants</string>
-    <string name="pixel_vehicles" translatable="false">Vehicles</string>
-    <string name="pixel_christmas" translatable="false">Christmas</string>
-    <string name="pixel_halloween" translatable="false">Halloween</string>
-    <string name="pixel_random" translatable="false">Random</string>
-    <string name="pixel_wand" translatable="false">Wand</string>
-    <string name="pixel_bomb" translatable="false">Bomb</string>
-    <string name="pixel_hint" translatable="false">Hint</string>
-    <string name="pixel_reset" translatable="false">Reset</string>
-    <string name="pixel_complete" translatable="false">Completed!</string>
-    <string name="pixel_next" translatable="false">Next level</string>
-    <string name="pixel_back_gallery" translatable="false">Back to gallery</string>
-    <string name="pixel_zero_percent" translatable="false">0%</string>
-    <string name="pixel_percent" translatable="false">%1$d%%</string>
+    <string name="pixel_coloring">Pixel Coloring</string>
+    <string name="pixel_gallery">Pixel Gallery</string>
+    <string name="pixel_upload">Upload image</string>
+    <string name="pixel_all">All</string>
+    <string name="pixel_animals">Animals</string>
+    <string name="pixel_food">Food</string>
+    <string name="pixel_people">People</string>
+    <string name="pixel_monsters">Monsters</string>
+    <string name="pixel_plants">Plants</string>
+    <string name="pixel_vehicles">Vehicles</string>
+    <string name="pixel_christmas">Christmas</string>
+    <string name="pixel_halloween">Halloween</string>
+    <string name="pixel_random">Random</string>
+    <string name="pixel_wand">Wand</string>
+    <string name="pixel_bomb">Bomb</string>
+    <string name="pixel_hint">Hint</string>
+    <string name="pixel_reset">Reset</string>
+    <string name="pixel_complete">Completed!</string>
+    <string name="pixel_next">Next level</string>
+    <string name="pixel_back_gallery">Back to gallery</string>
+    <string name="pixel_zero_percent">0%</string>
+    <string name="pixel_percent">%1$d%%</string>
     <string name="pixel_complete_mark" translatable="false">✓</string>
-    <string name="pixel_image_error" translatable="false">Unable to read this image</string>
+    <string name="pixel_image_error">Unable to read this image</string>
 
 
     <string name="go_to_setting_message">The app needs this permission</string>
@@ -81,7 +81,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="ok">Ok</string>
-    <string name="wait_a_minute">Please wait...</string>
+    <string name="wait_a_minute">Wait a few seconds...</string>
     <string name="reset">Reset</string>
     <string name="download_success">Download successful to the Skin Creator: RBX Clothes album</string>
     <string name="please_check_your_internet">Please check your internet</string>
@@ -173,6 +173,8 @@
     <string name="my_package">My Package</string>
     <string name="my_rbx">My RBX</string>
     <string name="no_creations_yet">No creations yet</string>
+    <string name="pixel_in_progress">In Progress</string>
+    <string name="pixel_finished">Finished</string>
     <string name="setting">Settings</string>
     <string name="assessory">Assessory</string>
     <string name="shirt1">Shirts</string>
@@ -181,5 +183,8 @@
     <string name="rate_us1">Rate Us</string>
     <string name="color_pixel">Color Pixel</string>
     <string name="my_work">My Work</string>
+    <string name="loading1">Loading</string>
+    <string name="pixel_image">Pixel Image</string>
+    <string name="_1_1">1:1</string>
 
 </resources>

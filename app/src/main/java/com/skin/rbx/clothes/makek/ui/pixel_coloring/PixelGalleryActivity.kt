@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.skin.rbx.clothes.makek.R
 import com.skin.rbx.clothes.makek.core.base.BaseActivity
 import com.skin.rbx.clothes.makek.core.extensions.handleBackLeftToRight
+import com.skin.rbx.clothes.makek.core.extensions.shareImagesPaths
 import com.skin.rbx.clothes.makek.core.extensions.setImageActionBar
 import com.skin.rbx.clothes.makek.core.extensions.setTextActionBar
 import com.skin.rbx.clothes.makek.core.extensions.tap
@@ -41,7 +42,13 @@ class PixelGalleryActivity : BaseActivity<ActivityPixelGalleryBinding>() {
 
     override fun initView() {
         levelAdapter = PixelLevelAdapter(repository, progressStore, lifecycleScope, ::openLevel)
-        binding.levelList.adapter = levelAdapter
+        binding.levelList.apply {
+            adapter = levelAdapter
+            setHasFixedSize(true)
+            itemAnimator = null
+            setItemViewCacheSize(8)
+            recycledViewPool.setMaxRecycledViews(0, 12)
+        }
         (binding.levelList.layoutManager as? GridLayoutManager)?.spanCount =
             if (resources.configuration.smallestScreenWidthDp >= 600) 3 else 2
         selectCategory(CATEGORY_ALL, binding.btnAll)
@@ -105,8 +112,44 @@ class PixelGalleryActivity : BaseActivity<ActivityPixelGalleryBinding>() {
     }
 
     private fun openLevel(entry: PixelLevelEntry) {
+        if (progressStore.isCompleted(entry.id)) {
+            showRetryDialog(entry)
+            return
+        }
+        launchLevel(entry)
+    }
+
+    private fun launchLevel(entry: PixelLevelEntry) {
         startActivity(Intent(this, PixelColoringActivity::class.java).putExtra(PixelColoringActivity.EXTRA_LEVEL_ID, entry.id))
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun showRetryDialog(entry: PixelLevelEntry) {
+        lifecycleScope.launch {
+            val preview = withContext(Dispatchers.IO) {
+                createCompletedPreview(repository.loadLevel(entry.id))
+            }
+            val dialog = PixelRetryDialog(this@PixelGalleryActivity, preview)
+            dialog.onRetryClick = {
+                dialog.dismiss()
+                progressStore.reset(entry.id)
+                levelAdapter.refreshProgress()
+                launchLevel(entry)
+            }
+            dialog.onShareClick = {
+                lifecycleScope.launch {
+                    val path = withContext(Dispatchers.IO) {
+                        saveShareArtwork(this@PixelGalleryActivity, preview, entry.id)
+                    }
+                    if (path == null) {
+                        showToast(R.string.save_failed_please_try_again)
+                    } else {
+                        shareImagesPaths(arrayListOf(path))
+                    }
+                }
+            }
+            dialog.show()
+        }
     }
 
     private fun createLevelFromImage(uri: Uri) {

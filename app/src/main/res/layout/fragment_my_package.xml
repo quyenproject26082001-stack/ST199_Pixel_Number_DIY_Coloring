@@ -14,8 +14,8 @@
         android:layout_height="match_parent"
         android:clipChildren="true"
         android:clipToPadding="true"
-        android:paddingHorizontal="8.5dp"
-        android:paddingBottom="100dp"
+        android:paddingHorizontal="@dimen/dp_8_5"
+        android:paddingBottom="@dimen/dp_100"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_package" />
@@ -23,10 +23,10 @@
     <LinearLayout
         android:id="@+id/layoutNoItem"
         android:layout_width="wrap_content"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/dp_56"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_50"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone">
@@ -35,13 +35,13 @@
             android:id="@+id/tvNoitem"
             style="@style/single_marquee"
             android:layout_width="match_parent"
-            android:layout_height="37dp"
+            android:layout_height="@dimen/dp_37"
             android:fontFamily="@font/game_paused_demo_regular"
             android:gravity="center"
-            android:paddingHorizontal="33dp"
+            android:paddingHorizontal="@dimen/dp_33"
             android:text="@string/no_creations_yet"
             android:textColor="@color/app"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp_16"
             android:translationY="0dp" />
     </LinearLayout>
 </FrameLayout>
