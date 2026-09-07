@@ -131,5 +131,5 @@
     <dimen name="sp_100">100sp</dimen>
     <dimen name="actionbar">110dp</dimen>
     <dimen name="splash">0dp</dimen>
-    <dimen name="splash1">120</dimen>
+    <dimen name="splash1">120dp</dimen>
 </resources>
